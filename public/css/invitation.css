@@ -53,13 +53,14 @@ body {
 }
 .sprig {
   position: absolute;
-  width: min(40vw, 230px);
+  width: min(28vw, 230px);           /* narrow enough that the two top sprigs never meet */
   height: auto;
   opacity: 0.6;
 }
-/* The sprig grows from its bottom-left corner; turn it so it grows out of each page corner */
+/* The sprig grows from its bottom-left corner; turn it (and mirror it) so it grows out of the
+   two top corners, framing the names. The lower corners belong to the envelope's florals. */
 .sprig-tl { left: -6%; top: -4%; transform: rotate(90deg); }
-.sprig-br { right: -6%; bottom: -4%; transform: rotate(-90deg); }
+.sprig-tr { right: -6%; top: -4%; transform: scaleX(-1) rotate(90deg); }
 
 
 /* =========================================================
@@ -133,25 +134,28 @@ html.intro-on { overflow: hidden; }
 .intro.is-opening .intro-hint { opacity: 0; transform: translateY(8px); }
 
 /* Arrival, while the sprigs grow (their animation lives in sprig.svg): the words rise in, the
-   envelope floats up, the seal is pressed on, then the hint appears and the seal starts pulsing.
-   Plays once; constant motion would compete with the one thing to tap. */
+   envelope drifts down like a sheet of paper and settles, the card's florals swing in from beyond
+   the screen edges, the seal fades in, then the hint appears and the seal starts pulsing.
+   Everything eases to rest (no scaling up, no bounce), and it plays once: constant motion
+   would compete with the one thing to tap. */
 @keyframes rise-in { from { opacity: 0; transform: translateY(14px); } }
-@keyframes envelope-in { from { opacity: 0; transform: translateY(32px) scale(0.96); } }
-@keyframes seal-in {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); }
-  65% { opacity: 1; transform: translate(-50%, -50%) scale(0.93); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes envelope-in {
+  from { opacity: 0; transform: translateY(-22px) rotate(-2.5deg); }
+  45% { opacity: 1; }
+  to { opacity: 1; transform: none; }
 }
-.intro-head > * { animation: rise-in 800ms var(--ease-out) backwards; }
-.intro-head > .intro-kicker { animation-delay: 150ms; }
-.intro-head > .intro-names { animation-delay: 300ms; }
-.intro-head > .intro-date { animation-delay: 450ms; }
-.envelope { animation: envelope-in 1000ms var(--ease-out) 500ms backwards; }
-.seal { animation: seal-in 600ms cubic-bezier(0.4, 0, 0.2, 1) 1250ms backwards; }
-.intro-hint { animation: rise-in 700ms var(--ease-out) 1650ms backwards; }
+@keyframes seal-in { from { opacity: 0; transform: translate(-50%, -50%) scale(1.08); } }
+.intro-head > * { animation: rise-in 1000ms var(--ease-out) backwards; }
+.intro-head > .intro-kicker { animation-delay: 100ms; }
+.intro-head > .intro-names { animation-delay: 250ms; }
+.intro-head > .intro-date { animation-delay: 400ms; }
+.envelope { animation: envelope-in 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) 300ms backwards; }
+.seal { animation: seal-in 800ms var(--ease-out) 1300ms backwards; }
+.intro-hint { animation: rise-in 700ms var(--ease-out) 1800ms backwards; }
 /* Tapped before the arrival finished: jump to the end so the card's path is measured from rest */
 .intro.is-opening .intro-head > *,
 .intro.is-opening .envelope,
+.intro.is-opening .env-floral,
 .intro.is-opening .seal,
 .intro.is-opening .intro-hint { animation: none; }
 
@@ -173,6 +177,43 @@ html.intro-on { overflow: hidden; }
 .env-flap {
   transition: transform 650ms var(--ease-in), opacity 650ms var(--ease-in);
 }
+
+/* Florals from the printed card (one cluster and its mirror image), tucked under the envelope's
+   bottom corners, where a phone has room for them (z -1: behind the envelope and the text).
+   Each pivots on its outer bottom corner: it swings in from beyond the screen edge as the
+   envelope arrives, and swings back out when the envelope falls away. */
+.env-floral {
+  position: absolute;
+  bottom: -52%;
+  z-index: -1;
+  width: 48%;
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: 1600ms cubic-bezier(0.25, 0.8, 0.3, 1) 300ms backwards;
+  transition: transform 700ms var(--ease-in), opacity 700ms var(--ease-in);
+}
+.env-floral-left {
+  left: -24%;
+  transform-origin: 0 100%;
+  animation-name: floral-in-left;
+}
+.env-floral-right {
+  right: -24%;
+  transform-origin: 100% 100%;
+  animation-name: floral-in-right;
+}
+@keyframes floral-in-left {
+  from { opacity: 0; transform: translateX(-45%) rotate(-30deg); }
+  70% { transform: rotate(2deg); }
+}
+@keyframes floral-in-right {
+  from { opacity: 0; transform: translateX(45%) rotate(30deg); }
+  70% { transform: rotate(-2deg); }
+}
+.envelope.is-dropping .env-floral { opacity: 0; }
+.envelope.is-dropping .env-floral-left { transform: translateX(-45%) rotate(-30deg); }
+.envelope.is-dropping .env-floral-right { transform: translateX(45%) rotate(30deg); }
 .env-back {
   position: absolute;
   inset: 0;
@@ -267,14 +308,14 @@ html.intro-on { overflow: hidden; }
   position: absolute;
   inset: -4%;
   border-radius: 50%;
-  border: 2px solid rgba(91, 66, 96, 0.5);
+  border: 2px solid rgba(91, 66, 96, 0.45);
   opacity: 0;
-  animation: seal-pulse 2.4s var(--ease-out) 2000ms infinite;   /* starts once the seal is on */
+  animation: seal-pulse 2.8s var(--ease-out) 2500ms infinite;   /* starts once the seal is on */
   pointer-events: none;
 }
 @keyframes seal-pulse {
-  0% { transform: scale(0.92); opacity: 0.9; }
-  70%, 100% { transform: scale(1.55); opacity: 0; }
+  0% { transform: scale(0.95); opacity: 0.75; }
+  70%, 100% { transform: scale(1.4); opacity: 0; }
 }
 @media (hover: hover) {
   .envelope:hover .seal { transform: translate(-50%, -50%) scale(1.05); }
@@ -633,11 +674,12 @@ html.intro-on { overflow: hidden; }
     row-gap: 16px;
     align-items: center;
   }
+  .env-floral { width: 34%; bottom: -36%; }   /* keep clear of the names beside the envelope */
 }
 
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-head > *, .envelope, .seal, .intro-hint { animation: none; }
+  .intro-head > *, .envelope, .env-floral, .seal, .intro-hint { animation: none; }
   .seal::after { animation: none; opacity: 0; }
   .intro.is-opening .seal-l,
   .intro.is-opening .seal-r { transform: none; }
