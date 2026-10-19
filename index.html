@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wedding Invitation Templates</title>
+  <meta name="description" content="Four sample wedding invitation website templates: Blush Romance, Editorial Minimal, Midnight Deco and Golden Padauk (bilingual Myanmar / English).">
+  <meta name="theme-color" content="#F7F4EF">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Cormorant:ital,wght@1,500&family=Great+Vibes&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Serif+Myanmar:wght@600&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F4EF;
+      --surface: #FFFFFF;
+      --text: #1F1A17;
+      --text-muted: #5E554D;
+      --border: #E4DDD3;
+      --focus: #8A4B2A;
+      --radius: 16px;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 16px/1.6 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+
+    .skip {
+      position: absolute; left: var(--space-4); top: -100px;
+      background: var(--text); color: var(--bg);
+      padding: var(--space-3) var(--space-4); border-radius: 8px; z-index: 100;
+    }
+    .skip:focus { top: var(--space-4); }
+
+    .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+
+    header.page { padding: var(--space-24) 0 var(--space-12); text-align: center; }
+    .eyebrow {
+      font: 500 13px/1.4 "JetBrains Mono", ui-monospace, monospace;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted);
+      margin: 0 0 var(--space-4);
+    }
+    h1 {
+      font: 600 clamp(2.5rem, 6vw, 4.25rem)/1.05 var(--font-display);
+      margin: 0 0 var(--space-4); text-wrap: balance;
+    }
+    .lede { max-width: 62ch; margin: 0 auto; color: var(--text-muted); font-size: 18px; }
+
+    h2 {
+      font: 600 clamp(1.75rem, 3.5vw, 2.5rem)/1.15 var(--font-display);
+      margin: 0 0 var(--space-6);
+    }
+
+    .grid {
+      display: grid; gap: var(--space-6);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+    }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { box-shadow: 0 12px 32px -16px rgba(31, 26, 23, .25); border-color: #D3C9BC; }
+
+    .preview {
+      aspect-ratio: 16 / 7; display: grid; place-items: center; text-align: center;
+      padding: var(--space-6); position: relative;
+    }
+    .preview .names { margin: 0; line-height: 1.1; }
+    .preview .sub { margin: var(--space-2) 0 0; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
+
+    .p-blush { background: #FDF2F8; color: #831843; }
+    .p-blush .names { font: 400 clamp(2.75rem, 7vw, 4rem) "Great Vibes", cursive; }
+    .p-blush .sub { font-family: var(--font-display); font-weight: 600; }
+
+    .p-edit { background: #FAF8F3; color: #111111; border-bottom: 1px solid #111111; }
+    .p-edit .names { font: 900 clamp(2.5rem, 7vw, 4rem)/.9 "Playfair Display", serif; letter-spacing: -.03em; text-transform: uppercase; }
+    .p-edit .sub { font-family: "JetBrains Mono", monospace; font-weight: 500; }
+
+    .p-deco { background: #0B0F1A; color: #D4AF6A; }
+    .p-deco .names { font: italic 500 clamp(2.5rem, 6.5vw, 3.75rem) "Cormorant", serif; }
+    .p-deco .sub { color: #F3EAD7; font-weight: 500; letter-spacing: .3em; }
+    .p-deco::before {
+      content: ""; position: absolute; inset: 12px; border: 1px solid #D4AF6A; pointer-events: none;
+    }
+
+    .p-mm { background: #FBF6EC; color: #6B1E2A; }
+    .p-mm .names { font: 600 clamp(1.75rem, 5vw, 2.5rem)/1.9 "Noto Serif Myanmar", serif; }
+    .p-mm .sub { font: italic 400 18px var(--font-display); letter-spacing: .04em; text-transform: none; color: #2B1A12; }
+    .p-mm::before, .p-mm::after {
+      content: ""; position: absolute; inset: 10px; border: 1px solid #B8862B; pointer-events: none;
+    }
+    .p-mm::after { inset: 15px; }
+
+    .body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); flex: 1; }
+    .body h3 { font: 600 26px/1.2 var(--font-display); margin: 0; }
+    .concept { margin: 0; color: var(--text-muted); }
+
+    dl.meta { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); font-size: 15px; }
+    dl.meta dt { font-weight: 600; }
+    dl.meta dd { margin: 0; color: var(--text-muted); }
+
+    .swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin: 0; }
+    .swatches li {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font: 500 13px/1 "JetBrains Mono", monospace; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 999px; padding: 6px 10px 6px 6px;
+    }
+    .swatches span[aria-hidden] { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.15); }
+
+    .actions { margin-top: auto; padding-top: var(--space-2); }
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      min-height: 44px; padding: 0 var(--space-6);
+      background: var(--text); color: var(--bg);
+      border-radius: 999px; text-decoration: none; font-weight: 500;
+      transition: background-color .2s ease, transform .15s ease;
+      cursor: pointer;
+    }
+    .btn:hover { background: #3A322C; }
+    .btn:active { transform: scale(.98); }
+    .btn svg { width: 18px; height: 18px; }
+
+    section.block { padding: var(--space-16) 0; }
+    .ideas { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); list-style: none; padding: 0; margin: 0; }
+    .ideas li {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: var(--space-6);
+    }
+    .ideas h3 { font: 600 17px/1.3 var(--font-body); margin: 0 0 var(--space-2); display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+    .ideas h3 svg { width: 20px; height: 20px; flex: none; color: var(--focus); }
+    .ideas p { margin: 0; color: var(--text-muted); font-size: 15px; }
+    .tag {
+      display: inline-block; margin-left: auto; font: 500 11px/1 "JetBrains Mono", monospace;
+      letter-spacing: .08em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px;
+      background: #EFE9E0; color: #4A423B; white-space: nowrap;
+    }
+
+    footer { padding: var(--space-12) 0 var(--space-16); color: var(--text-muted); text-align: center; font-size: 14px; border-top: 1px solid var(--border); }
+    footer code { font-family: "JetBrains Mono", monospace; font-size: 13px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to templates</a>
+
+  <header class="page wrap">
+    <p class="eyebrow">ui-ux-pro-max · sample set</p>
+    <h1>Wedding invitation templates</h1>
+    <p class="lede">Four different directions for one invitation, with the same placeholder couple, date and features so you can compare the look and feel. Every template is a single HTML file that works offline. Open one, pick a direction, then we can mix and match.</p>
+  </header>
+
+  <main id="main" class="wrap">
+    <section aria-labelledby="t-heading">
+      <h2 id="t-heading">Templates</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="preview p-blush" aria-hidden="true">
+            <div><p class="names">Aung &amp; Thiri</p><p class="sub">12 · 12 · 2026</p></div>
+          </div>
+          <div class="body">
+            <h3>01 · Blush Romance</h3>
+            <p class="concept">The skill's top pick for weddings. Soft UI cards, botanical line art and script names. Opens with an <strong>envelope intro</strong> where the guest taps the wax seal.</p>
+            <dl class="meta">
+              <dt>Fonts</dt><dd>Great Vibes + Cormorant Infant</dd>
+              <dt>Mood</dt><dd>Romantic, soft, classic</dd>
+              <dt>Best for</dt><dd>Garden, daytime or church ceremonies</dd>
+            </dl>
+            <ul class="swatches" aria-label="Palette">
+              <li><span aria-hidden="true" style="background:#FDF2F8"></span>#FDF2F8</li>
+              <li><span aria-hidden="true" style="background:#831843"></span>#831843</li>
+              <li><span aria-hidden="true" style="background:#DB2777"></span>#DB2777</li>
+              <li><span aria-hidden="true" style="background:#A16207"></span>#A16207</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="templates/01-blush-romance.html">Open template
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview p-edit" aria-hidden="true">
+            <div><p class="names">Aung<br>&amp; Thiri</p><p class="sub">Vol. 01 — The Wedding Issue</p></div>
+          </div>
+          <div class="body">
+            <h3>02 · Editorial Minimal</h3>
+            <p class="concept">Designed like a magazine cover. Very large type, lots of white space and one accent color. The story reads as an interview and the schedule as a printed programme.</p>
+            <dl class="meta">
+              <dt>Fonts</dt><dd>Playfair Display + Source Serif 4 + JetBrains Mono</dd>
+              <dt>Mood</dt><dd>Modern, fashion, confident</dd>
+              <dt>Best for</dt><dd>City, gallery or minimalist venues</dd>
+            </dl>
+            <ul class="swatches" aria-label="Palette">
+              <li><span aria-hidden="true" style="background:#FAF8F3"></span>#FAF8F3</li>
+              <li><span aria-hidden="true" style="background:#111111"></span>#111111</li>
+              <li><span aria-hidden="true" style="background:#7A1F2B"></span>#7A1F2B</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="templates/02-editorial-minimal.html">Open template
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview p-deco" aria-hidden="true">
+            <div><p class="names">Aung &amp; Thiri</p><p class="sub">An evening affair</p></div>
+          </div>
+          <div class="body">
+            <h3>03 · Midnight Deco</h3>
+            <p class="concept">1920s Art Deco evening style: midnight blue with gold, sunburst rays, framed cards and a soft gold glow that follows the mouse.</p>
+            <dl class="meta">
+              <dt>Fonts</dt><dd>Cormorant + Montserrat</dd>
+              <dt>Mood</dt><dd>Glamorous, formal, evening</dd>
+              <dt>Best for</dt><dd>Hotel ballroom, black-tie receptions</dd>
+            </dl>
+            <ul class="swatches" aria-label="Palette">
+              <li><span aria-hidden="true" style="background:#0B0F1A"></span>#0B0F1A</li>
+              <li><span aria-hidden="true" style="background:#121829"></span>#121829</li>
+              <li><span aria-hidden="true" style="background:#D4AF6A"></span>#D4AF6A</li>
+              <li><span aria-hidden="true" style="background:#F3EAD7"></span>#F3EAD7</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="templates/03-midnight-deco.html">Open template
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="preview p-mm" aria-hidden="true">
+            <div><p class="names">အောင် &amp; သီရိ</p><p class="sub">Aung &amp; Thiri · Wedding Invitation</p></div>
+          </div>
+          <div class="body">
+            <h3>04 · Golden Padauk (မြန်မာ / English)</h3>
+            <p class="concept">A bilingual invitation inspired by traditional Myanmar wedding cards, with padauk flowers, gold scroll borders and maroon. It opens like a <strong>folded card</strong>, and guests can switch between မြန်မာ and English.</p>
+            <dl class="meta">
+              <dt>Fonts</dt><dd>Noto Serif Myanmar + Cormorant Garamond</dd>
+              <dt>Mood</dt><dd>Traditional, warm, auspicious</dd>
+              <dt>Best for</dt><dd>Myanmar ceremonies with mixed-language guests</dd>
+            </dl>
+            <ul class="swatches" aria-label="Palette">
+              <li><span aria-hidden="true" style="background:#FBF6EC"></span>#FBF6EC</li>
+              <li><span aria-hidden="true" style="background:#6B1E2A"></span>#6B1E2A</li>
+              <li><span aria-hidden="true" style="background:#B8862B"></span>#B8862B</li>
+              <li><span aria-hidden="true" style="background:#2B1A12"></span>#2B1A12</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="templates/04-golden-myanmar.html">Open template
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="f-heading">
+      <h2 id="f-heading">Feature ideas</h2>
+      <ul class="ideas">
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Personal guest links <span class="tag">Built in</span></h3>
+          <p>Add <code>?to=Ko%20Zaw</code> to the link and the page greets that guest by name. You can make one link per guest from a spreadsheet.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Add to calendar <span class="tag">Built in</span></h3>
+          <p>One tap downloads an .ics file with both the ceremony and the reception, set to Yangon time.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>RSVP with headcount <span class="tag">Built in</span></h3>
+          <p>Accept or decline, number of guests and dietary notes, with validation. It isn't connected to anything yet. Formspree or Google Sheets would work.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Countdown <span class="tag">Built in</span></h3>
+          <p>Numbers keep a fixed width so nothing jumps, and the timer pauses when the tab is hidden. After the wedding it changes to a "just married" message.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Wishes wall <span class="tag">Idea</span></h3>
+          <p>Guests leave short blessings that show up as cards, either in a live feed or in a book you print after the wedding. Needs a small backend.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20v.01M17 20h4v-3"/></svg>Gift QR <span class="tag">Idea</span></h3>
+          <p>An optional section with a KBZPay or WavePay QR code for gifts from guests who can't come. You can hide it with a single setting.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Music toggle <span class="tag">Idea</span></h3>
+          <p>Background music that starts only when the guest taps play, never automatically, and can be muted with an obvious button.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Live photo drop <span class="tag">Idea</span></h3>
+          <p>After the day, guests upload their photos from a QR code printed on the table cards, and the gallery fills up with them.</p>
+        </li>
+        <li>
+          <h3><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Myanmar calendar date <span class="tag">Idea</span></h3>
+          <p>Show the traditional Myanmar lunar date next to the regular date, as printed cards usually do. Have family check it before it goes out.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">All placeholder content (names, venue, dates) is fictional. Edit the text in each <code>templates/*.html</code> file.</div>
+  </footer>
+</body>
+</html>

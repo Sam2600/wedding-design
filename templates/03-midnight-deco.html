@@ -1,0 +1,2166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aung &amp; Thiri — 12 December 2026 · Midnight Gold</title>
+  <meta name="description" content="Aung &amp; Thiri request the pleasure of your company at their wedding on Saturday, 12 December 2026 at Lotus Garden Hall, Yangon. Kindly RSVP by 20 November 2026.">
+  <meta name="theme-color" content="#0B0F1A">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Aung &amp; Thiri — 12 December 2026">
+  <meta property="og:description" content="You are invited. Saturday, 12 December 2026 · Lotus Garden Hall, Yangon.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    /* ==========================================================
+       Tokens — Midnight Gold (Art Deco evening)
+       All text/background pairs verified ≥ 4.5:1 (see report).
+       ========================================================== */
+    :root {
+      color-scheme: dark;
+
+      /* Surfaces */
+      --bg: #0B0F1A;
+      --surface: #121829;
+      --surface-2: #1A2238;
+      --header-bg: rgba(11, 15, 26, 0.94);
+
+      /* Text */
+      --text: #F3EAD7;            /* 16.0 : 1 on bg */
+      --text-muted: #BDB4A2;      /*  7.7 : 1 on surface-2 (lowest) */
+
+      /* Brand */
+      --accent: #D4AF6A;          /* gold — headings, rules, ornaments (7.6 : 1 min) */
+      --accent-deep: #B8924A;     /* darkest gradient stop (6.1 : 1 on surface) */
+      --accent-tint: rgba(212, 175, 106, 0.10);
+      --primary: #E2C07F;         /* filled CTA */
+      --primary-hover: #F0D9A4;
+      --on-primary: #0B0F1A;      /* 11.0 : 1 on primary */
+
+      /* Lines */
+      --border: #8A7448;          /* 3.5 : 1 min — input & frame boundaries */
+      --line-soft: rgba(212, 175, 106, 0.28);
+      --lattice: rgba(212, 175, 106, 0.05);
+      --glow: rgba(212, 175, 106, 0.08);
+      --glow-strong: rgba(240, 217, 164, 0.10);
+      --frame-fill: linear-gradient(180deg, rgba(18, 24, 41, 0.55), rgba(11, 15, 26, 0.75));
+
+      /* States */
+      --focus: #F0D9A4;
+      --error: #FF8A80;           /* 6.9 : 1 on surface-2 */
+      --success: #9FD8AE;
+
+      /* Dress-code swatches (decorative, labelled in text) */
+      --swatch-midnight: #0B0F1A;
+      --swatch-gold: #D4AF6A;
+      --swatch-ivory: #F3EAD7;
+      --swatch-emerald: #1F5C4A;
+
+      --gold-gradient: linear-gradient(100deg, #B8924A 0%, #E2C07F 28%, #F0D9A4 46%, #D4AF6A 62%, #B8924A 100%);
+
+      /* Type */
+      --font-display: 'Cormorant', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+      /* Spacing (4 / 8 scale) */
+      --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+      --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+      --gutter: 16px;
+      --nav-h: 64px;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --dur-fast: 180ms;
+      --dur: 260ms;
+      --dur-slow: 420ms;
+
+      /* Layers */
+      --z-header: 100;
+      --z-skip: 1000;
+    }
+
+    @media (min-width: 768px)  { :root { --gutter: 24px; --nav-h: 72px; } }
+    @media (min-width: 1024px) { :root { --gutter: 32px; } }
+
+    /* ==========================================================
+       Base
+       ========================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    /* Keep headings and focused controls clear of the fixed header */
+    :where(a, button, input, select, textarea, summary, [tabindex]) {
+      scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; line-height: 1.15; }
+    p { margin: 0; }
+    a { color: var(--accent); }
+    img, svg { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+    main:focus { outline: none; }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; border: 0;
+    }
+
+    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    .icon {
+      width: 20px; height: 20px;
+      flex: none;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .container {
+      width: min(100% - 2 * var(--gutter), 1120px);
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: var(--s-2);
+      left: var(--s-2);
+      z-index: var(--z-skip);
+      padding: var(--s-3) var(--s-4);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-weight: 600;
+      text-decoration: none;
+      transform: translateY(-200%);
+    }
+    .skip-link:focus { transform: none; }
+
+    /* ==========================================================
+       Header / navigation
+       ========================================================== */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: var(--z-header);
+      height: var(--nav-h);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .site-nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-4);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding-inline: var(--s-1);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.625rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      gap: var(--s-2);
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0 var(--s-3);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+    }
+    .menu-toggle:hover { border-color: var(--accent); background: var(--accent-tint); }
+    .menu-toggle .icon-close { display: none; }
+    .menu-toggle[aria-expanded="true"] .icon-open { display: none; }
+    .menu-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: var(--s-1);
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 var(--s-2);
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color var(--dur-fast) ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: var(--s-2);
+      right: var(--s-2);
+      bottom: 8px;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform var(--dur) var(--ease-out);
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link:hover::after { transform: scaleX(0.5); }
+    .nav-link[aria-current="true"] { color: var(--accent); }
+    .nav-link[aria-current="true"]::after { transform: scaleX(1); height: 2px; }
+
+    @media (min-width: 1024px) {
+      .nav-link { padding: 0 var(--s-3); letter-spacing: 0.16em; }
+      .nav-link::after { left: var(--s-3); right: var(--s-3); }
+    }
+
+    /* Mobile (JS) — collapse into a menu */
+    @media (max-width: 767.98px) {
+      .js .menu-toggle { display: inline-flex; }
+      .js .nav-list {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: var(--s-2) var(--gutter) var(--s-4);
+        background: var(--bg);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .js .site-nav.is-open .nav-list { display: flex; }
+      .js .nav-link {
+        width: 100%;
+        min-height: 48px;
+        font-size: 0.9375rem;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .js .nav-link::after { left: 0; right: auto; width: 24px; bottom: 10px; transform-origin: left; }
+
+      /* No-JS fallback: links wrap under the brand */
+      html:not(.js) .site-header { height: auto; position: static; }
+      html:not(.js) .site-nav { flex-wrap: wrap; padding-block: var(--s-2); }
+      html:not(.js) .nav-list { justify-content: flex-start; }
+    }
+
+    /* ==========================================================
+       Deco primitives
+       ========================================================== */
+
+    /* Double-line frame with gold corner brackets */
+    .framed {
+      position: relative;
+      border: 1px solid var(--border);
+    }
+    .framed::before {
+      content: '';
+      position: absolute;
+      inset: var(--frame-gap, 6px);
+      border: 1px solid var(--line-soft);
+      pointer-events: none;
+    }
+    .framed::after {
+      --c: var(--accent);
+      --l: var(--corner, 18px);
+      --w: 2px;
+      content: '';
+      position: absolute;
+      inset: -4px;
+      pointer-events: none;
+      background:
+        linear-gradient(var(--c) 0 0) top left     / var(--l) var(--w),
+        linear-gradient(var(--c) 0 0) top left     / var(--w) var(--l),
+        linear-gradient(var(--c) 0 0) top right    / var(--l) var(--w),
+        linear-gradient(var(--c) 0 0) top right    / var(--w) var(--l),
+        linear-gradient(var(--c) 0 0) bottom left  / var(--l) var(--w),
+        linear-gradient(var(--c) 0 0) bottom left  / var(--w) var(--l),
+        linear-gradient(var(--c) 0 0) bottom right / var(--l) var(--w),
+        linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--l);
+      background-repeat: no-repeat;
+    }
+
+    /* Diamond divider */
+    .divider {
+      width: min(240px, 70%);
+      height: auto;
+      margin: var(--s-4) auto 0;
+      overflow: visible;
+    }
+    .divider-line {
+      stroke: var(--accent);
+      stroke-width: 1;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+    }
+    .divider-gem { fill: none; stroke: var(--accent); stroke-width: 1; }
+    .divider-gem-inner { fill: var(--accent); }
+
+    /* Diamond-framed icon badge */
+    .gem-badge {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      margin-bottom: var(--s-4);
+      color: var(--accent);
+    }
+    .gem-badge::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--accent);
+      transform: rotate(45deg);
+    }
+    .gem-badge .icon { position: relative; width: 22px; height: 22px; }
+
+    /* ==========================================================
+       Sections
+       ========================================================== */
+    .section {
+      position: relative;
+      padding-block: clamp(var(--s-8), 10vw, 128px);
+      scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+    }
+    .section--alt {
+      background: var(--surface);
+      --panel-bg: var(--surface-2);
+      border-block: 1px solid var(--line-soft);
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin: 0 auto var(--s-7);
+      text-align: center;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-3);
+    }
+    .section-title {
+      font-size: clamp(1.875rem, 4.5vw, 2.875rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+      /* tracking adds trailing space — rebalance centring */
+      padding-left: 0.2em;
+      text-wrap: balance;
+    }
+    .section-lede {
+      margin-top: var(--s-4);
+      color: var(--text-muted);
+      max-width: 52ch;
+      margin-inline: auto;
+    }
+
+    .panel {
+      background: var(--panel-bg, var(--surface));
+      padding: clamp(var(--s-5), 4vw, var(--s-7));
+    }
+    .panel h3 {
+      font-size: 1.75rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    /* ==========================================================
+       Buttons
+       ========================================================== */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s-3);
+      min-height: 48px;
+      padding: 0 var(--s-6);
+      border: 1px solid transparent;
+      border-radius: 0;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition:
+        background-color var(--dur-fast) ease,
+        border-color var(--dur-fast) ease,
+        color var(--dur-fast) ease,
+        transform var(--dur-fast) ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn .icon { width: 18px; height: 18px; }
+
+    .btn--gold { background: var(--primary); color: var(--on-primary); }
+    .btn--gold:hover { background: var(--primary-hover); }
+
+    .btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+    .btn--outline:hover { background: var(--accent-tint); }
+
+    .btn--block { width: 100%; }
+
+    .btn[disabled] { cursor: progress; opacity: 0.75; }
+    .btn[disabled]:active { transform: none; }
+
+    .js-only { display: none !important; }
+    .js .js-only { display: inline-flex !important; }
+
+    /* ==========================================================
+       Hero
+       ========================================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: calc(var(--nav-h) + var(--s-6)) var(--gutter) var(--s-8);
+      overflow: hidden;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 50% 30%, var(--glow) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, var(--lattice) 0 1px, transparent 1px 44px),
+        repeating-linear-gradient(-45deg, var(--lattice) 0 1px, transparent 1px 44px);
+    }
+
+    .hero-spot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 560px;
+      height: 560px;
+      margin: -280px 0 0 -280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-strong) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur-slow) ease;
+      will-change: transform;
+    }
+    .hero.has-glow:hover .hero-spot { opacity: 1; }
+
+    .hero-frame {
+      position: relative;
+      width: min(100%, 760px);
+      padding: clamp(var(--s-5), 6vw, var(--s-8)) clamp(var(--s-4), 6vw, var(--s-8));
+      border: 1px solid var(--border);
+      background: var(--frame-fill);
+      text-align: center;
+    }
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--line-soft);
+      pointer-events: none;
+    }
+
+    .corner {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+    }
+    .corner::before,
+    .corner::after {
+      content: '';
+      position: absolute;
+      border-color: var(--accent);
+      border-style: solid;
+      border-width: 0;
+    }
+    .corner::before { inset: 0; }
+    .corner::after { inset: 12px; width: 20px; height: 20px; }
+
+    .corner--tl { top: -5px; left: -5px; transform-origin: top left; }
+    .corner--tr { top: -5px; right: -5px; transform-origin: top right; }
+    .corner--bl { bottom: -5px; left: -5px; transform-origin: bottom left; }
+    .corner--br { bottom: -5px; right: -5px; transform-origin: bottom right; }
+
+    .corner--tl::before, .corner--tl::after { border-top-width: 2px; border-left-width: 2px; }
+    .corner--tr::before, .corner--tr::after { border-top-width: 2px; border-right-width: 2px; }
+    .corner--bl::before, .corner--bl::after { border-bottom-width: 2px; border-left-width: 2px; }
+    .corner--br::before, .corner--br::after { border-bottom-width: 2px; border-right-width: 2px; }
+    .corner--tr::after { left: auto; }
+    .corner--bl::after { top: auto; }
+    .corner--br::after { left: auto; top: auto; }
+
+    .burst {
+      position: relative;
+      width: min(280px, 64vw);
+      aspect-ratio: 1;
+      margin: calc(-1 * var(--s-2)) auto var(--s-4);
+    }
+    .burst svg { width: 100%; height: 100%; overflow: visible; }
+    .burst-rays { transform-box: fill-box; transform-origin: center; }
+    .ray { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 0.55; }
+    .ray--long { opacity: 0.9; }
+    .burst-ring { fill: none; stroke: var(--accent); stroke-width: 1; }
+    .burst-ring--dotted { stroke-dasharray: 1 6; opacity: 0.6; }
+
+    .monogram {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.75rem, 7vw, 2.25rem);
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .guest-greeting {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: var(--s-3);
+      overflow-wrap: anywhere;
+    }
+
+    .hero-intro {
+      max-width: 34ch;
+      margin: 0 auto var(--s-5);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.8;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .names {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(3.5rem, 13vw, 6.75rem);
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+    .name {
+      display: block;
+      width: fit-content;
+      margin-inline: auto;
+      color: var(--accent);
+      padding-inline: 0.08em; /* keep italic overhang inside the clip box */
+    }
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+      .name {
+        background-image: var(--gold-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    @media (forced-colors: active) {
+      .name { background: none; -webkit-text-fill-color: currentColor; }
+    }
+
+    .amp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s-4);
+      margin: var(--s-2) 0;
+      font-size: 0.5em;
+      color: var(--text);
+    }
+    .amp::before,
+    .amp::after {
+      content: '';
+      width: clamp(40px, 14vw, 120px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+    .amp::after { background: linear-gradient(90deg, var(--accent), transparent); }
+
+    .full-names {
+      margin-top: var(--s-5);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    .hero-date {
+      margin-top: var(--s-4);
+      color: var(--accent);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .hero-place {
+      margin-top: var(--s-2);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* Countdown */
+    .countdown { margin-top: var(--s-6); }
+    .countdown-tiles {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 480px;
+      display: none;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--s-3);
+    }
+    .js .countdown-tiles { display: grid; }
+    .tile {
+      --frame-gap: 4px;
+      --corner: 10px;
+      padding: var(--s-3) var(--s-1);
+      background: var(--surface);
+    }
+    .tile-num {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.875rem, 7vw, 2.75rem);
+      line-height: 1.1;
+      color: var(--text);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .tile-label {
+      display: block;
+      margin-top: var(--s-1);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .label-short { display: none; }
+    @media (max-width: 479.98px) {
+      .countdown-tiles { gap: var(--s-2); }
+      .tile-label { letter-spacing: 0.12em; }
+      .label-long { display: none; }
+      .label-short { display: inline; }
+    }
+    .countdown-done {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.75rem;
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      margin-top: var(--s-6);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--s-3);
+    }
+    @media (max-width: 479.98px) {
+      .hero-actions .btn { width: 100%; }
+    }
+
+    /* ==========================================================
+       Story
+       ========================================================== */
+    .story-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--s-6);
+    }
+    @media (min-width: 900px) { .story-grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); } }
+
+    .story-year {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 3.25rem;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--accent);
+      font-variant-numeric: lining-nums;
+      margin-bottom: var(--s-3);
+    }
+    .story-card h3 { color: var(--text); font-size: 1.625rem; margin-bottom: var(--s-3); }
+    .story-card p { color: var(--text-muted); }
+
+    /* ==========================================================
+       Details
+       ========================================================== */
+    .details-grid {
+      display: grid;
+      gap: var(--s-6);
+    }
+    @media (min-width: 768px) { .details-grid { grid-template-columns: repeat(2, 1fr); gap: var(--s-5); } }
+
+    .details-card { text-align: center; }
+    .details-card .gem-badge { margin-inline: auto; }
+    .details-card h3 { margin-bottom: var(--s-5); }
+
+    .facts { margin: 0; display: grid; gap: var(--s-4); }
+    .facts div { display: grid; gap: var(--s-1); }
+    .facts dt {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .facts dd { margin: 0; color: var(--text); }
+
+    .palette {
+      margin-top: var(--s-7);
+      text-align: center;
+    }
+    .palette-title {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-4);
+    }
+    .swatches {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--s-5);
+    }
+    .swatch { display: grid; justify-items: center; gap: var(--s-2); font-size: 0.875rem; color: var(--text-muted); }
+    .swatch-chip {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      outline: 1px solid var(--line-soft);
+      outline-offset: 3px;
+      transform: rotate(45deg) scale(0.8);
+    }
+    .swatch-chip--midnight { background: var(--swatch-midnight); }
+    .swatch-chip--gold     { background: var(--swatch-gold); }
+    .swatch-chip--ivory    { background: var(--swatch-ivory); }
+    .swatch-chip--emerald  { background: var(--swatch-emerald); }
+
+    /* ==========================================================
+       Schedule (timeline)
+       ========================================================== */
+    .timeline {
+      position: relative;
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 640px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 11px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--accent) 6%, var(--accent) 94%, transparent);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 var(--s-6) var(--s-7);
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border: 1px solid var(--accent);
+      background: var(--bg);
+      transform: rotate(45deg);
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      transform: rotate(45deg);
+    }
+    .timeline-time {
+      display: block;
+      color: var(--accent);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+    .timeline-item h3 { font-size: 1.625rem; color: var(--text); margin: var(--s-1) 0 var(--s-2); }
+    .timeline-item p { color: var(--text-muted); }
+
+    .timeline-interlude {
+      position: relative;
+      padding: 0 0 var(--s-6) var(--s-7);
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+
+    /* ==========================================================
+       Venue
+       ========================================================== */
+    .venue-grid { display: grid; gap: var(--s-6); align-items: stretch; }
+    @media (min-width: 900px) { .venue-grid { grid-template-columns: 5fr 6fr; gap: var(--s-5); } }
+
+    .venue-card h3 { margin-bottom: var(--s-3); }
+    .venue-card address { font-style: normal; color: var(--text); margin-bottom: var(--s-5); }
+    .venue-card p + p { margin-top: var(--s-3); }
+    .venue-note { color: var(--text-muted); }
+    .venue-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-5); }
+
+    .map-frame {
+      --frame-gap: 8px;
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background-color: var(--panel-bg, var(--surface));
+      background-image:
+        repeating-linear-gradient(0deg, var(--lattice) 0 1px, transparent 1px 32px),
+        repeating-linear-gradient(90deg, var(--lattice) 0 1px, transparent 1px 32px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--text-muted);
+      overflow: hidden;
+    }
+    .map-frame svg.compass { width: min(160px, 40%); height: auto; color: var(--accent); margin: 0 auto var(--s-3); }
+    .map-frame p { font-size: 0.9375rem; }
+
+    /* ==========================================================
+       Gallery
+       ========================================================== */
+    .gallery {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-3);
+    }
+    @media (min-width: 768px) { .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); } }
+
+    .photo { margin: 0; }
+    .photo-frame {
+      --frame-gap: 6px;
+      --corner: 14px;
+      aspect-ratio: 4 / 5;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: var(--s-2);
+      color: var(--text-muted);
+      background-color: var(--surface);
+      background-image:
+        radial-gradient(circle at 50% 50%, var(--glow) 0%, transparent 65%),
+        repeating-linear-gradient(45deg, var(--lattice) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(-45deg, var(--lattice) 0 1px, transparent 1px 22px);
+      text-align: center;
+      padding: var(--s-3);
+    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-frame .icon { width: 28px; height: 28px; color: var(--accent); }
+    .photo-frame span { font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; }
+    .photo figcaption {
+      margin-top: var(--s-3);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: var(--text);
+      text-align: center;
+    }
+
+    /* ==========================================================
+       RSVP form
+       ========================================================== */
+    .rsvp-wrap { max-width: 680px; margin-inline: auto; }
+    .rsvp-deadline {
+      text-align: center;
+      color: var(--accent);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: var(--s-3);
+    }
+
+    .rsvp-form { display: grid; gap: var(--s-5); }
+    .form-note { color: var(--text-muted); font-size: 0.9375rem; }
+
+    .field { display: grid; gap: var(--s-2); margin: 0; padding: 0; border: 0; min-width: 0; }
+    .field label,
+    .field legend {
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--text);
+      padding: 0;
+    }
+    .req { color: var(--accent); margin-left: 2px; }
+    .optional { color: var(--text-muted); font-weight: 400; }
+    .field-hint { color: var(--text-muted); font-size: 0.9375rem; margin-top: calc(-1 * var(--s-1)); }
+
+    .input,
+    .select,
+    .textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: var(--s-3) var(--s-4);
+      font-size: 1rem;
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+    }
+    .textarea { min-height: 120px; resize: vertical; }
+    .input:hover, .select:hover, .textarea:hover { border-color: var(--accent); }
+    .input:focus-visible, .select:focus-visible, .textarea:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+      border-color: var(--accent);
+    }
+    .input[aria-invalid="true"],
+    .textarea[aria-invalid="true"] { border-color: var(--error); }
+
+    .select-wrap { position: relative; }
+    .select { appearance: none; -webkit-appearance: none; padding-right: var(--s-7); cursor: pointer; }
+    .select-wrap .icon {
+      position: absolute;
+      right: var(--s-4);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      pointer-events: none;
+    }
+
+    .field-error {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-2);
+      color: var(--error);
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .field-error .icon { width: 18px; height: 18px; margin-top: 3px; }
+
+    .choices { display: grid; gap: var(--s-3); margin-top: var(--s-2); }
+    @media (min-width: 560px) { .choices { grid-template-columns: 1fr 1fr; } }
+
+    .choice { position: relative; display: block; cursor: pointer; }
+    .choice input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .choice-box {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      min-height: 56px;
+      padding: var(--s-3) var(--s-4);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+    }
+    .choice-mark {
+      position: relative;
+      flex: none;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--accent);
+      transform: rotate(45deg);
+    }
+    .choice-mark::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      background: var(--accent);
+      transform: scale(0);
+      transition: transform var(--dur-fast) var(--ease-out);
+    }
+    .choice:hover .choice-box { border-color: var(--accent); }
+    .choice input:checked + .choice-box {
+      border-color: var(--accent);
+      background: var(--accent-tint);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+    .choice input:checked + .choice-box .choice-mark::after { transform: scale(1); }
+    .choice input:focus-visible + .choice-box { outline: 2px solid var(--focus); outline-offset: 3px; }
+    .choice input[aria-invalid="true"] + .choice-box { border-color: var(--error); }
+
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+    }
+    .btn.is-loading .spinner { display: inline-block; }
+
+    .rsvp-status:focus { outline: none; }
+    .rsvp-success {
+      text-align: center;
+    }
+    .rsvp-success .gem-badge { margin-inline: auto; color: var(--success); }
+    .rsvp-success .gem-badge::before { border-color: var(--success); }
+    .rsvp-success h3 { margin-bottom: var(--s-3); }
+    .rsvp-success p { color: var(--text-muted); max-width: 46ch; margin-inline: auto; }
+    .rsvp-success .btn { margin-top: var(--s-5); }
+
+    /* ==========================================================
+       FAQ
+       ========================================================== */
+    .faq { max-width: 760px; margin-inline: auto; display: grid; gap: var(--s-3); }
+    .faq-item { --frame-gap: 4px; --corner: 12px; background: var(--surface); }
+    .faq-item summary {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-4);
+      min-height: 56px;
+      padding: var(--s-4) var(--s-5);
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--accent); }
+    .faq-item summary .icon { color: var(--accent); transition: transform var(--dur) var(--ease-out); }
+    .faq-item[open] summary .icon { transform: rotate(45deg); }
+    .faq-body { padding: 0 var(--s-5) var(--s-5); color: var(--text-muted); max-width: 64ch; }
+
+    /* ==========================================================
+       Footer
+       ========================================================== */
+    .site-footer {
+      padding: var(--s-8) 0 var(--s-7);
+      background: var(--surface);
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+    }
+    .footer-mono {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .footer-date {
+      margin-top: var(--s-3);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+    .footer-love {
+      margin-top: var(--s-5);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+    }
+    .footer-love .icon { width: 16px; height: 16px; color: var(--accent); }
+    .back-top {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      min-height: 44px;
+      margin-top: var(--s-4);
+      padding: 0 var(--s-3);
+      color: var(--accent);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .back-top:hover { text-decoration: underline; text-underline-offset: 6px; }
+
+    /* ==========================================================
+       Motion — only when the user has not asked for less
+       ========================================================== */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+
+      /* Intro: rays draw outward and fan open, corners extend */
+      .js .ray {
+        stroke-dashoffset: 1;
+        animation: ray-draw 700ms var(--ease-out) forwards;
+        animation-delay: calc(var(--i) * 12ms + 100ms);
+      }
+      .js .burst-rays { animation: fan-out 1200ms var(--ease-out) both; }
+      .js .burst-ring { animation: fade-in 800ms ease both 200ms; }
+      .js .monogram { animation: fade-in 700ms ease both 450ms; }
+      .js .corner { animation: corner-grow 900ms var(--ease-out) both 300ms; }
+      .js .hero-copy { animation: rise 800ms var(--ease-out) both 350ms; }
+
+      /* Scroll reveal */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+        transition-delay: calc(var(--d, 0) * 70ms);
+      }
+      .js .reveal.is-visible { opacity: 1; transform: none; }
+
+      /* Section dividers draw from the centre gem outward */
+      .js .reveal .divider-line { stroke-dashoffset: 1; }
+      .js .reveal.is-visible .divider-line {
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 900ms var(--ease-out) 150ms;
+      }
+      .js .reveal .divider-gem,
+      .js .reveal .divider-gem-inner {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: scale(0);
+      }
+      .js .reveal.is-visible .divider-gem,
+      .js .reveal.is-visible .divider-gem-inner {
+        transform: scale(1);
+        transition: transform 500ms var(--ease-out);
+      }
+
+      .btn.is-loading .spinner { animation: spin 800ms linear infinite; }
+    }
+
+    @keyframes ray-draw { to { stroke-dashoffset: 0; } }
+    @keyframes fan-out {
+      from { transform: rotate(-24deg) scale(0.82); opacity: 0.2; }
+      to   { transform: none; opacity: 1; }
+    }
+    @keyframes corner-grow {
+      from { transform: scale(0.2); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tile--seconds { display: none; }
+      .countdown-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 380px; }
+      .hero-spot { display: none; }
+    }
+
+    /* ==========================================================
+       Print
+       ========================================================== */
+    @media print {
+      :root { --bg: #FFFFFF; --surface: #FFFFFF; --surface-2: #FFFFFF; --text: #111111; --text-muted: #333333; --accent: #6B5320; --border: #999999; --frame-fill: none; }
+      body { font-size: 11pt; }
+      .site-header, .skip-link, .hero-spot, .burst, .countdown, .hero-actions,
+      #gallery, #rsvp, .map-frame, .venue-actions, .back-top, .palette { display: none !important; }
+      .hero { min-height: 0; padding: 0 0 24pt; background: none; }
+      .section { padding-block: 18pt; border: 0; background: none; }
+      .name { -webkit-text-fill-color: currentColor; background: none; }
+      .framed::after, .corner { display: none; }
+      details > .faq-body { display: block; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Icon sprite (Lucide-style, 1.5px strokes) -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 22h8"/><path d="M7 10h10"/><path d="M12 15v7"/><path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to invitation</a>
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Primary">
+      <a class="brand" href="#top">A&nbsp;&amp;&nbsp;T<span class="visually-hidden"> — Aung and Thiri, back to top</span></a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <svg class="icon icon-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+        <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#i-close"/></svg>
+        <span>Menu</span>
+      </button>
+
+      <ul class="nav-list" id="nav-list">
+        <li><a class="nav-link" href="#story">Story</a></li>
+        <li><a class="nav-link" href="#details">Details</a></li>
+        <li><a class="nav-link" href="#schedule">Schedule</a></li>
+        <li><a class="nav-link" href="#venue">Venue</a></li>
+        <li><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li><a class="nav-link" href="#rsvp">RSVP</a></li>
+        <li><a class="nav-link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="top" aria-labelledby="couple-names">
+      <div class="hero-spot" aria-hidden="true"></div>
+
+      <div class="hero-frame">
+        <span class="corner corner--tl" aria-hidden="true"></span>
+        <span class="corner corner--tr" aria-hidden="true"></span>
+        <span class="corner corner--bl" aria-hidden="true"></span>
+        <span class="corner corner--br" aria-hidden="true"></span>
+
+        <div class="burst" aria-hidden="true">
+          <svg viewBox="-160 -160 320 320" focusable="false">
+            <g class="burst-rays">
+              <line class="ray ray--long" style="--i:0" x1="0.0" y1="-64.0" x2="0.0" y2="-150.0" pathLength="1"/>
+              <line class="ray" style="--i:1" x1="11.1" y1="-63.0" x2="20.1" y2="-114.2" pathLength="1"/>
+              <line class="ray ray--long" style="--i:2" x1="21.9" y1="-60.1" x2="51.3" y2="-141.0" pathLength="1"/>
+              <line class="ray" style="--i:3" x1="32.0" y1="-55.4" x2="58.0" y2="-100.5" pathLength="1"/>
+              <line class="ray ray--long" style="--i:4" x1="41.1" y1="-49.0" x2="96.4" y2="-114.9" pathLength="1"/>
+              <line class="ray" style="--i:5" x1="49.0" y1="-41.1" x2="88.9" y2="-74.6" pathLength="1"/>
+              <line class="ray ray--long" style="--i:6" x1="55.4" y1="-32.0" x2="129.9" y2="-75.0" pathLength="1"/>
+              <line class="ray" style="--i:7" x1="60.1" y1="-21.9" x2="109.0" y2="-39.7" pathLength="1"/>
+              <line class="ray ray--long" style="--i:8" x1="63.0" y1="-11.1" x2="147.7" y2="-26.0" pathLength="1"/>
+              <line class="ray" style="--i:9" x1="64.0" y1="0.0" x2="116.0" y2="0.0" pathLength="1"/>
+              <line class="ray ray--long" style="--i:10" x1="63.0" y1="11.1" x2="147.7" y2="26.0" pathLength="1"/>
+              <line class="ray" style="--i:11" x1="60.1" y1="21.9" x2="109.0" y2="39.7" pathLength="1"/>
+              <line class="ray ray--long" style="--i:12" x1="55.4" y1="32.0" x2="129.9" y2="75.0" pathLength="1"/>
+              <line class="ray" style="--i:13" x1="49.0" y1="41.1" x2="88.9" y2="74.6" pathLength="1"/>
+              <line class="ray ray--long" style="--i:14" x1="41.1" y1="49.0" x2="96.4" y2="114.9" pathLength="1"/>
+              <line class="ray" style="--i:15" x1="32.0" y1="55.4" x2="58.0" y2="100.5" pathLength="1"/>
+              <line class="ray ray--long" style="--i:16" x1="21.9" y1="60.1" x2="51.3" y2="141.0" pathLength="1"/>
+              <line class="ray" style="--i:17" x1="11.1" y1="63.0" x2="20.1" y2="114.2" pathLength="1"/>
+              <line class="ray ray--long" style="--i:18" x1="0.0" y1="64.0" x2="0.0" y2="150.0" pathLength="1"/>
+              <line class="ray" style="--i:19" x1="-11.1" y1="63.0" x2="-20.1" y2="114.2" pathLength="1"/>
+              <line class="ray ray--long" style="--i:20" x1="-21.9" y1="60.1" x2="-51.3" y2="141.0" pathLength="1"/>
+              <line class="ray" style="--i:21" x1="-32.0" y1="55.4" x2="-58.0" y2="100.5" pathLength="1"/>
+              <line class="ray ray--long" style="--i:22" x1="-41.1" y1="49.0" x2="-96.4" y2="114.9" pathLength="1"/>
+              <line class="ray" style="--i:23" x1="-49.0" y1="41.1" x2="-88.9" y2="74.6" pathLength="1"/>
+              <line class="ray ray--long" style="--i:24" x1="-55.4" y1="32.0" x2="-129.9" y2="75.0" pathLength="1"/>
+              <line class="ray" style="--i:25" x1="-60.1" y1="21.9" x2="-109.0" y2="39.7" pathLength="1"/>
+              <line class="ray ray--long" style="--i:26" x1="-63.0" y1="11.1" x2="-147.7" y2="26.0" pathLength="1"/>
+              <line class="ray" style="--i:27" x1="-64.0" y1="0.0" x2="-116.0" y2="0.0" pathLength="1"/>
+              <line class="ray ray--long" style="--i:28" x1="-63.0" y1="-11.1" x2="-147.7" y2="-26.0" pathLength="1"/>
+              <line class="ray" style="--i:29" x1="-60.1" y1="-21.9" x2="-109.0" y2="-39.7" pathLength="1"/>
+              <line class="ray ray--long" style="--i:30" x1="-55.4" y1="-32.0" x2="-129.9" y2="-75.0" pathLength="1"/>
+              <line class="ray" style="--i:31" x1="-49.0" y1="-41.1" x2="-88.9" y2="-74.6" pathLength="1"/>
+              <line class="ray ray--long" style="--i:32" x1="-41.1" y1="-49.0" x2="-96.4" y2="-114.9" pathLength="1"/>
+              <line class="ray" style="--i:33" x1="-32.0" y1="-55.4" x2="-58.0" y2="-100.5" pathLength="1"/>
+              <line class="ray ray--long" style="--i:34" x1="-21.9" y1="-60.1" x2="-51.3" y2="-141.0" pathLength="1"/>
+              <line class="ray" style="--i:35" x1="-11.1" y1="-63.0" x2="-20.1" y2="-114.2" pathLength="1"/>
+            </g>
+            <circle class="burst-ring" r="56"/>
+            <circle class="burst-ring" r="60" stroke-opacity="0.5"/>
+            <circle class="burst-ring burst-ring--dotted" r="156"/>
+          </svg>
+          <span class="monogram">A&amp;T</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="guest-greeting" id="guest-greeting" hidden>Dear <span id="guest-name"></span>,</p>
+
+          <p class="hero-intro">The pleasure of your company is requested at the marriage of</p>
+
+          <h1 class="names" id="couple-names">
+            <span class="name">Aung</span>
+            <span class="amp"><span aria-hidden="true">&amp;</span><span class="visually-hidden">and</span></span>
+            <span class="name">Thiri</span>
+          </h1>
+
+          <p class="full-names">Aung Kaung Myat &amp; Thiri Hlaing</p>
+
+          <p class="hero-date"><time datetime="2026-12-12T09:00+06:30">Saturday · 12 December 2026</time></p>
+          <p class="hero-place">Lotus Garden Hall · Yangon</p>
+
+          <div class="countdown" id="countdown">
+            <p class="visually-hidden" id="countdown-sr">The wedding begins on Saturday, 12 December 2026 at 9:00 AM, Yangon time.</p>
+            <ol class="countdown-tiles" id="countdown-tiles" aria-hidden="true">
+              <li class="tile framed"><span class="tile-num" data-unit="days">00</span><span class="tile-label"><span class="label-long">Days</span><span class="label-short">Days</span></span></li>
+              <li class="tile framed"><span class="tile-num" data-unit="hours">00</span><span class="tile-label"><span class="label-long">Hours</span><span class="label-short">Hrs</span></span></li>
+              <li class="tile framed"><span class="tile-num" data-unit="minutes">00</span><span class="tile-label"><span class="label-long">Minutes</span><span class="label-short">Min</span></span></li>
+              <li class="tile framed tile--seconds"><span class="tile-num" data-unit="seconds">00</span><span class="tile-label"><span class="label-long">Seconds</span><span class="label-short">Sec</span></span></li>
+            </ol>
+            <p class="countdown-done" id="countdown-done" hidden>We're married! Thank you for celebrating with us.</p>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn--gold" href="#rsvp">
+              RSVP
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg>
+            </a>
+            <button class="btn btn--outline js-only" type="button" id="add-to-calendar">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
+              Add to calendar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= STORY ======================= -->
+    <section class="section" id="story" aria-labelledby="story-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter I</p>
+          <h2 class="section-title" id="story-title">Our Story</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <ol class="story-grid">
+          <li class="story-card panel framed reveal" style="--d:0">
+            <span class="story-year">2019</span>
+            <h3>A chance meeting</h3>
+            <p>We met at a friend's rooftop birthday in Yangon and talked until the city lights went quiet.</p>
+          </li>
+          <li class="story-card panel framed reveal" style="--d:1">
+            <span class="story-year">2022</span>
+            <h3>Our first journey</h3>
+            <p>A sunrise over the temples of Bagan made two travellers realise every adventure was better together.</p>
+          </li>
+          <li class="story-card panel framed reveal" style="--d:2">
+            <span class="story-year">2025</span>
+            <h3>The question</h3>
+            <p>Under a sky full of lanterns, Aung asked — and Thiri said yes before he could finish the sentence.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================= DETAILS ======================= -->
+    <section class="section section--alt" id="details" aria-labelledby="details-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter II</p>
+          <h2 class="section-title" id="details-title">The Details</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <div class="details-grid">
+          <article class="details-card panel framed reveal" style="--d:0">
+            <div class="gem-badge" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-gem"/></svg></div>
+            <h3>The Ceremony</h3>
+            <dl class="facts">
+              <div><dt>When</dt><dd><time datetime="2026-12-12T09:00+06:30">Saturday, 12 December 2026</time><br>9:00 AM – 11:00 AM</dd></div>
+              <div><dt>Where</dt><dd>Lotus Garden Hall, The Pavilion<br>No. 1 Placeholder Road, Yangon</dd></div>
+              <div><dt>Dress code</dt><dd>Traditional or formal attire</dd></div>
+            </dl>
+          </article>
+
+          <article class="details-card panel framed reveal" style="--d:1">
+            <div class="gem-badge" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-glass"/></svg></div>
+            <h3>The Reception</h3>
+            <dl class="facts">
+              <div><dt>When</dt><dd><time datetime="2026-12-12T18:00+06:30">Saturday, 12 December 2026</time><br>6:00 PM – 9:00 PM</dd></div>
+              <div><dt>Where</dt><dd>Lotus Garden Hall, The Grand Ballroom<br>No. 1 Placeholder Road, Yangon</dd></div>
+              <div><dt>Dress code</dt><dd>Black tie optional — an evening of golden-age glamour</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="palette reveal">
+          <p class="palette-title">Suggested evening palette</p>
+          <ul class="swatches">
+            <li class="swatch"><span class="swatch-chip swatch-chip--midnight" aria-hidden="true"></span>Midnight</li>
+            <li class="swatch"><span class="swatch-chip swatch-chip--gold" aria-hidden="true"></span>Champagne gold</li>
+            <li class="swatch"><span class="swatch-chip swatch-chip--ivory" aria-hidden="true"></span>Ivory</li>
+            <li class="swatch"><span class="swatch-chip swatch-chip--emerald" aria-hidden="true"></span>Emerald</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= SCHEDULE ======================= -->
+    <section class="section" id="schedule" aria-labelledby="schedule-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter III</p>
+          <h2 class="section-title" id="schedule-title">The Programme</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T08:30+06:30">8:30 AM</time>
+            <h3>Guest arrival</h3>
+            <p>Welcome tea and jasmine garlands in the garden foyer.</p>
+          </li>
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T09:00+06:30">9:00 AM</time>
+            <h3>Wedding ceremony</h3>
+            <p>Our vows and the traditional blessing in The Pavilion.</p>
+          </li>
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T10:00+06:30">10:00 AM</time>
+            <h3>Blessings &amp; photographs</h3>
+            <p>Family portraits and a moment with every one of you.</p>
+          </li>
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T11:00+06:30">11:00 AM</time>
+            <h3>Lunch reception</h3>
+            <p>A relaxed lunch in the garden before the afternoon break.</p>
+          </li>
+          <li class="timeline-interlude reveal">— the evening —</li>
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T18:00+06:30">6:00 PM</time>
+            <h3>Dinner reception</h3>
+            <p>Cocktails, dinner and live jazz in The Grand Ballroom.</p>
+          </li>
+          <li class="timeline-item reveal">
+            <time class="timeline-time" datetime="2026-12-12T19:00+06:30">7:00 PM</time>
+            <h3>First dance &amp; toasts</h3>
+            <p>Raise a glass with us — then the dance floor is yours.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================= VENUE ======================= -->
+    <section class="section section--alt" id="venue" aria-labelledby="venue-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter IV</p>
+          <h2 class="section-title" id="venue-title">The Venue</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <div class="venue-grid">
+          <div class="venue-card panel framed reveal">
+            <div class="gem-badge" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-pin"/></svg></div>
+            <h3>Lotus Garden Hall</h3>
+            <address>
+              No. 1 Placeholder Road<br>
+              Yangon, Myanmar
+            </address>
+            <p class="venue-note">Complimentary parking on site. Valet service runs from 5:30 PM for the evening reception.</p>
+            <p class="venue-note">The Pavilion (ceremony) and The Grand Ballroom (reception) are a two-minute garden walk apart.</p>
+            <div class="venue-actions">
+              <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=Yangon" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-external"/></svg>
+                Get directions<span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+
+          <!--
+            Swap this placeholder for a live map, e.g.:
+            <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE"
+                    title="Map showing Lotus Garden Hall, Yangon"
+                    width="600" height="450" style="border:0;width:100%;height:100%"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          -->
+          <div class="map-frame framed reveal" style="--d:1">
+            <div>
+              <svg class="compass" viewBox="0 0 120 120" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="60" cy="60" r="56"/>
+                <circle cx="60" cy="60" r="44" stroke-dasharray="1 5"/>
+                <path d="M60 8 68 52 112 60 68 68 60 112 52 68 8 60 52 52Z"/>
+                <path d="M60 30 63 57 90 60 63 63 60 90 57 63 30 60 57 57Z" fill="currentColor" fill-opacity="0.25"/>
+                <circle cx="60" cy="60" r="3" fill="currentColor"/>
+              </svg>
+              <p>Map preview — embed your venue map here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= GALLERY ======================= -->
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter V</p>
+          <h2 class="section-title" id="gallery-title">Moments</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <!--
+          To use real photos, replace the placeholder content inside each .photo-frame with:
+          <img src="photos/first-meeting.webp" width="800" height="1000"
+               loading="lazy" decoding="async"
+               alt="Aung and Thiri laughing on a rooftop at sunset">
+          Keep the 4:5 ratio (or change aspect-ratio on .photo-frame) so the layout never shifts.
+        -->
+        <ul class="gallery">
+          <li class="reveal" style="--d:0">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 1</span></div>
+              <figcaption>The rooftop, 2019</figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:1">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 2</span></div>
+              <figcaption>Sunrise in Bagan</figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:2">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 3</span></div>
+              <figcaption>Lantern night</figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:0">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 4</span></div>
+              <figcaption>The proposal</figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:1">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 5</span></div>
+              <figcaption>With our families</figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:2">
+            <figure class="photo">
+              <div class="photo-frame framed"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span>Photo 6</span></div>
+              <figcaption>Almost there</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================= RSVP ======================= -->
+    <section class="section section--alt" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter VI</p>
+          <h2 class="section-title" id="rsvp-title">Kindly Reply</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+          <p class="rsvp-deadline">Please respond by Friday, 20 November 2026</p>
+        </header>
+
+        <div class="rsvp-wrap panel framed reveal">
+          <form class="rsvp-form" id="rsvp-form" novalidate>
+            <p class="form-note">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
+
+            <div class="field">
+              <label for="rsvp-name">Full name <span class="req" aria-hidden="true">*</span><span class="visually-hidden">(required)</span></label>
+              <input class="input" id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="80" required aria-describedby="name-error">
+              <p class="field-error" id="name-error" hidden>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+                <span class="field-error-text"></span>
+              </p>
+            </div>
+
+            <div class="field">
+              <label for="rsvp-phone">Phone number <span class="optional">(optional)</span></label>
+              <p class="field-hint" id="phone-hint">So we can reach you with any day-of updates.</p>
+              <input class="input" id="rsvp-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" aria-describedby="phone-hint phone-error">
+              <p class="field-error" id="phone-error" hidden>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+                <span class="field-error-text"></span>
+              </p>
+            </div>
+
+            <fieldset class="field">
+              <legend>Will you attend? <span class="req" aria-hidden="true">*</span><span class="visually-hidden">(required)</span></legend>
+              <div class="choices">
+                <label class="choice">
+                  <input type="radio" name="attending" value="yes" required aria-describedby="attending-error">
+                  <span class="choice-box"><span class="choice-mark" aria-hidden="true"></span>Joyfully accept</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="attending" value="no" aria-describedby="attending-error">
+                  <span class="choice-box"><span class="choice-mark" aria-hidden="true"></span>Regretfully decline</span>
+                </label>
+              </div>
+              <p class="field-error" id="attending-error" hidden>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+                <span class="field-error-text"></span>
+              </p>
+            </fieldset>
+
+            <div class="field" id="guests-field">
+              <label for="rsvp-guests">Number of guests, including you</label>
+              <div class="select-wrap">
+                <select class="select" id="rsvp-guests" name="guests">
+                  <option value="1">1 — just me</option>
+                  <option value="2">2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                </select>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rsvp-message">Message or dietary needs <span class="optional">(optional)</span></label>
+              <textarea class="textarea" id="rsvp-message" name="message" rows="4" maxlength="500"></textarea>
+            </div>
+
+            <button class="btn btn--gold btn--block" id="rsvp-submit" type="submit">
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-label">Send RSVP</span>
+            </button>
+          </form>
+
+          <div class="rsvp-status" id="rsvp-status" role="status" tabindex="-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FAQ ======================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Chapter VII</p>
+          <h2 class="section-title" id="faq-title">Questions</h2>
+          <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+            <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+            <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+            <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+            <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+          </svg>
+        </header>
+
+        <div class="faq">
+          <details class="faq-item framed reveal">
+            <summary>What should I wear?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
+            <p class="faq-body">For the morning ceremony, traditional Myanmar or formal attire. For the evening, black tie optional — midnight blues, champagne golds and a little sparkle are very welcome.</p>
+          </details>
+          <details class="faq-item framed reveal">
+            <summary>Is there parking at the venue?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
+            <p class="faq-body">Yes. Complimentary parking is available at Lotus Garden Hall, and valet service runs from 5:30 PM for the reception.</p>
+          </details>
+          <details class="faq-item framed reveal">
+            <summary>Can I bring my children?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
+            <p class="faq-body">Little ones are warmly welcome at the ceremony and lunch. The evening reception is adults only — please let us know in your RSVP if that is a problem.</p>
+          </details>
+          <details class="faq-item framed reveal">
+            <summary>Do you have a gift registry?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
+            <p class="faq-body">Your presence is the greatest gift. If you would like to honour us further, a contribution towards our first home would be deeply appreciated.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-mono" aria-hidden="true">A&amp;T</p>
+      <p class="footer-date"><time datetime="2026-12-12">12 · 12 · 2026</time></p>
+      <svg class="divider" viewBox="0 0 240 20" aria-hidden="true" focusable="false">
+        <line class="divider-line" x1="106" y1="10" x2="0" y2="10" pathLength="1"/>
+        <line class="divider-line" x1="134" y1="10" x2="240" y2="10" pathLength="1"/>
+        <path class="divider-gem" d="M120 2 128 10 120 18 112 10Z"/>
+        <path class="divider-gem-inner" d="M120 6.5 123.5 10 120 13.5 116.5 10Z"/>
+      </svg>
+      <p class="footer-love">
+        Made with love by Aung &amp; Thiri
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg>
+      </p>
+      <div>
+        <a class="back-top" href="#top">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
+          Back to top
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var doc = document;
+    var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function onChange(mq, fn) {
+      if (mq.addEventListener) mq.addEventListener('change', fn);
+      else if (mq.addListener) mq.addListener(fn);
+    }
+
+    /* ---------- Personalised greeting (?to=Name) ---------- */
+    (function greeting() {
+      var raw;
+      try { raw = new URLSearchParams(window.location.search).get('to'); } catch (e) { raw = null; }
+      if (!raw) return;
+      var name = raw.replace(/\s+/g, ' ').trim();
+      if (!name) return;
+      if (name.length > 60) name = name.slice(0, 60).trim();
+      doc.getElementById('guest-name').textContent = name; // textContent only — never innerHTML
+      doc.getElementById('guest-greeting').hidden = false;
+    })();
+
+    /* ---------- Mobile menu ---------- */
+    var nav = doc.querySelector('.site-nav');
+    var toggle = doc.getElementById('menu-toggle');
+    var navList = doc.getElementById('nav-list');
+    var desktopMQ = window.matchMedia('(min-width: 768px)');
+
+    function setMenu(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    }
+    function isOpen() { return toggle.getAttribute('aria-expanded') === 'true'; }
+
+    toggle.addEventListener('click', function () { setMenu(!isOpen()); });
+    navList.addEventListener('click', function (e) {
+      if (e.target.closest('a') && !desktopMQ.matches) setMenu(false);
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) { setMenu(false); toggle.focus(); }
+    });
+    doc.addEventListener('click', function (e) {
+      if (isOpen() && !nav.contains(e.target)) setMenu(false);
+    });
+    onChange(desktopMQ, function () { setMenu(false); });
+
+    /* ---------- Current-section highlight ---------- */
+    var navLinks = Array.prototype.slice.call(navList.querySelectorAll('a[href^="#"]'));
+    function setCurrent(id) {
+      navLinks.forEach(function (a) {
+        if (id && a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var tracked = navLinks
+        .map(function (a) { return doc.getElementById(a.getAttribute('href').slice(1)); })
+        .filter(Boolean);
+      tracked.unshift(doc.getElementById('top'));
+
+      var sectionIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setCurrent(entry.target.id === 'top' ? null : entry.target.id);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      tracked.forEach(function (s) { sectionIO.observe(s); });
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    var reveals = Array.prototype.slice.call(doc.querySelectorAll('.reveal'));
+    function showAll() { reveals.forEach(function (el) { el.classList.add('is-visible'); }); }
+
+    if (!('IntersectionObserver' in window) || reduceMQ.matches) {
+      showAll();
+    } else {
+      var revealIO = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function (el) { revealIO.observe(el); });
+    }
+    onChange(reduceMQ, function () { if (reduceMQ.matches) showAll(); });
+
+    /* ---------- Countdown ---------- */
+    var TARGET = Date.parse('2026-12-12T09:00:00+06:30');
+    var tiles = doc.getElementById('countdown-tiles');
+    var doneMsg = doc.getElementById('countdown-done');
+    var srText = doc.getElementById('countdown-sr');
+    var units = {};
+    Array.prototype.forEach.call(tiles.querySelectorAll('[data-unit]'), function (el) {
+      units[el.getAttribute('data-unit')] = el;
+    });
+    var timer = null;
+    var finished = false;
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function renderCountdown() {
+      var diff = TARGET - Date.now();
+      if (diff <= 0) {
+        finished = true;
+        stopCountdown();
+        tiles.hidden = true;
+        doneMsg.hidden = false;
+        srText.textContent = 'The wedding took place on Saturday, 12 December 2026.';
+        return;
+      }
+      var total = Math.floor(diff / 1000);
+      units.days.textContent = pad(Math.floor(total / 86400));
+      units.hours.textContent = pad(Math.floor((total % 86400) / 3600));
+      units.minutes.textContent = pad(Math.floor((total % 3600) / 60));
+      units.seconds.textContent = pad(total % 60);
+    }
+    function stopCountdown() { if (timer) { clearInterval(timer); timer = null; } }
+    function startCountdown() {
+      stopCountdown();
+      renderCountdown();
+      if (finished) return;
+      timer = setInterval(renderCountdown, reduceMQ.matches ? 60000 : 1000);
+    }
+
+    startCountdown();
+    doc.addEventListener('visibilitychange', function () {
+      if (doc.hidden) stopCountdown(); else startCountdown();
+    });
+    onChange(reduceMQ, startCountdown);
+
+    /* ---------- Add to calendar (.ics) ---------- */
+    function icsEscape(s) { return String(s).replace(/\\/g, '\\\\').replace(/([,;])/g, '\\$1').replace(/\n/g, '\\n'); }
+    function icsStamp(d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+
+    function buildIcs() {
+      var stamp = icsStamp(new Date());
+      var venue = icsEscape('Lotus Garden Hall, No. 1 Placeholder Road, Yangon');
+      var events = [
+        { uid: 'ceremony-20261212@aung-thiri.wedding', start: '20261212T023000Z', end: '20261212T043000Z',
+          summary: 'Aung & Thiri — Wedding Ceremony', desc: 'Ceremony in The Pavilion. Traditional or formal attire.' },
+        { uid: 'reception-20261212@aung-thiri.wedding', start: '20261212T113000Z', end: '20261212T143000Z',
+          summary: 'Aung & Thiri — Dinner Reception', desc: 'Dinner in The Grand Ballroom. Black tie optional.' }
+      ];
+      var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aung and Thiri//Wedding Invitation//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+      events.forEach(function (ev) {
+        lines.push(
+          'BEGIN:VEVENT',
+          'UID:' + ev.uid,
+          'DTSTAMP:' + stamp,
+          'DTSTART:' + ev.start,
+          'DTEND:' + ev.end,
+          'SUMMARY:' + icsEscape(ev.summary),
+          'LOCATION:' + venue,
+          'DESCRIPTION:' + icsEscape(ev.desc),
+          'END:VEVENT'
+        );
+      });
+      lines.push('END:VCALENDAR');
+      return lines.join('\r\n') + '\r\n';
+    }
+
+    doc.getElementById('add-to-calendar').addEventListener('click', function () {
+      var blob = new Blob([buildIcs()], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = doc.createElement('a');
+      a.href = url;
+      a.download = 'aung-thiri-wedding.ics';
+      doc.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+
+    /* ---------- Hero spotlight (fine pointers, motion allowed) ---------- */
+    var hero = doc.querySelector('.hero');
+    var spot = hero.querySelector('.hero-spot');
+    var fineMQ = window.matchMedia('(pointer: fine)');
+    var rafId = 0;
+    var pointer = { x: 0, y: 0 };
+
+    function paintSpot() {
+      rafId = 0;
+      var r = hero.getBoundingClientRect();
+      spot.style.transform = 'translate3d(' + (pointer.x - r.left) + 'px,' + (pointer.y - r.top) + 'px,0)';
+    }
+    function onPointerMove(e) {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      if (!rafId) rafId = requestAnimationFrame(paintSpot);
+    }
+    function bindSpotlight() {
+      var on = fineMQ.matches && !reduceMQ.matches;
+      hero.classList.toggle('has-glow', on);
+      if (on) hero.addEventListener('pointermove', onPointerMove, { passive: true });
+      else hero.removeEventListener('pointermove', onPointerMove);
+    }
+    bindSpotlight();
+    onChange(fineMQ, bindSpotlight);
+    onChange(reduceMQ, bindSpotlight);
+
+    /* ---------- RSVP form ---------- */
+    var form = doc.getElementById('rsvp-form');
+    var statusBox = doc.getElementById('rsvp-status');
+    var submitBtn = doc.getElementById('rsvp-submit');
+    var submitLabel = submitBtn.querySelector('.btn-label');
+    var nameInput = doc.getElementById('rsvp-name');
+    var phoneInput = doc.getElementById('rsvp-phone');
+    var guestsField = doc.getElementById('guests-field');
+    var guestsSelect = doc.getElementById('rsvp-guests');
+    var messageInput = doc.getElementById('rsvp-message');
+    var radios = Array.prototype.slice.call(form.querySelectorAll('input[name="attending"]'));
+    var submittedOnce = false;
+    var touched = {};
+
+    function attendingValue() {
+      var r = radios.filter(function (x) { return x.checked; })[0];
+      return r ? r.value : '';
+    }
+
+    var rules = {
+      name: function () {
+        return nameInput.value.trim() ? '' : 'Please enter your full name so we know who is coming.';
+      },
+      phone: function () {
+        var v = phoneInput.value.trim();
+        if (!v) return '';
+        return /^\+?[0-9][0-9\s().-]{5,22}$/.test(v) ? '' : 'Please enter a valid phone number, for example +95 9 123 456 789.';
+      },
+      attending: function () {
+        return attendingValue() ? '' : 'Please let us know whether you can attend.';
+      }
+    };
+    var controls = { name: [nameInput], phone: [phoneInput], attending: radios };
+
+    function showError(key, msg) {
+      var box = doc.getElementById(key + '-error');
+      box.querySelector('.field-error-text').textContent = msg;
+      box.hidden = !msg;
+      controls[key].forEach(function (el) {
+        if (msg) el.setAttribute('aria-invalid', 'true');
+        else el.removeAttribute('aria-invalid');
+      });
+    }
+    function validate(key) {
+      var msg = rules[key]();
+      showError(key, msg);
+      return !msg;
+    }
+
+    function syncGuests() {
+      var accepting = attendingValue() === 'yes';
+      guestsField.hidden = !accepting;
+      guestsSelect.disabled = !accepting;
+    }
+    syncGuests();
+
+    [['name', nameInput], ['phone', phoneInput]].forEach(function (pair) {
+      var key = pair[0], el = pair[1];
+      el.addEventListener('input', function () {
+        touched[key] = true;
+        if (el.getAttribute('aria-invalid') === 'true') validate(key);
+      });
+      el.addEventListener('blur', function () {
+        if (touched[key] || submittedOnce) validate(key);
+      });
+    });
+    radios.forEach(function (r) {
+      r.addEventListener('change', function () { validate('attending'); syncGuests(); });
+    });
+
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      submitBtn.classList.toggle('is-loading', on);
+      submitLabel.textContent = on ? 'Sending…' : 'Send RSVP';
+      if (on) form.setAttribute('aria-busy', 'true'); else form.removeAttribute('aria-busy');
+    }
+
+    function el(tag, cls, text) {
+      var node = doc.createElement(tag);
+      if (cls) node.className = cls;
+      if (text) node.textContent = text;
+      return node;
+    }
+
+    function showSuccess(data) {
+      var first = data.name.split(' ')[0];
+      var wrap = el('div', 'rsvp-success');
+      var badge = el('div', 'gem-badge');
+      badge.setAttribute('aria-hidden', 'true');
+      var SVG_NS = 'http://www.w3.org/2000/svg';
+      var svg = doc.createElementNS(SVG_NS, 'svg');
+      svg.setAttribute('class', 'icon');
+      svg.setAttribute('focusable', 'false');
+      var use = doc.createElementNS(SVG_NS, 'use');
+      use.setAttribute('href', '#i-check');
+      svg.appendChild(use);
+      badge.appendChild(svg);
+
+      var title, body;
+      if (data.attending === 'yes') {
+        var n = Number(data.guests) || 1;
+        title = 'Thank you, ' + first + '!';
+        body = 'Your reply is in — we have saved ' + n + (n === 1 ? ' seat' : ' seats') +
+               '. We cannot wait to celebrate with you on 12 December.';
+      } else {
+        title = 'Thank you for letting us know, ' + first + '.';
+        body = 'You will be dearly missed. We will raise a glass to you on the night.';
+      }
+
+      var again = el('button', 'btn btn--outline', 'Change my reply');
+      again.type = 'button';
+      again.addEventListener('click', function () {
+        statusBox.textContent = '';
+        form.hidden = false;
+        setLoading(false);
+        nameInput.focus();
+      });
+
+      wrap.appendChild(badge);
+      wrap.appendChild(el('h3', '', title));
+      wrap.appendChild(el('p', '', body));
+      wrap.appendChild(again);
+
+      form.hidden = true;
+      statusBox.textContent = '';
+      statusBox.appendChild(wrap);
+      statusBox.focus();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submittedOnce = true;
+
+      var order = ['name', 'phone', 'attending'];
+      var firstInvalid = null;
+      order.forEach(function (key) {
+        if (!validate(key) && !firstInvalid) firstInvalid = controls[key][0];
+      });
+      if (firstInvalid) { firstInvalid.focus(); return; }
+
+      var data = {
+        name: nameInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        attending: attendingValue(),
+        guests: attendingValue() === 'yes' ? guestsSelect.value : '0',
+        message: messageInput.value.trim()
+      };
+
+      setLoading(true);
+
+      // TODO: connect to Formspree / Google Sheets / your backend, e.g.
+      // fetch('https://formspree.io/f/YOUR_ID', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      //   body: JSON.stringify(data)
+      // }).then(function (res) { if (!res.ok) throw new Error(); showSuccess(data); })
+      //   .catch(function () { setLoading(false); /* show a retry message near the button */ });
+      setTimeout(function () { showSuccess(data); }, 900);
+    });
+  })();
+  </script>
+</body>
+</html>
