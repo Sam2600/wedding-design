@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mintzu & Zwe//Wedding Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:mintzu-zwe-wedding-dinner-20261031@invitation
+DTSTAMP:20261019T000000Z
+DTSTART:20261031T113000Z
+DTEND:20261031T143000Z
+SUMMARY:Wedding Dinner of Mintzu & Zwe
+DESCRIPTION:Mintzu Hnin Khat and Zwe Marn Htet request the honor of your
+  presence at their wedding dinner.
+LOCATION:The Memorial Venue\, No.152\, Yaw Gi Kyaung St\, (11) Quarter\, H
+ laing Township\, Yangon
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Wedding Dinner of Mintzu & Zwe
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
