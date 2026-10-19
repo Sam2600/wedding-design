@@ -678,18 +678,6 @@ html.intro-on { overflow: hidden; }
 }
 
 
-@media (prefers-reduced-motion: reduce) {
-  .intro-head > *, .envelope, .env-floral, .seal, .intro-hint { animation: none; }
-  .seal::after { animation: none; opacity: 0; }
-  .intro.is-opening .seal-l,
-  .intro.is-opening .seal-r { transform: none; }
-  .reveal, .turn { transition-duration: 200ms !important; transition-delay: 0ms !important; }
-  .intro-on .reveal { transform: none; }
-  /* The card does not turn: its faces cross-fade */
-  .card .card-face,
-  .card.is-turned .card-face { visibility: visible; transition: opacity 350ms ease; }
-  .card-back,
-  .card.is-turned .card-front { opacity: 0; }
-  .card.is-turned .card-back { opacity: 1; }
-  .card.is-landed .card-front::after { animation: none; }
-}
+/* Deliberately no prefers-reduced-motion rules: the page looks and moves the same on every phone.
+   Many phones switch that setting on to save battery, and opening the envelope is the whole point
+   of the page. The motion is short and gentle, and most of it starts from the guest's own tap. */

@@ -12,9 +12,6 @@
     .centre { animation-delay: 2.20s; }
     @keyframes draw { to { stroke-dashoffset: 0; } }
     @keyframes unfurl { to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) {
-      .stem, .leaf, .petal, .centre { animation: none; stroke-dashoffset: 0; opacity: 1; transform: none; }
-    }
   </style>
   <path class="stem" pathLength="1" d="M18 216C26 150 64 84 136 14"/>
   <path class="leaf l" style="transform-origin:24.2px 184.3px;animation-delay:0.44s" d="M24.2 184.3Q49.0 184.5 63.4 164.3Q38.6 164.1 24.2 184.3ZM24.2 184.3L56.3 167.9"/>
