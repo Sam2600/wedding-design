@@ -1,0 +1,1559 @@
+<!doctype html>
+<html lang="my" class="lang-my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>အောင် နှင့် သီရိ — မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ</title>
+<meta name="description" content="Aung &amp; Thiri — wedding invitation. Saturday, 12 December 2026 · Lotus Garden Hall, Yangon. အောင် နှင့် သီရိ ၏ မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ">
+<meta name="theme-color" content="#6B1E2A">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Myanmar:wght@400;600;700&display=swap">
+<script>
+  /* Runs before paint: enables JS-only styles and restores the saved language without a flash. */
+  (function (d) {
+    var r = d.documentElement;
+    r.classList.add('js');
+    try {
+      var l = localStorage.getItem('aung-thiri-lang');
+      if (l === 'en' || l === 'my') {
+        r.classList.remove('lang-my', 'lang-en');
+        r.classList.add('lang-' + l);
+        r.lang = l;
+      }
+    } catch (e) {}
+  })(document);
+</script>
+<style>
+  /* ============ Tokens ============ */
+  :root {
+    --bg: #FBF6EC;
+    --surface: #FFFDF8;
+    --surface-gold: #F7EDD8;
+    --placeholder: #F4E9D2;
+    --tint-maroon: #F6E9E2;
+    --text: #2B1A12;
+    --text-muted: #6A4F3E;
+    --primary: #6B1E2A;
+    --primary-hover: #561622;
+    --on-primary: #FBF6EC;
+    --on-dark-soft: #F1DDB0;
+    --accent: #B8862B;          /* ornaments & rules only — never text */
+    --accent-light: #E8C46A;    /* ornaments on maroon */
+    --accent-text: #7A5A12;     /* gold text, 5.9:1 on cream */
+    --border: #E8D7B0;
+    --border-strong: #9A7B4F;   /* form control boundaries, 3.9:1 */
+    --focus: #6B1E2A;
+    --focus-on-dark: #F3D58A;
+    --error: #A3261B;
+    --success: #2E6B3A;
+    --seal-top: #F3DE9E;
+    --seal-bottom: #D9B25A;
+    --petal: #E2AE2F;
+    --petal-core: #9A5B12;
+    --leaf: #8E8A4C;
+    --water: #E6DCC2;
+    --header-bg: rgba(251, 246, 236, 0.97);
+    --glow: rgba(232, 196, 106, 0.14);
+    --door-dot: rgba(232, 196, 106, 0.16);
+    --seal-shadow: rgba(30, 10, 10, 0.35);
+    --shadow: 0 1px 2px rgba(43, 26, 18, 0.06), 0 8px 24px rgba(43, 26, 18, 0.08);
+    --shadow-lg: 0 2px 4px rgba(43, 26, 18, 0.06), 0 18px 48px rgba(43, 26, 18, 0.12);
+
+    /* ornament colours (inherited into <use> shadow trees) */
+    --k-stroke: var(--accent);
+    --k-fill: var(--accent);
+
+    --font: "Cormorant Garamond", "Noto Serif Myanmar", Georgia, "Times New Roman", serif;
+    --header-h: 64px;
+    --radius: 6px;
+    --dur-fast: 160ms;
+    --dur: 260ms;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* ============ Base ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 16px); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(circle at 10% 6%, var(--glow) 0, transparent 36%),
+      radial-gradient(circle at 92% 94%, var(--glow) 0, transparent 40%);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 1.1875rem;   /* 19px — Cormorant has a small x-height */
+    line-height: 1.65;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+  }
+  /* Myanmar script: tall stacked glyphs need generous leading; no tracking, no faux italics */
+  :lang(my) { line-height: 1.95; }
+  [lang="my"] { letter-spacing: 0 !important; font-style: normal !important; text-transform: none !important; }
+
+  /* Language switching: data-l marks the mode in which an element is shown */
+  .lang-my [data-l="en"], .lang-en [data-l="my"] { display: none !important; }
+
+  img, svg { display: block; max-width: 100%; }
+  a { color: var(--primary); text-underline-offset: 3px; }
+  a, button, summary, label.choice, select { cursor: pointer; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+  [tabindex="-1"]:focus { outline: none; }
+
+  .vh {
+    position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .container { width: min(100% - 32px, 1080px); margin-inline: auto; }
+
+  /* Icons — one stroke style throughout */
+  .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Ornament symbol parts (colours flow in through custom properties) */
+  .k-line { fill: none; stroke: var(--k-stroke); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .k-fill { fill: var(--k-fill); }
+  .b-petal { fill: var(--petal); }
+  .b-core { fill: var(--petal-core); }
+  .sp-stem { fill: none; stroke: var(--leaf); stroke-width: 2; stroke-linecap: round; }
+  .sp-leaf { fill: var(--leaf); opacity: 0.85; }
+  .sp-bud { fill: var(--petal); }
+
+  /* ============ Skip link ============ */
+  .skip-link {
+    position: absolute; left: 16px; top: -120px; z-index: 200;
+    padding: 12px 20px; border-radius: var(--radius);
+    background: var(--primary); color: var(--on-primary);
+    font-weight: 600; text-decoration: none;
+  }
+  .skip-link:focus { top: 12px; }
+  .skip-link:focus-visible { outline: 3px solid var(--focus-on-dark); outline-offset: -6px; }
+
+  /* ============ Buttons ============ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; padding: 6px 24px;
+    border: 1px solid transparent; border-radius: 999px;
+    font-size: 1.125rem; font-weight: 600; text-decoration: none;
+    touch-action: manipulation;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease, border-color var(--dur-fast) ease, transform var(--dur-fast) ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn--primary { background: var(--primary); color: var(--on-primary); }
+  .btn--primary:hover { background: var(--primary-hover); }
+  .btn--ghost { background: transparent; color: var(--primary); border-color: var(--primary); }
+  .btn--ghost:hover { background: var(--tint-maroon); }
+  .btn--block { width: 100%; }
+  .btn[disabled] { opacity: 0.75; cursor: progress; }
+  .btn[disabled]:active { transform: none; }
+
+  /* ============ Header / nav ============ */
+  .site-header {
+    position: fixed; inset: 0 0 auto; z-index: 40;
+    background: var(--header-bg); border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    width: min(100% - 32px, 1180px); margin-inline: auto; height: var(--header-h);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .brand {
+    margin-right: auto; width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1px solid var(--accent); box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--border);
+    color: var(--primary); font-weight: 600; font-size: 1rem; line-height: 1; text-decoration: none; letter-spacing: 0.02em;
+  }
+  .site-nav { display: flex; align-items: center; }
+  .nav-list { display: flex; gap: 2px; margin: 0; padding: 0; list-style: none; }
+  .nav-list a {
+    position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+    color: var(--text); text-decoration: none; font-size: 1.0625rem; border-radius: var(--radius);
+    transition: color var(--dur-fast) ease;
+  }
+  .nav-list a::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 2px;
+    background: var(--primary); transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .nav-list a:hover { color: var(--primary); }
+  .nav-list a:hover::after, .nav-list a[aria-current="true"]::after { transform: scaleX(1); }
+  .nav-list a[aria-current="true"] { color: var(--primary); font-weight: 600; }
+
+  .menu-btn {
+    display: none; width: 44px; height: 44px; align-items: center; justify-content: center;
+    border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--primary);
+  }
+  .menu-btn .i-close { display: none; }
+  .menu-btn[aria-expanded="true"] .i-open { display: none; }
+  .menu-btn[aria-expanded="true"] .i-close { display: block; }
+
+  .lang-switch {
+    display: inline-flex; gap: 2px; padding: 0; margin-left: 4px;
+    border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface);
+  }
+  .lang-btn {
+    min-height: 44px; min-width: 44px; padding: 0 14px;
+    border: 0; border-radius: 999px; background: transparent; color: var(--text);
+    font-size: 1rem; line-height: 1.4;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+  .lang-btn:hover { background: var(--tint-maroon); }
+  .lang-btn[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); font-weight: 600; }
+
+  @media (max-width: 959.98px) {
+    .menu-btn { display: inline-flex; }
+    .nav-list {
+      display: none; position: absolute; top: var(--header-h); left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 8px 16px 16px;
+      background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
+    }
+    .nav-list.is-open { display: flex; }
+    .nav-list a { width: 100%; padding: 0 8px; min-height: 48px; }
+    .nav-list a::after { left: 8px; right: auto; width: 28px; }
+  }
+
+  /* ============ Gatefold intro ============ */
+  .gate { display: none; }
+  .gate-on .gate {
+    display: block; position: fixed; inset: 0; z-index: 100;
+    perspective: 1800px;
+    --k-stroke: var(--accent-light);
+    --k-fill: var(--accent-light);
+    --leaf: var(--accent-light);
+    --petal-core: var(--primary);
+  }
+  .gate-lock, .gate-lock body { overflow: hidden; }
+  .gate__door {
+    position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden;
+    background-color: var(--primary);
+    background-image: radial-gradient(var(--door-dot) 1.2px, transparent 1.6px);
+    background-size: 22px 22px;
+    box-shadow:
+      inset 0 0 0 12px var(--primary), inset 0 0 0 13px var(--accent-light),
+      inset 0 0 0 18px var(--primary), inset 0 0 0 19px var(--accent);
+    backface-visibility: hidden;
+    transition: transform 1200ms cubic-bezier(0.65, 0.05, 0.25, 1);
+  }
+  .gate__door--left { left: 0; transform-origin: left center; }
+  .gate__door--right { right: 0; transform-origin: right center; }
+  .door-corner { position: absolute; width: clamp(64px, 14vw, 120px); height: clamp(64px, 14vw, 120px); }
+  .door-corner--tl { top: 26px; left: 26px; }
+  .door-corner--tr { top: 26px; right: 26px; transform: scaleX(-1); }
+  .door-corner--bl { bottom: 26px; left: 26px; transform: scaleY(-1); }
+  .door-corner--br { bottom: 26px; right: 26px; transform: scale(-1, -1); }
+  .door-spray { position: absolute; bottom: 12%; width: 70%; height: auto; aspect-ratio: 220 / 180; opacity: 0.35; }
+  .gate__door--left .door-spray { left: 10%; }
+  .gate__door--right .door-spray { right: 10%; transform: scaleX(-1); }
+
+  .gate__center {
+    position: absolute; inset: 0; padding: 24px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    text-align: center; color: var(--on-primary);
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+  .gate__kicker { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .gate__kicker [lang="my"] { font-size: 1.375rem; font-weight: 600; line-height: 1.8; }
+  .gate__kicker [lang="en"] { font-size: 1rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--on-dark-soft); }
+  .gate__names { margin: 0; font-size: clamp(1.75rem, 6vw, 2.5rem); font-style: italic; color: var(--on-primary); line-height: 1.2; }
+  .seal {
+    position: relative; width: clamp(128px, 34vw, 164px); aspect-ratio: 1; border: 0; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    background: radial-gradient(circle at 35% 30%, var(--seal-top), var(--seal-bottom) 72%);
+    color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary), 0 0 0 5px var(--accent-light), 0 12px 32px var(--seal-shadow);
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .seal::before {
+    content: ""; position: absolute; inset: 9px; border-radius: 50%;
+    border: 1px dashed var(--primary); opacity: 0.55; pointer-events: none;
+  }
+  .seal::after {
+    content: ""; position: absolute; inset: -12px; border-radius: 50%;
+    border: 1px solid var(--accent-light); pointer-events: none;
+    animation: seal-ring 2.6s ease-out infinite;
+  }
+  .seal:hover { transform: scale(1.04); }
+  .seal:active { transform: scale(0.97); }
+  .seal__mono { font-size: 2.25rem; font-weight: 600; line-height: 1; letter-spacing: 0.04em; }
+  .seal__label { font-size: 1rem; font-weight: 600; line-height: 1.6; }
+  .gate__skip {
+    min-height: 44px; padding: 0 20px; border: 1px solid transparent; border-radius: 999px;
+    background: transparent; color: var(--on-dark-soft); font-size: 1rem;
+    text-decoration: underline; text-underline-offset: 4px;
+  }
+  .gate__skip:hover { color: var(--on-primary); border-color: var(--on-dark-soft); }
+  .gate :focus-visible { outline-color: var(--focus-on-dark); }
+  @keyframes seal-ring { from { transform: scale(0.92); opacity: 0.9; } to { transform: scale(1.22); opacity: 0; } }
+
+  .gate.is-opening .gate__center { opacity: 0; transform: scale(0.96); pointer-events: none; }
+  .gate.is-opening .gate__door--left { transform: rotateY(-100deg); }
+  .gate.is-opening .gate__door--right { transform: rotateY(100deg); }
+  .gate.is-gone { opacity: 0; transition: opacity 400ms ease; }
+
+  /* ============ Hero ============ */
+  .hero {
+    position: relative; min-height: 100vh; min-height: 100dvh;
+    padding: calc(var(--header-h) + 32px) 16px 64px;
+    display: grid; place-items: center;
+  }
+  .hero-deco { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .spray { position: absolute; width: clamp(150px, 30vw, 340px); height: auto; aspect-ratio: 220 / 180; }
+  .spray--bl { left: -12px; bottom: 8px; }
+  .spray--tr { right: -12px; top: calc(var(--header-h) + 4px); transform: rotate(180deg); }
+  @media (max-width: 599px) { .spray--tr { display: none; } }
+
+  .hero-card {
+    position: relative; z-index: 1; width: min(100%, 780px);
+    padding: clamp(76px, 11vw, 100px) clamp(20px, 7vw, 80px);
+    background: var(--surface); border: 1px solid var(--accent);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--accent), var(--shadow-lg);
+    text-align: center;
+  }
+  .hero-card::before {
+    content: ""; position: absolute; inset: 10px; border: 1px solid var(--border); pointer-events: none;
+  }
+  .corner { position: absolute; width: clamp(56px, 13vw, 104px); height: clamp(56px, 13vw, 104px); pointer-events: none; }
+  .corner--tl { top: 14px; left: 14px; }
+  .corner--tr { top: 14px; right: 14px; transform: scaleX(-1); }
+  .corner--bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+  .corner--br { bottom: 14px; right: 14px; transform: scale(-1, -1); }
+
+  .greeting { margin: 0 0 12px; font-size: 1.375rem; font-style: italic; color: var(--accent-text); }
+  .kicker { margin: 0; font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+  .kicker [lang="my"] { font-size: 1.1875rem; }
+  .mini-seal {
+    width: 64px; height: 64px; margin: 16px auto; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1px solid var(--accent); box-shadow: inset 0 0 0 4px var(--surface), inset 0 0 0 5px var(--border);
+    color: var(--primary); font-weight: 600; font-size: 1.25rem; line-height: 1;
+  }
+  .blessing { margin: 0; color: var(--text-muted); font-style: italic; }
+  .couple {
+    margin: 8px 0 0; color: var(--primary); font-weight: 600;
+    font-size: clamp(3rem, 11vw, 5.5rem); line-height: 1.1;
+  }
+  .couple [lang="my"] { font-size: clamp(2.5rem, 9vw, 4.25rem); line-height: 1.6; font-weight: 700; }
+  .couple .amp { margin: 0 0.04em; font-size: 0.55em; font-style: italic; font-weight: 400; color: var(--accent-text); }
+  .couple .amp:lang(my) { font-style: normal; }
+  .names-alt { margin: 0; font-size: 1.375rem; color: var(--text-muted); font-style: italic; }
+
+  .families { display: grid; gap: 16px; max-width: 580px; margin: 28px auto 0; }
+  .family__role { margin: 0; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+  .family__name { margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .family__name [lang="my"] { font-size: 1.25rem; line-height: 1.9; }
+  .family__parents { margin: 0; font-size: 1.0625rem; color: var(--text-muted); }
+  .family__mark { width: 32px; height: 32px; margin: 0 auto; }
+  @media (min-width: 600px) {
+    .families { grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+  }
+
+  .divider { width: 200px; height: 20px; margin: 24px auto 0; }
+  .invite-line { margin: 20px auto 0; max-width: 40ch; font-size: 1.25rem; }
+  .invite-line [lang="my"] { font-size: 1.125rem; }
+  .date { margin: 16px 0 0; font-size: clamp(1.375rem, 4.4vw, 1.875rem); font-weight: 600; color: var(--primary); line-height: 1.4; }
+  .date [lang="my"] { font-size: clamp(1.1875rem, 3.6vw, 1.5rem); line-height: 1.9; }
+  .when { margin: 4px 0 0; color: var(--text-muted); }
+
+  /* Countdown */
+  .countdown { margin: 32px auto 0; }
+  .countdown__label { margin: 0 0 12px; font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+  .countdown__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .cd {
+    width: clamp(4rem, 17vw, 5.25rem); padding: 10px 4px 8px; border-radius: var(--radius);
+    background: var(--primary); color: var(--on-primary);
+    box-shadow: inset 0 0 0 4px var(--primary), inset 0 0 0 5px var(--accent-light);
+  }
+  .cd__num {
+    display: block; font-size: clamp(1.75rem, 6vw, 2.5rem); font-weight: 600; line-height: 1.2;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .cd__unit { display: block; margin-top: 2px; font-size: 0.9375rem; line-height: 1.5; color: var(--on-dark-soft); }
+  .cd__unit [lang="my"] { font-size: 1rem; line-height: 1.8; }
+  .countdown__done { margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--primary); }
+  @media (prefers-reduced-motion: reduce) { .cd--sec { display: none; } }
+
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+
+  /* ============ Sections ============ */
+  .section { padding: clamp(72px, 10vw, 120px) 0; }
+  .section--alt { background: var(--surface-gold); border-block: 1px solid var(--border); }
+  .section-head { max-width: 640px; margin: 0 auto clamp(40px, 6vw, 56px); text-align: center; }
+  .eyebrow { margin: 0; font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; }
+  .section-title { margin: 4px 0 0; font-size: clamp(2.25rem, 6vw, 3.25rem); font-weight: 600; color: var(--primary); line-height: 1.15; }
+  .section-title [lang="my"] { font-size: clamp(1.625rem, 5vw, 2.25rem); line-height: 1.7; }
+  .lede { margin: 16px auto 0; max-width: 60ch; color: var(--text-muted); }
+
+  /* Story timeline */
+  .timeline { position: relative; max-width: 720px; margin: 0 auto; padding: 0; list-style: none; }
+  .timeline::before { content: ""; position: absolute; left: 23px; top: 24px; bottom: 24px; width: 1px; background: var(--accent); }
+  .moment { position: relative; padding: 0 0 40px 76px; }
+  .moment:last-child { padding-bottom: 0; }
+  .moment__dot {
+    position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--surface); border: 1px solid var(--accent);
+  }
+  .moment__dot svg { width: 26px; height: 26px; }
+  .moment__year { margin: 0; font-size: 1rem; font-weight: 600; letter-spacing: 0.16em; color: var(--accent-text); }
+  .moment__title { margin: 0 0 4px; font-size: 1.625rem; font-weight: 600; color: var(--primary); line-height: 1.3; }
+  .moment__title [lang="my"] { font-size: 1.3125rem; line-height: 1.8; }
+  .moment p:last-child { margin: 0; max-width: 60ch; }
+
+  /* Event cards */
+  .cards { display: grid; gap: 24px; }
+  @media (min-width: 768px) { .cards { grid-template-columns: 1fr 1fr; } }
+  .event-card {
+    position: relative; padding: 40px 28px 32px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .event-card::before { content: ""; position: absolute; inset: 8px; border: 1px solid var(--accent); opacity: 0.55; pointer-events: none; }
+  .event-card__icon {
+    width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%;
+    display: grid; place-items: center; color: var(--primary);
+    background: var(--surface-gold); border: 1px solid var(--accent);
+  }
+  .event-card__icon .icon { width: 26px; height: 26px; stroke-width: 1.5; }
+  .event-card h3 { margin: 0 0 20px; font-size: 1.75rem; font-weight: 600; color: var(--primary); line-height: 1.25; }
+  .event-card h3 [lang="my"] { font-size: 1.375rem; line-height: 1.8; }
+  .facts { display: grid; gap: 14px; max-width: 360px; margin: 0 auto; text-align: left; }
+  .facts dt {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text);
+  }
+  .facts dt [lang="my"] { font-size: 1rem; }
+  .facts dt .icon { color: var(--primary); }
+  .facts dd { margin: 0 0 0 30px; }
+  .details-cta { display: flex; justify-content: center; margin-top: 32px; }
+
+  /* Programme */
+  .programme-groups { display: grid; gap: 40px; max-width: 880px; margin: 0 auto; }
+  @media (min-width: 768px) { .programme-groups { grid-template-columns: 1fr 1fr; } }
+  .prog-group h3 { margin: 0 0 8px; font-size: 1.5rem; font-weight: 600; color: var(--primary); }
+  .prog-group h3 [lang="my"] { font-size: 1.25rem; line-height: 1.8; }
+  .programme { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--accent); }
+  .prog { display: grid; grid-template-columns: 7.5rem 1fr; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .prog__time { font-weight: 600; color: var(--primary); font-variant-numeric: lining-nums; }
+
+  /* Venue */
+  .venue { display: grid; max-width: 960px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  @media (min-width: 768px) { .venue { grid-template-columns: 1.1fr 1fr; } }
+  .venue__map { aspect-ratio: 4 / 3; background: var(--surface-gold); border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .venue__map { border-bottom: 0; border-right: 1px solid var(--border); aspect-ratio: auto; min-height: 320px; } }
+  .venue__map svg { width: 100%; height: 100%; }
+  .m-bg { fill: var(--surface-gold); }
+  .m-water { fill: var(--water); }
+  .m-block { fill: var(--placeholder); }
+  .m-road { fill: none; stroke: var(--surface); stroke-width: 12; stroke-linecap: round; }
+  .m-road-line { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 6 6; }
+  .m-pin { fill: var(--primary); }
+  .m-pin-dot { fill: var(--surface); }
+  .m-ring { fill: none; stroke: var(--primary); stroke-width: 1.5; opacity: 0.4; }
+  .venue__info { padding: 32px 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .venue__info h3 { margin: 0; font-size: 1.875rem; font-weight: 600; color: var(--primary); line-height: 1.2; }
+  .venue__info p { margin: 0; }
+  .venue__address { display: flex; gap: 10px; align-items: flex-start; }
+  .venue__address .icon { margin-top: 6px; color: var(--primary); }
+  .venue__info .btn { margin-top: 8px; }
+
+  /* Gallery */
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 1000px; margin: 0 auto; }
+  @media (min-width: 768px) { .gallery { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+  .photo { margin: 0; }
+  .photo__frame {
+    position: relative; aspect-ratio: 4 / 5; padding: 16px;
+    display: grid; place-items: center; align-content: center; gap: 8px; text-align: center;
+    background: var(--placeholder); border: 1px solid var(--accent);
+    box-shadow: inset 0 0 0 6px var(--placeholder), inset 0 0 0 7px var(--border);
+    color: var(--text-muted); font-size: 1rem;
+  }
+  .photo__frame svg { width: 40%; max-width: 72px; height: auto; aspect-ratio: 1; }
+  .photo__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .photo figcaption { margin-top: 8px; text-align: center; font-size: 1.0625rem; color: var(--text-muted); }
+
+  /* RSVP */
+  .rsvp-card {
+    max-width: 640px; margin: 0 auto; padding: clamp(28px, 6vw, 48px);
+    background: var(--surface); border: 1px solid var(--accent);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--border), var(--shadow);
+  }
+  .field { margin: 0 0 24px; padding: 0; border: 0; min-width: 0; }
+  .field > label, .field > legend { display: block; margin-bottom: 8px; padding: 0; font-weight: 600; font-size: 1.125rem; color: var(--text); }
+  .req { color: var(--error); margin-left: 2px; }
+  .optional { font-weight: 400; color: var(--text-muted); }
+  .input {
+    display: block; width: 100%; min-height: 48px; padding: 8px 14px;
+    font-size: 1.125rem; line-height: 1.5; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius);
+    transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  }
+  .input:lang(my) { line-height: 1.8; }
+  .input:hover { border-color: var(--primary); }
+  .input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-color: var(--primary); }
+  textarea.input { min-height: 120px; resize: vertical; }
+  .input[aria-invalid="true"] { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); }
+  .help { margin: 6px 0 0; font-size: 1rem; color: var(--text-muted); }
+  .field-error { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; color: var(--error); font-size: 1rem; font-weight: 600; }
+  .field-error .icon { margin-top: 4px; width: 18px; height: 18px; }
+  .choices { display: grid; gap: 12px; }
+  @media (min-width: 560px) { .choices { grid-template-columns: 1fr 1fr; } }
+  .choice {
+    display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 16px;
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius);
+    transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+  }
+  .choice:hover { border-color: var(--primary); }
+  .choice:has(input:checked) { border-color: var(--primary); background: var(--tint-maroon); box-shadow: inset 0 0 0 1px var(--primary); }
+  .choice input { flex: none; width: 22px; height: 22px; margin: 0; accent-color: var(--primary); }
+  .choice-group[data-invalid="true"] .choice { border-color: var(--error); }
+  .spinner {
+    display: none; width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid currentColor; border-right-color: transparent;
+    animation: spin 0.8s linear infinite;
+  }
+  .btn-label-busy { display: none; }
+  .is-busy .spinner { display: inline-block; }
+  .is-busy .btn-label { display: none; }
+  .is-busy .btn-label-busy { display: inline; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .rsvp-success { text-align: center; padding: 8px 0; }
+  .rsvp-success > .icon { width: 56px; height: 56px; margin: 0 auto 12px; color: var(--success); stroke-width: 1.5; }
+  .rsvp-success h3 { margin: 0 0 8px; font-size: 1.875rem; font-weight: 600; color: var(--primary); line-height: 1.3; }
+  .rsvp-success h3 [lang="my"] { font-size: 1.5rem; line-height: 1.8; }
+  .rsvp-success p { margin: 0 auto 8px; max-width: 46ch; }
+  .rsvp-success .btn { margin-top: 16px; }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; border-top: 1px solid var(--accent); }
+  .faq__item { border-bottom: 1px solid var(--border); }
+  .faq__item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    min-height: 56px; padding: 12px 4px; list-style: none;
+    font-size: 1.25rem; font-weight: 600; color: var(--primary);
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary .icon { transition: transform var(--dur) var(--ease-out); }
+  .faq__item[open] summary .icon { transform: rotate(180deg); }
+  .faq__item summary:hover { color: var(--primary-hover); }
+  .faq__answer { padding: 0 4px 20px; max-width: 65ch; }
+  .faq__answer p { margin: 0; }
+  .qr-placeholder {
+    width: 128px; aspect-ratio: 1; margin-top: 12px; display: grid; place-items: center;
+    border: 2px dashed var(--border-strong); border-radius: var(--radius); color: var(--text-muted); font-size: 1rem; font-weight: 600;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 64px 16px 48px; text-align: center;
+    background: var(--primary); color: var(--on-primary);
+    --k-stroke: var(--accent-light); --petal-core: var(--primary);
+  }
+  .site-footer :focus-visible { outline-color: var(--focus-on-dark); }
+  .footer-seal {
+    width: 72px; height: 72px; margin: 0 auto 16px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 1.375rem; font-weight: 600; line-height: 1;
+    border: 1px solid var(--accent-light); box-shadow: inset 0 0 0 4px var(--primary), inset 0 0 0 5px var(--on-dark-soft);
+  }
+  .footer-names { margin: 0; font-size: 2rem; font-weight: 600; line-height: 1.4; }
+  .footer-names [lang="my"] { font-size: 1.625rem; line-height: 1.8; }
+  .site-footer p { margin: 4px 0 0; }
+  .made { display: inline-flex; align-items: center; gap: 8px; color: var(--on-dark-soft); }
+  .to-top {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 16px; padding: 0 16px;
+    color: var(--on-primary); border: 1px solid var(--on-dark-soft); border-radius: 999px; text-decoration: none;
+    transition: background-color var(--dur-fast) ease;
+  }
+  .to-top:hover { background: var(--primary-hover); }
+  .site-footer .divider { margin: 20px auto; }
+
+  /* ============ Scroll reveal (only once JS confirmed it can reveal) ============ */
+  .js.reveal-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(12px); }
+  .js.reveal-ready .reveal { transition: opacity 400ms ease-out, transform 400ms ease-out; }
+
+  /* ============ Reduced motion ============ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    .seal::after { display: none; }
+    .spinner { animation: none; border-right-color: currentColor; opacity: 0.6; }
+    .js.reveal-ready .reveal:not(.is-visible) { opacity: 1; transform: none; }
+    .gate.is-opening .gate__door--left, .gate.is-opening .gate__door--right { transform: none; }
+    .gate.is-opening { opacity: 0; transition: opacity 200ms ease !important; }
+  }
+
+  /* ============ Print ============ */
+  @media print {
+    .site-header, .gate, .skip-link, .hero-deco, .countdown, .cta-row, .details-cta, #gallery, #rsvp, .to-top, .venue__map { display: none !important; }
+    body { background: white; color: black; font-size: 12pt; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .hero { min-height: 0; padding: 0; }
+    .hero-card, .event-card, .venue { box-shadow: none; }
+    .section { padding: 16pt 0; break-inside: avoid; }
+    .site-footer { background: none; color: black; padding: 16pt 0; }
+  }
+</style>
+</head>
+<body>
+<!-- PROOFREAD: Burmese copy should be checked by a native speaker -->
+
+<a class="skip-link" href="#main" id="skip-link"><span data-l="my" lang="my">ဖိတ်ကြားလွှာသို့ ကျော်ရန်</span><span data-l="en" lang="en">Skip to invitation</span></a>
+
+<!-- ===== SVG sprite: ornaments + icons ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Padauk blossom: five rounded petals -->
+    <symbol id="blossom" viewBox="-12 -12 24 24">
+      <g class="b-petal">
+        <ellipse cx="0" cy="-5.8" rx="3.6" ry="5.8"/>
+        <ellipse cx="0" cy="-5.8" rx="3.6" ry="5.8" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-5.8" rx="3.6" ry="5.8" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-5.8" rx="3.6" ry="5.8" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-5.8" rx="3.6" ry="5.8" transform="rotate(288)"/>
+      </g>
+      <circle class="b-core" r="2.4"/>
+    </symbol>
+
+    <!-- Padauk spray: curved stem with leaves and blossom clusters -->
+    <symbol id="padauk-spray" viewBox="0 0 220 180">
+      <path class="sp-stem" d="M10 172 C48 150 84 128 116 100 C146 74 176 46 206 16"/>
+      <path class="sp-stem" d="M60 148 C58 126 66 108 84 96"/>
+      <path class="sp-stem" d="M116 100 C130 108 146 112 166 108"/>
+      <path class="sp-stem" d="M160 62 C150 46 152 30 164 18"/>
+      <path class="sp-leaf" d="M36 160 C30 146 36 134 50 130 C52 144 46 154 36 160 Z"/>
+      <path class="sp-leaf" d="M96 116 C104 128 118 132 128 128 C122 116 108 112 96 116 Z"/>
+      <path class="sp-leaf" d="M136 82 C128 70 130 58 140 52 C146 64 144 74 136 82 Z"/>
+      <path class="sp-leaf" d="M184 40 C192 46 202 46 210 40 C202 32 192 34 184 40 Z"/>
+      <use href="#blossom" x="70" y="78" width="16" height="16"/>
+      <use href="#blossom" x="87" y="83" width="14" height="14"/>
+      <use href="#blossom" x="80" y="96" width="12" height="12"/>
+      <use href="#blossom" x="162" y="92" width="16" height="16"/>
+      <use href="#blossom" x="175.5" y="105.5" width="13" height="13"/>
+      <use href="#blossom" x="158" y="110" width="12" height="12"/>
+      <use href="#blossom" x="150.5" y="4.5" width="15" height="15"/>
+      <use href="#blossom" x="167.5" y="7.5" width="13" height="13"/>
+      <use href="#blossom" x="159" y="21" width="14" height="14"/>
+      <use href="#blossom" x="197" y="3" width="14" height="14"/>
+      <use href="#blossom" x="208.5" y="18.5" width="11" height="11"/>
+      <circle class="sp-bud" cx="100" cy="80" r="2.5"/>
+      <circle class="sp-bud" cx="150" cy="124" r="2"/>
+      <circle class="sp-bud" cx="186" cy="26" r="2"/>
+    </symbol>
+
+    <!-- Kanote-inspired corner: double frame rule with mirrored curling vines -->
+    <symbol id="kanote" viewBox="0 0 120 120">
+      <path class="k-line" d="M6 114 V36 Q6 6 36 6 H114"/>
+      <path class="k-line" d="M14 100 V44 Q14 14 44 14 H100"/>
+      <path class="k-line" d="M22 86 C22 52 34 34 56 30 C74 27 84 40 77 50 C71 58 60 55 61 47 C62 42 68 41 70 44"/>
+      <path class="k-line" d="M86 22 C52 22 34 34 30 56 C27 74 40 84 50 77 C58 71 55 60 47 61 C42 62 41 68 44 70"/>
+      <path class="k-fill" d="M40 40 C30 40 22 32 20 20 C32 22 40 30 40 40 Z"/>
+      <circle class="k-fill" cx="114" cy="6" r="2"/>
+      <circle class="k-fill" cx="6" cy="114" r="2"/>
+    </symbol>
+
+    <!-- Horizontal divider with central blossom -->
+    <symbol id="divider" viewBox="0 0 240 24">
+      <path class="k-line" d="M8 12 H84 M156 12 H232"/>
+      <path class="k-line" d="M84 12 C92 12 96 4 102 5 C107 6 107 12 103 13"/>
+      <path class="k-line" d="M84 12 C92 12 96 20 102 19"/>
+      <path class="k-line" d="M156 12 C148 12 144 4 138 5 C133 6 133 12 137 13"/>
+      <path class="k-line" d="M156 12 C148 12 144 20 138 19"/>
+      <circle class="k-fill" cx="8" cy="12" r="2"/>
+      <circle class="k-fill" cx="232" cy="12" r="2"/>
+      <use href="#blossom" x="108" y="0" width="24" height="24"/>
+    </symbol>
+
+    <!-- Icons (Lucide-style, 24px grid, stroke) -->
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-calendar-plus" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v5M9.5 16.5h5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23Z"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6M2 9h20"/></symbol>
+    <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7M12 19V5"/></symbol>
+  </defs>
+</svg>
+
+<!-- ===== Gatefold intro (shown only when JS runs; see script) ===== -->
+<div class="gate" id="gate">
+  <div class="gate__door gate__door--left" aria-hidden="true">
+    <svg class="door-corner door-corner--tl" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--tr" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--bl" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--br" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-spray" viewBox="0 0 220 180" focusable="false"><use href="#padauk-spray"/></svg>
+  </div>
+  <div class="gate__door gate__door--right" aria-hidden="true">
+    <svg class="door-corner door-corner--tl" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--tr" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--bl" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-corner door-corner--br" viewBox="0 0 120 120" focusable="false"><use href="#kanote"/></svg>
+    <svg class="door-spray" viewBox="0 0 220 180" focusable="false"><use href="#padauk-spray"/></svg>
+  </div>
+  <div class="gate__center">
+    <p class="gate__kicker"><span lang="my">မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ</span><span lang="en">Wedding Invitation</span></p>
+    <button type="button" class="seal" id="gate-open">
+      <span class="seal__mono" aria-hidden="true">A·T</span>
+      <span class="seal__label"><span lang="my">ဖွင့်ရန်</span> · <span lang="en">Open</span></span>
+    </button>
+    <p class="gate__names" lang="en">Aung &amp; Thiri</p>
+    <button type="button" class="gate__skip" id="gate-skip"><span lang="my">ကျော်ရန်</span> · <span lang="en">Skip</span></button>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <span aria-hidden="true">A·T</span>
+      <span class="vh"><span data-l="my" lang="my">အောင် နှင့် သီရိ — အပေါ်ဆုံးသို့</span><span data-l="en" lang="en">Aung &amp; Thiri — back to top</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="ပင်မ မီနူး" data-label-my="ပင်မ မီနူး" data-label-en="Main menu">
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-list">
+        <svg class="icon i-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+        <svg class="icon i-close" aria-hidden="true" focusable="false"><use href="#i-x"/></svg>
+        <span class="vh"><span data-l="my" lang="my">မီနူး</span><span data-l="en" lang="en">Menu</span></span>
+      </button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#story"><span data-l="my" lang="my">ဇာတ်လမ်း</span><span data-l="en" lang="en">Our story</span></a></li>
+        <li><a href="#details"><span data-l="my" lang="my">အသေးစိတ်</span><span data-l="en" lang="en">Details</span></a></li>
+        <li><a href="#schedule"><span data-l="my" lang="my">အစီအစဉ်</span><span data-l="en" lang="en">Schedule</span></a></li>
+        <li><a href="#venue"><span data-l="my" lang="my">နေရာ</span><span data-l="en" lang="en">Venue</span></a></li>
+        <li><a href="#rsvp"><span data-l="my" lang="my">အကြောင်းပြန်ရန်</span><span data-l="en" lang="en">RSVP</span></a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="ဘာသာစကား · Language">
+      <button type="button" class="lang-btn" data-set-lang="my" lang="my" aria-pressed="true">မြန်မာ</button>
+      <button type="button" class="lang-btn" data-set-lang="en" lang="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===== Hero: printed-card invitation ===== -->
+  <section class="hero" id="top" aria-labelledby="couple-names">
+    <div class="hero-deco" aria-hidden="true">
+      <svg class="spray spray--bl" viewBox="0 0 220 180" focusable="false"><use href="#padauk-spray"/></svg>
+      <svg class="spray spray--tr" viewBox="0 0 220 180" focusable="false"><use href="#padauk-spray"/></svg>
+    </div>
+
+    <div class="hero-card">
+      <svg class="corner corner--tl" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#kanote"/></svg>
+      <svg class="corner corner--tr" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#kanote"/></svg>
+      <svg class="corner corner--bl" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#kanote"/></svg>
+      <svg class="corner corner--br" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#kanote"/></svg>
+
+      <!-- Personalised greeting: invitation.html?to=Ko%20Zaw -->
+      <p class="greeting" id="greeting" hidden>
+        <span data-l="my" lang="my">ချစ်ခင်ရပါသော <span class="guest-name"></span></span><span data-l="en" lang="en">Dear <span class="guest-name"></span>,</span>
+      </p>
+
+      <p class="kicker"><span data-l="my" lang="my">မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ</span><span data-l="en" lang="en">Wedding Invitation</span></p>
+      <div class="mini-seal" aria-hidden="true">A·T</div>
+      <p class="blessing"><span data-l="my" lang="my">နှစ်ဖက်သော မိဘများ၏ ကောင်းချီးဖြင့်</span><span data-l="en" lang="en">Together with their families</span></p>
+
+      <h1 class="couple" id="couple-names" tabindex="-1">
+        <span data-l="my" lang="my">အောင် <span class="amp">နှင့်</span> သီရိ</span><span data-l="en" lang="en">Aung <span class="amp">&amp;</span> Thiri</span>
+      </h1>
+      <p class="names-alt" aria-hidden="true"><span data-l="my" lang="en">Aung &amp; Thiri</span><span data-l="en" lang="my">အောင် နှင့် သီရိ</span></p>
+
+      <div class="families">
+        <div class="family">
+          <p class="family__role"><span data-l="my" lang="my">သတို့သား</span><span data-l="en" lang="en">The Groom</span></p>
+          <p class="family__name"><span data-l="my" lang="my">အောင်ကောင်းမြတ်</span><span data-l="en" lang="en">Aung Kaung Myat</span></p>
+          <p class="family__parents"><span data-l="my" lang="my">ဦးကျော်မြင့် – ဒေါ်ခင်ခင် တို့၏ သား</span><span data-l="en" lang="en">Son of U Kyaw Myint &amp; Daw Khin Khin</span></p>
+        </div>
+        <svg class="family__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#blossom" width="24" height="24"/></svg>
+        <div class="family">
+          <p class="family__role"><span data-l="my" lang="my">သတို့သမီး</span><span data-l="en" lang="en">The Bride</span></p>
+          <p class="family__name"><span data-l="my" lang="my">သီရိလှိုင်</span><span data-l="en" lang="en">Thiri Hlaing</span></p>
+          <p class="family__parents"><span data-l="my" lang="my">ဦးတင်ဝင်း – ဒေါ်စန်းစန်း တို့၏ သမီး</span><span data-l="en" lang="en">Daughter of U Tin Win &amp; Daw San San</span></p>
+        </div>
+      </div>
+
+      <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+
+      <p class="invite-line"><span data-l="my" lang="my">မင်္ဂလာဆောင်ပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် ခင်မင်လေးစားစွာ ဖိတ်ကြားအပ်ပါသည်။</span><span data-l="en" lang="en">request the pleasure of your company as they celebrate their marriage</span></p>
+
+      <p class="date"><time datetime="2026-12-12T09:00+06:30"><span data-l="my" lang="my">၂၀၂၆ ခုနှစ်၊ ဒီဇင်ဘာလ ၁၂ ရက်၊ စနေနေ့</span><span data-l="en" lang="en">Saturday, 12 December 2026</span></time></p>
+      <!-- Optional: add Myanmar calendar date e.g. ၁၃၈၈ ခုနှစ် … -->
+      <p class="when"><span data-l="my" lang="my">နံနက် ၉ နာရီ · Lotus Garden Hall၊ ရန်ကုန်မြို့</span><span data-l="en" lang="en">9:00 in the morning · Lotus Garden Hall, Yangon</span></p>
+
+      <div class="countdown" id="countdown">
+        <p class="countdown__label" aria-hidden="true"><span data-l="my" lang="my">မင်္ဂလာနေ့သို့ ကျန်ရှိချိန်</span><span data-l="en" lang="en">Counting down to our day</span></p>
+        <p class="vh"><span data-l="my" lang="my">မင်္ဂလာပွဲကို ၂၀၂၆ ခုနှစ်၊ ဒီဇင်ဘာလ ၁၂ ရက်၊ စနေနေ့ နံနက် ၉ နာရီ (မြန်မာစံတော်ချိန်) တွင် ကျင်းပပါမည်။</span><span data-l="en" lang="en">The wedding takes place on Saturday, 12 December 2026 at 9:00 AM Myanmar time.</span></p>
+        <div class="countdown__grid" id="countdown-grid" aria-hidden="true">
+          <div class="cd"><span class="cd__num" data-cd="d">00</span><span class="cd__unit"><span data-l="my" lang="my">ရက်</span><span data-l="en" lang="en">Days</span></span></div>
+          <div class="cd"><span class="cd__num" data-cd="h">00</span><span class="cd__unit"><span data-l="my" lang="my">နာရီ</span><span data-l="en" lang="en">Hours</span></span></div>
+          <div class="cd"><span class="cd__num" data-cd="m">00</span><span class="cd__unit"><span data-l="my" lang="my">မိနစ်</span><span data-l="en" lang="en">Minutes</span></span></div>
+          <div class="cd cd--sec"><span class="cd__num" data-cd="s">00</span><span class="cd__unit"><span data-l="my" lang="my">စက္ကန့်</span><span data-l="en" lang="en">Seconds</span></span></div>
+        </div>
+        <p class="countdown__done" id="countdown-done" hidden><span data-l="my" lang="my">ကျွန်ုပ်တို့ လက်ထပ်ပြီးပါပြီ — အတူတကွ ဂုဏ်ပြုပေးကြသည့်အတွက် ကျေးဇူးတင်ပါသည်။</span><span data-l="en" lang="en">We’re married! Thank you for celebrating with us.</span></p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn--primary" href="#rsvp"><span data-l="my" lang="my">အကြောင်းပြန်ရန်</span><span data-l="en" lang="en">RSVP</span></a>
+        <button type="button" class="btn btn--ghost" data-ics>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar-plus"/></svg>
+          <span data-l="my" lang="my">ပြက္ခဒိန်တွင် မှတ်ထားရန်</span><span data-l="en" lang="en">Add to calendar</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Our story ===== -->
+  <section class="section" id="story" aria-labelledby="story-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">Our Story</span><span data-l="en" lang="my">ကျွန်ုပ်တို့၏ ဇာတ်လမ်း</span></p>
+        <h2 class="section-title" id="story-title"><span data-l="my" lang="my">ကျွန်ုပ်တို့၏ အချစ်ဇာတ်လမ်း</span><span data-l="en" lang="en">Our Story</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+      <ol class="timeline">
+        <li class="moment reveal">
+          <span class="moment__dot" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="#blossom" width="24" height="24"/></svg></span>
+          <p class="moment__year"><span data-l="my" lang="my">၂၀၁၉</span><span data-l="en" lang="en">2019</span></p>
+          <h3 class="moment__title"><span data-l="my" lang="my">စတင်တွေ့ဆုံခြင်း</span><span data-l="en" lang="en">The day we met</span></h3>
+          <p><span data-l="my" lang="my">ရန်ကုန်မြို့ရှိ သူငယ်ချင်း၏ မွေးနေ့ပွဲတွင် စတင်တွေ့ဆုံခဲ့ကြသည်။</span><span data-l="en" lang="en">We first met at a friend’s birthday party in Yangon — and talked until the very last guest had gone home.</span></p>
+        </li>
+        <li class="moment reveal">
+          <span class="moment__dot" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="#blossom" width="24" height="24"/></svg></span>
+          <p class="moment__year"><span data-l="my" lang="my">၂၀၂၂</span><span data-l="en" lang="en">2022</span></p>
+          <h3 class="moment__title"><span data-l="my" lang="my">ပထမဆုံး ခရီးစဉ်</span><span data-l="en" lang="en">Our first trip</span></h3>
+          <p><span data-l="my" lang="my">ပုဂံတွင် နေထွက်ချိန်ကို အတူတူ ကြည့်ခဲ့ကြသည်။</span><span data-l="en" lang="en">We watched the sun rise over the temples of Bagan, and knew we wanted many more mornings together.</span></p>
+        </li>
+        <li class="moment reveal">
+          <span class="moment__dot" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="#blossom" width="24" height="24"/></svg></span>
+          <p class="moment__year"><span data-l="my" lang="my">၂၀၂၅</span><span data-l="en" lang="en">2025</span></p>
+          <h3 class="moment__title"><span data-l="my" lang="my">လက်ထပ်ခွင့် တောင်းခြင်း</span><span data-l="en" lang="en">The proposal</span></h3>
+          <p><span data-l="my" lang="my">အင်းလျားကန်စောင်းတွင် လက်ထပ်ခွင့် တောင်းခဲ့သည်။</span><span data-l="en" lang="en">Aung proposed by Inya Lake at sunset. Thiri said yes before he finished the question.</span></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Event details ===== -->
+  <section class="section section--alt" id="details" aria-labelledby="details-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">The Celebration</span><span data-l="en" lang="my">မင်္ဂလာပွဲ အသေးစိတ်</span></p>
+        <h2 class="section-title" id="details-title"><span data-l="my" lang="my">မင်္ဂလာပွဲ အသေးစိတ်</span><span data-l="en" lang="en">Event Details</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+
+      <div class="cards">
+        <article class="event-card reveal" aria-labelledby="ceremony-title">
+          <div class="event-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-gem"/></svg></div>
+          <h3 id="ceremony-title"><span data-l="my" lang="my">မင်္ဂလာအခမ်းအနား</span><span data-l="en" lang="en">Wedding Ceremony</span></h3>
+          <dl class="facts">
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg><span data-l="my" lang="my">နေ့ရက်</span><span data-l="en" lang="en">Date</span></dt>
+              <dd><span data-l="my" lang="my">၂၀၂၆ ခုနှစ်၊ ဒီဇင်ဘာလ ၁၂ ရက်၊ စနေနေ့</span><span data-l="en" lang="en">Saturday, 12 December 2026</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span data-l="my" lang="my">အချိန်</span><span data-l="en" lang="en">Time</span></dt>
+              <dd><span data-l="my" lang="my">နံနက် ၉ နာရီ မှ ၁၁ နာရီ ထိ</span><span data-l="en" lang="en">9:00 – 11:00 AM</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span data-l="my" lang="my">နေရာ</span><span data-l="en" lang="en">Venue</span></dt>
+              <dd><span data-l="my" lang="my">Lotus Garden Hall၊ ရန်ကုန်မြို့</span><span data-l="en" lang="en">Lotus Garden Hall, Yangon</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg><span data-l="my" lang="my">ဝတ်စုံ</span><span data-l="en" lang="en">Dress code</span></dt>
+              <dd><span data-l="my" lang="my">မြန်မာ ရိုးရာဝတ်စုံ</span><span data-l="en" lang="en">Traditional Myanmar attire</span></dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="event-card reveal" aria-labelledby="reception-title">
+          <div class="event-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-utensils"/></svg></div>
+          <h3 id="reception-title"><span data-l="my" lang="my">ညစာ ဧည့်ခံပွဲ</span><span data-l="en" lang="en">Dinner Reception</span></h3>
+          <dl class="facts">
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg><span data-l="my" lang="my">နေ့ရက်</span><span data-l="en" lang="en">Date</span></dt>
+              <dd><span data-l="my" lang="my">၂၀၂၆ ခုနှစ်၊ ဒီဇင်ဘာလ ၁၂ ရက်၊ စနေနေ့</span><span data-l="en" lang="en">Saturday, 12 December 2026</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span data-l="my" lang="my">အချိန်</span><span data-l="en" lang="en">Time</span></dt>
+              <dd><span data-l="my" lang="my">ညနေ ၆ နာရီ မှ ည ၉ နာရီ ထိ</span><span data-l="en" lang="en">6:00 – 9:00 PM</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span data-l="my" lang="my">နေရာ</span><span data-l="en" lang="en">Venue</span></dt>
+              <dd><span data-l="my" lang="my">Lotus Garden Hall၊ ရန်ကုန်မြို့</span><span data-l="en" lang="en">Lotus Garden Hall, Yangon</span></dd>
+            </div>
+            <div>
+              <dt><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg><span data-l="my" lang="my">ဝတ်စုံ</span><span data-l="en" lang="en">Dress code</span></dt>
+              <dd><span data-l="my" lang="my">သပ်ရပ်သော ညဝတ်စုံ</span><span data-l="en" lang="en">Formal evening wear</span></dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="details-cta reveal">
+        <button type="button" class="btn btn--ghost" data-ics>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar-plus"/></svg>
+          <span data-l="my" lang="my">ပြက္ခဒိန်တွင် မှတ်ထားရန်</span><span data-l="en" lang="en">Add both events to your calendar</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Schedule ===== -->
+  <section class="section" id="schedule" aria-labelledby="schedule-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">Order of the Day</span><span data-l="en" lang="my">အစီအစဉ်</span></p>
+        <h2 class="section-title" id="schedule-title"><span data-l="my" lang="my">အစီအစဉ်</span><span data-l="en" lang="en">Schedule</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+      <div class="programme-groups">
+        <div class="prog-group reveal">
+          <h3><span data-l="my" lang="my">နံနက်ပိုင်း</span><span data-l="en" lang="en">Morning</span></h3>
+          <ol class="programme">
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T08:30+06:30"><span data-l="my" lang="my">နံနက် ၈:၃၀</span><span data-l="en" lang="en">8:30 AM</span></time><span><span data-l="my" lang="my">ဧည့်သည်များ ကြွရောက်ခြင်း</span><span data-l="en" lang="en">Guest arrival</span></span></li>
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T09:00+06:30"><span data-l="my" lang="my">နံနက် ၉:၀၀</span><span data-l="en" lang="en">9:00 AM</span></time><span><span data-l="my" lang="my">မင်္ဂလာအခမ်းအနား</span><span data-l="en" lang="en">Wedding ceremony</span></span></li>
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T10:00+06:30"><span data-l="my" lang="my">နံနက် ၁၀:၀၀</span><span data-l="en" lang="en">10:00 AM</span></time><span><span data-l="my" lang="my">ဆုတောင်းမင်္ဂလာ နှင့် ဓာတ်ပုံရိုက်ခြင်း</span><span data-l="en" lang="en">Blessings &amp; family photos</span></span></li>
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T11:00+06:30"><span data-l="my" lang="my">နံနက် ၁၁:၀၀</span><span data-l="en" lang="en">11:00 AM</span></time><span><span data-l="my" lang="my">နေ့လည်စာ ဧည့်ခံပွဲ</span><span data-l="en" lang="en">Lunch reception</span></span></li>
+          </ol>
+        </div>
+        <div class="prog-group reveal">
+          <h3><span data-l="my" lang="my">ညနေပိုင်း</span><span data-l="en" lang="en">Evening</span></h3>
+          <ol class="programme">
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T18:00+06:30"><span data-l="my" lang="my">ညနေ ၆:၀၀</span><span data-l="en" lang="en">6:00 PM</span></time><span><span data-l="my" lang="my">ညစာ ဧည့်ခံပွဲ</span><span data-l="en" lang="en">Dinner reception</span></span></li>
+            <li class="prog"><time class="prog__time" datetime="2026-12-12T19:00+06:30"><span data-l="my" lang="my">ည ၇:၀၀</span><span data-l="en" lang="en">7:00 PM</span></time><span><span data-l="my" lang="my">ဆုမွန်ကောင်းတောင်း စကားများနှင့် ဂီတ</span><span data-l="en" lang="en">Toasts, music &amp; first dance</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Venue ===== -->
+  <section class="section section--alt" id="venue" aria-labelledby="venue-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">Venue</span><span data-l="en" lang="my">နေရာ</span></p>
+        <h2 class="section-title" id="venue-title"><span data-l="my" lang="my">နေရာ</span><span data-l="en" lang="en">Venue</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+      <div class="venue reveal">
+        <div class="venue__map" aria-hidden="true">
+          <!-- To embed a live map instead:
+               <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" title="Map to Lotus Garden Hall"
+                       width="600" height="450" style="border:0;width:100%;height:100%" loading="lazy"
+                       referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect class="m-bg" width="400" height="300"/>
+            <path class="m-water" d="M250 30 C300 20 360 50 365 105 C370 160 320 190 282 170 C246 151 214 120 222 80 C228 52 236 34 250 30 Z"/>
+            <rect class="m-block" x="30" y="40" width="90" height="60" rx="4"/>
+            <rect class="m-block" x="30" y="190" width="110" height="80" rx="4"/>
+            <rect class="m-block" x="200" y="210" width="80" height="60" rx="4"/>
+            <rect class="m-block" x="310" y="215" width="70" height="55" rx="4"/>
+            <path class="m-road" d="M-10 150 C80 140 150 160 210 150 S330 190 410 185"/>
+            <path class="m-road" d="M165 -10 C160 80 175 200 165 310"/>
+            <path class="m-road-line" d="M-10 150 C80 140 150 160 210 150 S330 190 410 185"/>
+            <circle class="m-ring" cx="168" cy="118" r="34"/>
+            <path class="m-pin" d="M168 132 C168 132 148 112 148 98 a20 20 0 0 1 40 0 C188 112 168 132 168 132 Z"/>
+            <circle class="m-pin-dot" cx="168" cy="98" r="7"/>
+          </svg>
+        </div>
+        <div class="venue__info">
+          <h3>Lotus Garden Hall</h3>
+          <p class="venue__address">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+            <span><span data-l="my" lang="my">အမှတ် ၁၊ Placeholder လမ်း၊ ရန်ကုန်မြို့</span><span data-l="en" lang="en">No. 1 Placeholder Road, Yangon</span></span>
+          </p>
+          <p class="help"><span data-l="my" lang="my">ခန်းမ၏ ကားပါကင်တွင် အခမဲ့ ရပ်နားနိုင်ပါသည်။</span><span data-l="en" lang="en">Free parking is available at the hall.</span></p>
+          <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=Yangon" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+            <span data-l="my" lang="my">လမ်းညွှန် ကြည့်ရန်</span><span data-l="en" lang="en">Get directions</span>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-external"/></svg>
+            <span class="vh"><span data-l="my" lang="my">(စာမျက်နှာအသစ်တွင် ပွင့်ပါမည်)</span><span data-l="en" lang="en">(opens in a new tab)</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section class="section" id="gallery" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">Moments</span><span data-l="en" lang="my">ဓာတ်ပုံများ</span></p>
+        <h2 class="section-title" id="gallery-title"><span data-l="my" lang="my">ဓာတ်ပုံများ</span><span data-l="en" lang="en">Gallery</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+      <!-- To use real photos, put an <img> inside each .photo__frame, e.g.
+           <img src="photos/engagement.webp" width="800" height="1000" loading="lazy" decoding="async"
+                alt="Aung and Thiri smiling at their engagement">
+           and remove the placeholder icon/text. The frame's aspect-ratio keeps the layout stable. -->
+      <div class="gallery">
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">စေ့စပ်ပွဲ</span><span data-l="en" lang="en">Our engagement</span></figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">ပုဂံ၏ နံနက်ခင်း</span><span data-l="en" lang="en">Sunrise in Bagan</span></figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">အင်းလျားကန်</span><span data-l="en" lang="en">Inya Lake</span></figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">မိသားစုနှင့်အတူ</span><span data-l="en" lang="en">With our families</span></figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">ပထမဆုံး ဓာတ်ပုံ</span><span data-l="en" lang="en">Our first photo</span></figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <div class="photo__frame"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-image"/></svg><span><span data-l="my" lang="my">ဓာတ်ပုံ ထည့်ရန်</span><span data-l="en" lang="en">Replace with photo</span></span></div>
+          <figcaption><span data-l="my" lang="my">ကျွန်ုပ်တို့ နှစ်ဦး</span><span data-l="en" lang="en">Just the two of us</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section class="section section--alt" id="rsvp" aria-labelledby="rsvp-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">RSVP</span><span data-l="en" lang="my">အကြောင်းပြန်ရန်</span></p>
+        <h2 class="section-title" id="rsvp-title"><span data-l="my" lang="my">တက်ရောက်မှု အကြောင်းပြန်ရန်</span><span data-l="en" lang="en">Will you join us?</span></h2>
+        <p class="lede"><span data-l="my" lang="my">၂၀၂၆ ခုနှစ်၊ နိုဝင်ဘာလ ၂၀ ရက် (သောကြာနေ့) မတိုင်မီ အကြောင်းပြန်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။</span><span data-l="en" lang="en">Kindly reply by Friday, 20 November 2026.</span></p>
+      </div>
+
+      <div class="rsvp-card reveal">
+        <form id="rsvp-form" novalidate>
+          <div class="field">
+            <label for="f-name">
+              <span data-l="my" lang="my">အမည်အပြည့်အစုံ</span><span data-l="en" lang="en">Full name</span><span class="req" aria-hidden="true">*</span>
+              <span class="vh"><span data-l="my" lang="my">(မဖြစ်မနေ ဖြည့်ရန်)</span><span data-l="en" lang="en">(required)</span></span>
+            </label>
+            <input class="input" id="f-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="field-error" id="f-name-error" hidden><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg><span><span data-l="my" lang="my" class="err-my"></span><span data-l="en" lang="en" class="err-en"></span></span></p>
+          </div>
+
+          <div class="field">
+            <label for="f-phone">
+              <span data-l="my" lang="my">ဖုန်းနံပါတ်</span><span data-l="en" lang="en">Phone number</span>
+              <span class="optional"><span data-l="my" lang="my">(မဖြည့်လည်း ရပါသည်)</span><span data-l="en" lang="en">(optional)</span></span>
+            </label>
+            <input class="input" id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" aria-describedby="f-phone-help">
+            <p class="help" id="f-phone-help"><span data-l="my" lang="my">ဥပမာ ၀၉ ၇၈၁ ၂၃၄ ၅၆၇</span><span data-l="en" lang="en">e.g. 09 781 234 567</span></p>
+            <p class="field-error" id="f-phone-error" hidden><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg><span><span data-l="my" lang="my" class="err-my"></span><span data-l="en" lang="en" class="err-en"></span></span></p>
+          </div>
+
+          <fieldset class="field choice-group" id="f-attend-group">
+            <legend>
+              <span data-l="my" lang="my">တက်ရောက်နိုင်ပါမည်လား</span><span data-l="en" lang="en">Will you attend?</span><span class="req" aria-hidden="true">*</span>
+              <span class="vh"><span data-l="my" lang="my">(မဖြစ်မနေ ဖြည့်ရန်)</span><span data-l="en" lang="en">(required)</span></span>
+            </legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="attending" value="yes" required><span><span data-l="my" lang="my">တက်ရောက်ပါမည်</span><span data-l="en" lang="en">Joyfully accept</span></span></label>
+              <label class="choice"><input type="radio" name="attending" value="no"><span><span data-l="my" lang="my">တက်ရောက်နိုင်ခြင်း မရှိပါ</span><span data-l="en" lang="en">Regretfully decline</span></span></label>
+            </div>
+            <p class="field-error" id="f-attend-error" hidden><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg><span><span data-l="my" lang="my" class="err-my"></span><span data-l="en" lang="en" class="err-en"></span></span></p>
+          </fieldset>
+
+          <div class="field" id="guests-field" hidden>
+            <label for="f-guests"><span data-l="my" lang="my">တက်ရောက်မည့် ဦးရေ</span><span data-l="en" lang="en">Number of guests</span></label>
+            <select class="input" id="f-guests" name="guests" aria-describedby="f-guests-help">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <p class="help" id="f-guests-help"><span data-l="my" lang="my">သင့်ကိုယ်တိုင် အပါအဝင်</span><span data-l="en" lang="en">Including yourself</span></p>
+          </div>
+
+          <div class="field">
+            <label for="f-message">
+              <span data-l="my" lang="my">ဆုတောင်းစကား သို့မဟုတ် အစားအသောက် မှတ်ချက်</span><span data-l="en" lang="en">Message or dietary needs</span>
+              <span class="optional"><span data-l="my" lang="my">(မဖြည့်လည်း ရပါသည်)</span><span data-l="en" lang="en">(optional)</span></span>
+            </label>
+            <textarea class="input" id="f-message" name="message" rows="4" maxlength="500"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--block" id="rsvp-submit">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label"><span data-l="my" lang="my">အကြောင်းပြန်ချက် ပေးပို့ရန်</span><span data-l="en" lang="en">Send RSVP</span></span>
+            <span class="btn-label-busy"><span data-l="my" lang="my">ပေးပို့နေသည်…</span><span data-l="en" lang="en">Sending…</span></span>
+          </button>
+        </form>
+
+        <div class="rsvp-success" id="rsvp-success" role="status" tabindex="-1" hidden>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+          <div data-variant="yes">
+            <h3><span data-l="my" lang="my">ကျေးဇူးတင်ပါသည်။</span><span data-l="en" lang="en">Thank you, <span class="rsvp-name"></span>!</span></h3>
+            <p><span data-l="my" lang="my">မင်္ဂလာနေ့တွင် တွေ့ဆုံရန် မျှော်လင့်လျက်ရှိပါသည်။</span><span data-l="en" lang="en">We can’t wait to celebrate with you on 12 December.</span></p>
+            <p><span data-l="my" lang="my">တက်ရောက်မည့် ဦးရေ — <span class="rsvp-count-my"></span></span><span data-l="en" lang="en">Party of <span class="rsvp-count-en"></span></span></p>
+            <button type="button" class="btn btn--ghost" data-ics>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar-plus"/></svg>
+              <span data-l="my" lang="my">ပြက္ခဒိန်တွင် မှတ်ထားရန်</span><span data-l="en" lang="en">Add to calendar</span>
+            </button>
+          </div>
+          <div data-variant="no" hidden>
+            <h3><span data-l="my" lang="my">ကျေးဇူးတင်ပါသည်။</span><span data-l="en" lang="en">Thank you for letting us know, <span class="rsvp-name"></span>.</span></h3>
+            <p><span data-l="my" lang="my">သင့်ကို သတိရနေပါမည်။ ဆုတောင်းမေတ္တာများအတွက် ကျေးဇူးအထူးတင်ပါသည်။</span><span data-l="en" lang="en">You’ll be missed — thank you for your warm wishes.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" aria-hidden="true"><span data-l="my" lang="en">Good to Know</span><span data-l="en" lang="my">မေးလေ့ရှိသော မေးခွန်းများ</span></p>
+        <h2 class="section-title" id="faq-title"><span data-l="my" lang="my">မေးလေ့ရှိသော မေးခွန်းများ</span><span data-l="en" lang="en">Questions &amp; Answers</span></h2>
+        <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+      </div>
+      <div class="faq reveal">
+        <details class="faq__item">
+          <summary><span><span data-l="my" lang="my">ဘယ်လို ဝတ်ဆင်ရမလဲ။</span><span data-l="en" lang="en">What should I wear?</span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+          <div class="faq__answer"><p><span data-l="my" lang="my">နံနက်ပွဲ — မြန်မာ ရိုးရာဝတ်စုံ။ ညပွဲ — သပ်ရပ်သော ညဝတ်စုံ။</span><span data-l="en" lang="en">Morning ceremony: traditional Myanmar attire. Evening reception: formal evening wear. Gold and warm tones are very welcome.</span></p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span><span data-l="my" lang="my">ကားရပ်နားရန် နေရာ ရှိပါသလား။</span><span data-l="en" lang="en">Is there parking?</span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+          <div class="faq__answer"><p><span data-l="my" lang="my">ရှိပါသည်။ ခန်းမ၏ ကားပါကင်တွင် အခမဲ့ ရပ်နားနိုင်ပါသည်။</span><span data-l="en" lang="en">Yes — free parking is available at the hall.</span></p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span><span data-l="my" lang="my">ကလေးများ ခေါ်လာနိုင်ပါသလား။</span><span data-l="en" lang="en">Can I bring children?</span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+          <div class="faq__answer"><p><span data-l="my" lang="my">ကလေးများကို ကြိုဆိုပါသည်။ ဖောင်တွင် ဦးရေ ထည့်သွင်းပေးပါ။</span><span data-l="en" lang="en">Children are warmly welcome — please include them in your guest count on the RSVP form.</span></p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span><span data-l="my" lang="my">လက်ဆောင် ပေးလိုပါက ဘယ်လို ပေးရမလဲ။</span><span data-l="en" lang="en">What about gifts?</span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+          <div class="faq__answer">
+            <p><span data-l="my" lang="my">သင်၏ ကြွရောက်လာခြင်းသည်ပင် အကောင်းဆုံး လက်ဆောင် ဖြစ်ပါသည်။ ငွေလွှဲလိုပါက KBZPay / WavePay QR ကုဒ်ကို ဤနေရာတွင် ထည့်နိုင်ပါသည်။</span><span data-l="en" lang="en">Your presence is the greatest gift. If you’d like to send a gift, a KBZPay / WavePay QR code can be added here.</span></p>
+            <!-- Replace with your real QR image: <img src="photos/gift-qr.png" width="160" height="160" alt="KBZPay QR code for Aung Kaung Myat"> -->
+            <div class="qr-placeholder" aria-hidden="true">QR</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-seal" aria-hidden="true">A·T</div>
+  <p class="footer-names"><span data-l="my" lang="my">အောင် နှင့် သီရိ</span><span data-l="en" lang="en">Aung &amp; Thiri</span></p>
+  <p><span data-l="my" lang="my">၂၀၂၆ ခုနှစ်၊ ဒီဇင်ဘာလ ၁၂ ရက်</span><span data-l="en" lang="en">12 December 2026 · Yangon</span></p>
+  <svg class="divider" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><use href="#divider"/></svg>
+  <p class="made"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg><span data-l="my" lang="my">ချစ်ခြင်းမေတ္တာဖြင့် ပြုလုပ်ထားပါသည်</span><span data-l="en" lang="en">Made with love</span></p>
+  <a class="to-top" href="#top">
+    <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
+    <span data-l="my" lang="my">အပေါ်သို့</span><span data-l="en" lang="en">Back to top</span>
+  </a>
+</footer>
+
+<p class="vh" id="sr-status" aria-live="polite"></p>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var KEY_LANG = 'aung-thiri-lang';
+  var KEY_GATE = 'aung-thiri-gate-opened';
+  var WEDDING = new Date('2026-12-12T09:00:00+06:30');
+  var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var MY_DIGITS = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
+
+  function toMy(n) {
+    return String(n).replace(/[0-9]/g, function (d) { return MY_DIGITS[+d]; });
+  }
+  function getLang() { return root.classList.contains('lang-en') ? 'en' : 'my'; }
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+
+  var T = {
+    my: {
+      title: 'အောင် နှင့် သီရိ — မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ',
+      errName: 'အမည် ဖြည့်ပေးပါ။',
+      errPhone: 'ဖုန်းနံပါတ် မှန်ကန်စွာ ဖြည့်ပေးပါ။ (ဥပမာ ၀၉ ၇၈၁ ၂၃၄ ၅၆၇)',
+      errAttend: 'တက်ရောက်နိုင်ခြင်း ရှိ၊ မရှိ ရွေးချယ်ပေးပါ။',
+      guests: function (n) { return toMy(n) + ' ဦး'; },
+      icsCeremony: 'အောင် နှင့် သီရိ — မင်္ဂလာအခမ်းအနား',
+      icsReception: 'အောင် နှင့် သီရိ — ညစာ ဧည့်ခံပွဲ',
+      icsDesc: 'မင်္ဂလာဆောင် ဖိတ်ကြားလွှာ — အောင် နှင့် သီရိ',
+      icsDone: 'ပြက္ခဒိန် ဖိုင်ကို ရယူပြီးပါပြီ။'
+    },
+    en: {
+      title: 'Aung & Thiri — Wedding Invitation',
+      errName: 'Please enter your full name.',
+      errPhone: 'Please enter a valid phone number, e.g. 09 781 234 567.',
+      errAttend: 'Please let us know whether you can attend.',
+      guests: function (n) { return n === 1 ? '1 guest' : n + ' guests'; },
+      icsCeremony: 'Aung & Thiri — Wedding Ceremony',
+      icsReception: 'Aung & Thiri — Dinner Reception',
+      icsDesc: 'Wedding of Aung Kaung Myat & Thiri Hlaing. Kindly RSVP by 20 November 2026.',
+      icsDone: 'Calendar file downloaded.'
+    }
+  };
+
+  /* ---------- Language ---------- */
+  var langBtns = $$('[data-set-lang]');
+  var labelled = $$('[data-label-my]');
+  var guestsSel = $('#f-guests');
+  var onLangChange = [];
+
+  function setLang(l, persist) {
+    root.classList.remove('lang-my', 'lang-en');
+    root.classList.add('lang-' + l);
+    root.lang = l;
+    langBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === l)); });
+    labelled.forEach(function (el) { el.setAttribute('aria-label', el.getAttribute('data-label-' + l)); });
+    document.title = T[l].title;
+    onLangChange.forEach(function (fn) { fn(l); });
+    if (persist) { try { localStorage.setItem(KEY_LANG, l); } catch (e) {} }
+  }
+  langBtns.forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang'), true); });
+  });
+
+  function renderGuestOptions(l) {
+    Array.prototype.forEach.call(guestsSel.options, function (o) { o.textContent = T[l].guests(+o.value); });
+  }
+  onLangChange.push(renderGuestOptions);
+
+  /* ---------- Personalised greeting (?to=Name) ---------- */
+  var guestName = '';
+  try {
+    guestName = (new URLSearchParams(window.location.search).get('to') || '')
+      .replace(/[\u0000-\u001F\u007F]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 60);
+  } catch (e) {}
+  if (guestName) {
+    $$('.guest-name').forEach(function (el) { el.textContent = guestName; });
+    $('#greeting').hidden = false;
+    var nameField = $('#f-name');
+    if (!nameField.value) nameField.value = guestName;
+  }
+
+  /* ---------- Countdown ---------- */
+  var cdGrid = $('#countdown-grid');
+  var cdDone = $('#countdown-done');
+  var cdNums = {};
+  $$('[data-cd]', cdGrid).forEach(function (el) { cdNums[el.getAttribute('data-cd')] = el; });
+  var cdTimer = null;
+
+  function fmt(n) {
+    var s = n < 10 ? '0' + n : String(n);
+    return getLang() === 'my' ? toMy(s) : s;
+  }
+  function renderCountdown() {
+    var diff = WEDDING.getTime() - Date.now();
+    if (diff <= 0) {
+      cdGrid.hidden = true;
+      cdDone.hidden = false;
+      stopCountdown();
+      return;
+    }
+    var t = Math.floor(diff / 1000);
+    cdNums.d.textContent = fmt(Math.floor(t / 86400));
+    cdNums.h.textContent = fmt(Math.floor((t % 86400) / 3600));
+    cdNums.m.textContent = fmt(Math.floor((t % 3600) / 60));
+    cdNums.s.textContent = fmt(t % 60);
+  }
+  function stopCountdown() { if (cdTimer) { clearInterval(cdTimer); cdTimer = null; } }
+  function startCountdown() {
+    stopCountdown();
+    renderCountdown();
+    if (WEDDING.getTime() > Date.now()) {
+      cdTimer = setInterval(renderCountdown, reduceMQ.matches ? 60000 : 1000);
+    }
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stopCountdown(); else startCountdown();
+  });
+  if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', startCountdown);
+  onLangChange.push(renderCountdown);
+
+  /* ---------- Add to calendar (.ics) ---------- */
+  var srStatus = $('#sr-status');
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function icsStamp(d) {
+    return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' +
+      pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z';
+  }
+  function icsEscape(s) {
+    return s.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,');
+  }
+  /* Fold lines at 75 octets (RFC 5545) without splitting a UTF-8 character */
+  function icsFold(line) {
+    var enc = new TextEncoder();
+    var out = '', cur = '', bytes = 0;
+    Array.from(line).forEach(function (ch) {
+      var b = enc.encode(ch).length;
+      if (bytes + b > 75) { out += cur + '\r\n '; cur = ch; bytes = 1 + b; }
+      else { cur += ch; bytes += b; }
+    });
+    return out + cur;
+  }
+  function buildICS() {
+    var t = T[getLang()];
+    var now = icsStamp(new Date());
+    var loc = 'Lotus Garden Hall, No. 1 Placeholder Road, Yangon';
+    function ev(uid, start, end, summary) {
+      return ['BEGIN:VEVENT', 'UID:' + uid, 'DTSTAMP:' + now, 'DTSTART:' + start, 'DTEND:' + end,
+        'SUMMARY:' + icsEscape(summary), 'DESCRIPTION:' + icsEscape(t.icsDesc), 'LOCATION:' + icsEscape(loc), 'END:VEVENT'];
+    }
+    var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Aung and Thiri//Wedding Invitation//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH']
+      .concat(ev('ceremony-20261212@aung-thiri.wedding', '20261212T023000Z', '20261212T043000Z', t.icsCeremony))
+      .concat(ev('reception-20261212@aung-thiri.wedding', '20261212T113000Z', '20261212T143000Z', t.icsReception))
+      .concat(['END:VCALENDAR']);
+    return lines.map(icsFold).join('\r\n') + '\r\n';
+  }
+  function downloadICS() {
+    var blob = new Blob([buildICS()], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'aung-thiri-wedding.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    srStatus.textContent = '';
+    setTimeout(function () { srStatus.textContent = T[getLang()].icsDone; }, 50);
+  }
+  $$('[data-ics]').forEach(function (b) { b.addEventListener('click', downloadICS); });
+
+  /* ---------- Navigation ---------- */
+  var menuBtn = $('#menu-btn');
+  var navList = $('#nav-list');
+  var desktopMQ = window.matchMedia('(min-width: 960px)');
+
+  function menuOpen() { return menuBtn.getAttribute('aria-expanded') === 'true'; }
+  function setMenu(open) {
+    menuBtn.setAttribute('aria-expanded', String(open));
+    navList.classList.toggle('is-open', open);
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!menuOpen()); });
+  navList.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function (e) {
+    if (menuOpen() && !e.target.closest('#site-nav')) setMenu(false);
+  });
+  if (desktopMQ.addEventListener) desktopMQ.addEventListener('change', function () { setMenu(false); });
+
+  var navLinks = $$('a[href^="#"]', navList);
+  if ('IntersectionObserver' in window) {
+    var sectionIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('main section[id]').forEach(function (s) { sectionIO.observe(s); });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = $$('.reveal');
+  if (!reduceMQ.matches && 'IntersectionObserver' in window) {
+    root.classList.add('reveal-ready');
+    var revealIO = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); obs.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(function (el) { revealIO.observe(el); });
+  }
+
+  /* ---------- Gatefold intro ---------- */
+  var gate = $('#gate');
+  var h1 = $('#couple-names');
+  var mainEl = $('#main');
+  var inertTargets = [$('#site-header'), mainEl, $('.site-footer')];
+  var gateState = 'off';   // off | closed | opening | done
+  var gateTimers = [];
+
+  function shouldShowGate() {
+    if (window.location.hash && window.location.hash.length > 1) return false; // deep links skip the intro
+    try { if (sessionStorage.getItem(KEY_GATE)) return false; } catch (e) {}
+    return true;
+  }
+  function setInert(on) {
+    inertTargets.forEach(function (el) {
+      if (!el) return;
+      el.inert = on;
+      if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert');
+    });
+  }
+  function finishGate(focusEl) {
+    gateTimers.forEach(clearTimeout);
+    gateTimers = [];
+    root.classList.remove('gate-on', 'gate-lock');
+    gate.classList.remove('is-opening', 'is-gone');
+    setInert(false);
+    gateState = 'done';
+    try { sessionStorage.setItem(KEY_GATE, '1'); } catch (e) {}
+    (focusEl || h1).focus({ preventScroll: true });
+  }
+  function openGate(instant, focusEl) {
+    if (gateState === 'opening' && instant) { finishGate(focusEl); return; }
+    if (gateState !== 'closed') return;
+    if (instant) { finishGate(focusEl); return; }
+    gateState = 'opening';
+    var fast = reduceMQ.matches;
+    gate.classList.add('is-opening');
+    gateTimers.push(setTimeout(function () { gate.classList.add('is-gone'); }, fast ? 0 : 1150));
+    gateTimers.push(setTimeout(function () { finishGate(focusEl); }, fast ? 220 : 1600));
+  }
+
+  if (gate && shouldShowGate()) {
+    root.classList.add('gate-on', 'gate-lock');
+    setInert(true);
+    gateState = 'closed';
+    $('#gate-open').addEventListener('click', function () { openGate(false); });
+    $('#gate-skip').addEventListener('click', function () { openGate(true); });
+  }
+
+  $('#skip-link').addEventListener('click', function (e) {
+    if (gateState === 'closed' || gateState === 'opening') {
+      e.preventDefault();
+      openGate(true, mainEl);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (gateState === 'closed' || gateState === 'opening') { openGate(true); return; }
+    if (menuOpen()) { setMenu(false); menuBtn.focus(); }
+  });
+
+  /* ---------- RSVP form ---------- */
+  var form = $('#rsvp-form');
+  var nameInput = $('#f-name');
+  var phoneInput = $('#f-phone');
+  var attendGroup = $('#f-attend-group');
+  var radios = $$('input[name="attending"]', form);
+  var guestsField = $('#guests-field');
+  var submitBtn = $('#rsvp-submit');
+  var success = $('#rsvp-success');
+
+  var fields = {
+    name: { els: [nameInput], error: $('#f-name-error'), base: '' },
+    phone: { els: [phoneInput], error: $('#f-phone-error'), base: 'f-phone-help' },
+    attending: { els: radios, error: $('#f-attend-error'), base: '' }
+  };
+
+  function setError(key, msgKey) {
+    var f = fields[key];
+    if (msgKey) {
+      $('.err-my', f.error).textContent = T.my[msgKey];
+      $('.err-en', f.error).textContent = T.en[msgKey];
+      f.error.hidden = false;
+      f.els.forEach(function (el) {
+        el.setAttribute('aria-invalid', 'true');
+        el.setAttribute('aria-describedby', (f.base ? f.base + ' ' : '') + f.error.id);
+      });
+      if (key === 'attending') attendGroup.setAttribute('data-invalid', 'true');
+    } else {
+      f.error.hidden = true;
+      $('.err-my', f.error).textContent = '';
+      $('.err-en', f.error).textContent = '';
+      f.els.forEach(function (el) {
+        el.removeAttribute('aria-invalid');
+        if (f.base) el.setAttribute('aria-describedby', f.base); else el.removeAttribute('aria-describedby');
+      });
+      if (key === 'attending') attendGroup.removeAttribute('data-invalid');
+    }
+  }
+
+  function attendingValue() {
+    var r = radios.filter(function (x) { return x.checked; })[0];
+    return r ? r.value : '';
+  }
+  function validateName() {
+    var ok = nameInput.value.trim().length > 0;
+    setError('name', ok ? null : 'errName');
+    return ok;
+  }
+  function validatePhone() {
+    var v = phoneInput.value.trim();
+    if (!v) { setError('phone', null); return true; }
+    var norm = v.replace(/[\u1040-\u1049]/g, function (ch) { return String(ch.charCodeAt(0) - 0x1040); });
+    var digits = (norm.match(/\d/g) || []).length;
+    var ok = /^\+?[\d\s\-().]+$/.test(norm) && digits >= 7 && digits <= 15;
+    setError('phone', ok ? null : 'errPhone');
+    return ok;
+  }
+  function validateAttend() {
+    var ok = attendingValue() !== '';
+    setError('attending', ok ? null : 'errAttend');
+    return ok;
+  }
+  function syncGuests() { guestsField.hidden = attendingValue() !== 'yes'; }
+
+  nameInput.addEventListener('blur', validateName);
+  nameInput.addEventListener('input', function () { if (nameInput.hasAttribute('aria-invalid')) validateName(); });
+  phoneInput.addEventListener('blur', validatePhone);
+  phoneInput.addEventListener('input', function () { if (phoneInput.hasAttribute('aria-invalid')) validatePhone(); });
+  attendGroup.addEventListener('change', function () { validateAttend(); syncGuests(); });
+  attendGroup.addEventListener('focusout', function (e) {
+    if (!attendGroup.contains(e.relatedTarget)) validateAttend();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var okName = validateName();
+    var okPhone = validatePhone();
+    var okAttend = validateAttend();
+    if (!(okName && okPhone && okAttend)) {
+      (!okName ? nameInput : !okPhone ? phoneInput : radios[0]).focus();
+      return;
+    }
+    var data = {
+      name: nameInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      attending: attendingValue(),
+      guests: attendingValue() === 'yes' ? Number(guestsSel.value) : 0,
+      message: $('#f-message').value.trim()
+    };
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-busy');
+    form.setAttribute('aria-busy', 'true');
+
+    // TODO: connect to Formspree / Google Sheets / your backend, e.g.
+    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    //   method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+    // }).then(function (res) { if (!res.ok) throw new Error(res.statusText); showSuccess(data); })
+    //   .catch(function () { /* re-enable the button and show a retry message near it */ });
+    setTimeout(function () { showSuccess(data); }, 900);
+  });
+
+  function showSuccess(data) {
+    var variant = data.attending === 'yes' ? 'yes' : 'no';
+    $$('[data-variant]', success).forEach(function (el) { el.hidden = el.getAttribute('data-variant') !== variant; });
+    $$('.rsvp-name', success).forEach(function (el) { el.textContent = data.name; });
+    $$('.rsvp-count-my', success).forEach(function (el) { el.textContent = T.my.guests(data.guests); });
+    $$('.rsvp-count-en', success).forEach(function (el) { el.textContent = String(data.guests); });
+    form.hidden = true;
+    success.hidden = false;
+    success.focus();
+  }
+
+  /* ---------- Init ---------- */
+  setLang(getLang(), false);
+  startCountdown();
+})();
+</script>
+</body>
+</html>

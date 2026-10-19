@@ -901,8 +901,8 @@
       place-items: center;
       text-align: center;
       color: var(--text-muted);
-      overflow: hidden;
     }
+    .map-frame iframe { position: relative; z-index: 1; width: 100%; height: 100%; border: 0; }
     .map-frame svg.compass { width: min(160px, 40%); height: auto; color: var(--accent); margin: 0 auto var(--s-3); }
     .map-frame p { font-size: 0.9375rem; }
 
@@ -2086,7 +2086,8 @@
     }
 
     function showSuccess(data) {
-      var first = data.name.split(' ')[0];
+      // Use the full name: Myanmar names have no first/last split and often start with an honorific (Ko, Ma, U, Daw).
+      var who = data.name;
       var wrap = el('div', 'rsvp-success');
       var badge = el('div', 'gem-badge');
       badge.setAttribute('aria-hidden', 'true');
@@ -2102,11 +2103,11 @@
       var title, body;
       if (data.attending === 'yes') {
         var n = Number(data.guests) || 1;
-        title = 'Thank you, ' + first + '!';
+        title = 'Thank you, ' + who + '!';
         body = 'Your reply is in — we have saved ' + n + (n === 1 ? ' seat' : ' seats') +
                '. We cannot wait to celebrate with you on 12 December.';
       } else {
-        title = 'Thank you for letting us know, ' + first + '.';
+        title = 'Thank you for letting us know, ' + who + '.';
         body = 'You will be dearly missed. We will raise a glass to you on the night.';
       }
 

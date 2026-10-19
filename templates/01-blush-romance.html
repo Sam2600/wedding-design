@@ -20,7 +20,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600;700&family=Great+Vibes&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Cormorant+Infant:wght@400;500;600;700&family=Great+Vibes&display=swap">
 
   <style>
     /* =========================================================
@@ -82,6 +82,8 @@
       /* Type */
       --font-script: 'Great Vibes', 'Brush Script MT', cursive;
       --font-serif: 'Cormorant Infant', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      /* Cormorant Infant on Google Fonts ignores lnum, so numbers use Garamond's lining figures */
+      --font-numeric: 'Cormorant Garamond', Georgia, serif;
 
       /* Spacing (4/8 scale) */
       --space-1: 4px;
@@ -716,6 +718,7 @@
       font-weight: 600;
       line-height: 1;
       text-align: center;
+      font-family: var(--font-numeric);
       font-variant-numeric: tabular-nums lining-nums;
       font-feature-settings: "tnum" 1, "lnum" 1;
     }
@@ -909,8 +912,9 @@
     @media (min-width: 768px) { .schedule-item { grid-template-columns: 120px 1fr; } }
     .schedule-item time {
       font-size: 1.25rem;
+      font-family: var(--font-numeric);
       font-weight: 700;
-      font-variant-numeric: tabular-nums;
+      font-variant-numeric: tabular-nums lining-nums;
       white-space: nowrap;
     }
     .schedule-item h3 { font-size: 1.375rem; margin-bottom: var(--space-1); }
