@@ -327,6 +327,7 @@ function setUpMusic() {
   let wanted = false;        // the guest's choice; the page being hidden pauses without changing it
   let fade = 0;
   let hintTimer = 0;
+  let hiddenPause = false;
 
   const turnedOff = () => {
     try { return window.sessionStorage.getItem(MUSIC_KEY) === '1'; } catch { return false; }
@@ -342,9 +343,18 @@ function setUpMusic() {
 
   const showState = (playing) => button.setAttribute('aria-pressed', String(playing));
 
-  /* Volume ramps (ignored on iOS, where volume is fixed; the track itself fades in) */
+  /* iOS keeps volume fixed at 1 (the hardware buttons own it), so there we skip the ramps:
+     the track itself fades in, and pausing is immediate */
+  audio.volume = 0.5;
+  const canFade = audio.volume === 0.5;
+
   function rampTo(target, ms, then) {
     cancelAnimationFrame(fade);
+    if (!canFade || document.hidden) {      // no animation frames while hidden
+      if (canFade) audio.volume = target;
+      if (then) then();
+      return;
+    }
     const from = audio.volume;
     const start = performance.now();
     const step = (now) => {
@@ -357,9 +367,9 @@ function setUpMusic() {
   }
 
   function play() {
-    audio.volume = 0;
-    const playing = audio.play();
+    if (canFade) audio.volume = 0;
     showState(true);
+    const playing = audio.play();
     rampTo(MUSIC_VOLUME, 1200);
     if (playing) playing.catch(() => { wanted = false; showState(false); });
   }
@@ -369,6 +379,35 @@ function setUpMusic() {
     rampTo(0, 300, () => audio.pause());
   }
 
+  function setWanted(on) {
+    wanted = on;
+    rememberOff(!on);
+    status.textContent = on ? 'Music on.' : 'Music off.';
+  }
+
+  /* Playback can also be stopped or started from outside the page: the iOS lock screen and
+     Control Center, a phone call, another app taking the audio. Keep the button in step. */
+  audio.addEventListener('play', () => { if (!document.hidden && !wanted) setWanted(true); showState(true); });
+  audio.addEventListener('pause', () => {
+    if (hiddenPause) {                      // our own pause for a hidden page; iOS may deliver it late
+      hiddenPause = false;
+      return;
+    }
+    if (button.getAttribute('aria-pressed') === 'true') { setWanted(false); showState(false); }
+  });
+
+  // Title and controls on the lock screen and in Control Center
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new window.MediaMetadata({
+      title: 'Air on the G String',
+      artist: 'J. S. Bach',
+      album: 'Mintzu & Zwe · Wedding',
+      artwork: [{ src: '/public/images/og-image.jpg', sizes: '1200x630', type: 'image/jpeg' }],
+    });
+    navigator.mediaSession.setActionHandler('play', () => { setWanted(true); play(); });
+    navigator.mediaSession.setActionHandler('pause', () => { setWanted(false); pause(); });
+  }
+
   function hint() {
     clearTimeout(hintTimer);
     button.classList.add('show-hint');
@@ -376,17 +415,22 @@ function setUpMusic() {
   }
 
   button.addEventListener('click', () => {
-    wanted = !wanted;
-    rememberOff(!wanted);
+    setWanted(!wanted);
     button.classList.remove('show-hint');
     if (wanted) play(); else pause();
-    status.textContent = wanted ? 'Music on.' : 'Music off.';
   });
 
-  // Quiet while the guest is in another tab or app; carry on when they come back
+  // Quiet while the guest is in another tab or app, or the phone is locked; carry on when they come back
   document.addEventListener('visibilitychange', () => {
-    if (!wanted) return;
-    if (document.hidden) audio.pause(); else play();
+    if (document.hidden) {
+      cancelAnimationFrame(fade);
+      if (!audio.paused) {
+        hiddenPause = true;
+        audio.pause();
+      }
+    } else if (wanted) {
+      play();
+    }
   });
 
   // No file (or it fails to load): no button

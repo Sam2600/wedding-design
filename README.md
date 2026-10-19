@@ -29,8 +29,11 @@ templates/                 the earlier design samples
 Asset paths start with `/`, so serve the folder instead of opening the file directly:
 
 ```
-python -m http.server 5173      # or: npx serve .
+npx serve . -l 5173             # or: python -m http.server 5173
 ```
+
+Use `npx serve` when testing on an iPhone: iOS Safari only plays the music from a server that
+answers range requests, and Python's server does not (Vercel does).
 
 ## Changing things
 
