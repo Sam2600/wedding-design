@@ -192,5 +192,13 @@
       </button>
     </footer>
   </main>
+
+  <!-- Background music: starts when the seal is tapped (browsers only allow sound after a tap).
+       Bach, "Air on the G String", United States Air Force Band (public domain). -->
+  <audio id="music" src="/public/audio/air-on-the-g-string.mp3" preload="none" loop></audio>
+  <button class="music" id="music-toggle" type="button" aria-pressed="false" aria-label="Background music" title="Background music" hidden>
+    <svg class="icon" aria-hidden="true" focusable="false"><use href="/public/images/icons.svg#i-music"/></svg>
+    <span class="music-hint" aria-hidden="true">Tap to pause the music</span>
+  </button>
 </body>
 </html>

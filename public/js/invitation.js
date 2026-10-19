@@ -4,6 +4,7 @@
  *   2. "Add to calendar": Google Calendar on Android, the .ics file everywhere else
  *   3. Turning the card over (invitation ⇄ couple photo)
  *   4. The envelope: the seal breaks, the flap opens, the card rises out and comes forward
+ *   5. Background music: starts with the seal tap, a corner button turns it off and on
  *
  * The inline script in index.html's <head> decides before first paint whether the
  * envelope shows (html.intro-on), using the same STORAGE_KEY.
@@ -18,6 +19,9 @@ const CARD_DELAY_MS = 750;   // the seal breaks and the flap opens before the ca
 const CARD_MS = 1850;        // rise out of the envelope, then come forward to the slot
 const RISE_PART = 0.3;       // share of CARD_MS spent rising
 const PETAL_COUNT = 22;
+const MUSIC_KEY = 'mz-music-off';
+const MUSIC_VOLUME = 0.6;
+const MUSIC_HINT_MS = 4000;
 
 function rememberOpened(opened) {
   try {
@@ -158,7 +162,7 @@ function scatterPetals() {
   setTimeout(() => box.remove(), 11000);
 }
 
-function setUpEnvelope(card) {
+function setUpEnvelope(card, music) {
   const intro = $('#intro');
   const envelope = $('#envelope');
   const pocket = $('#env-pocket');
@@ -277,6 +281,7 @@ function setUpEnvelope(card) {
     if (state !== 'closed') return;
     state = 'opening';
     rememberOpened(true);
+    music.startWithIntro();                  // inside the tap, or browsers refuse to play
     const token = run;
     intro.classList.add('is-opening');
     if (reducedMotion.matches || !card.el.animate) {
@@ -317,6 +322,94 @@ function setUpEnvelope(card) {
 }
 
 
+/* ---------- 5. Background music ---------- */
+
+function setUpMusic() {
+  const audio = $('#music');
+  const button = $('#music-toggle');
+  const status = $('#status');
+  let wanted = false;        // the guest's choice; the page being hidden pauses without changing it
+  let fade = 0;
+  let hintTimer = 0;
+
+  const turnedOff = () => {
+    try { return window.sessionStorage.getItem(MUSIC_KEY) === '1'; } catch { return false; }
+  };
+  const rememberOff = (off) => {
+    try {
+      if (off) window.sessionStorage.setItem(MUSIC_KEY, '1');
+      else window.sessionStorage.removeItem(MUSIC_KEY);
+    } catch {
+      // Storage blocked: the music simply starts again next time
+    }
+  };
+
+  const showState = (playing) => button.setAttribute('aria-pressed', String(playing));
+
+  /* Volume ramps (ignored on iOS, where volume is fixed; the track itself fades in) */
+  function rampTo(target, ms, then) {
+    cancelAnimationFrame(fade);
+    const from = audio.volume;
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / ms);
+      audio.volume = from + (target - from) * t;
+      if (t < 1) fade = requestAnimationFrame(step);
+      else if (then) then();
+    };
+    fade = requestAnimationFrame(step);
+  }
+
+  function play() {
+    audio.volume = 0;
+    const playing = audio.play();
+    showState(true);
+    rampTo(MUSIC_VOLUME, 1200);
+    if (playing) playing.catch(() => { wanted = false; showState(false); });
+  }
+
+  function pause() {
+    showState(false);
+    rampTo(0, 300, () => audio.pause());
+  }
+
+  function hint() {
+    clearTimeout(hintTimer);
+    button.classList.add('show-hint');
+    hintTimer = setTimeout(() => button.classList.remove('show-hint'), MUSIC_HINT_MS);
+  }
+
+  button.addEventListener('click', () => {
+    wanted = !wanted;
+    rememberOff(!wanted);
+    button.classList.remove('show-hint');
+    if (wanted) play(); else pause();
+    status.textContent = wanted ? 'Music on.' : 'Music off.';
+  });
+
+  // Quiet while the guest is in another tab or app; carry on when they come back
+  document.addEventListener('visibilitychange', () => {
+    if (!wanted) return;
+    if (document.hidden) audio.pause(); else play();
+  });
+
+  // No file (or it fails to load): no button
+  audio.addEventListener('error', () => { wanted = false; button.hidden = true; });
+
+  button.hidden = false;
+
+  return {
+    /* Called from the seal tap: the one moment a browser lets sound start by itself */
+    startWithIntro() {
+      if (wanted || turnedOff()) return;
+      wanted = true;
+      play();
+      setTimeout(() => { if (wanted) hint(); }, CARD_DELAY_MS + CARD_MS);
+    },
+  };
+}
+
+
 greetGuest();
 useGoogleCalendarOnAndroid();
-setUpEnvelope(setUpCard());
+setUpEnvelope(setUpCard(), setUpMusic());

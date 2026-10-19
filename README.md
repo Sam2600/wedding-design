@@ -16,6 +16,7 @@ public/
   js/invitation.js         greeting, calendar link, card turning, envelope animation
   js/qr.js                 QR drawing and downloads
   fonts/                   Cormorant Garamond, Great Vibes, Jost (woff2, SIL OFL licences alongside)
+  audio/                   background music: Bach, "Air on the G String", US Air Force Band (public domain)
   images/                  card + couple photos (jpg + webp), seal, sprig, icons, favicon, link preview
   qr/                      the finished QR files for the live link
   vendor/                  qrcode-generator 1.4.4 (MIT)
@@ -37,6 +38,9 @@ python -m http.server 5173      # or: npx serve .
   Google Calendar link (`data-google` on `#add-calendar`) and the poster text in `public/js/qr.js`.
 - **Card or photo:** replace the `.jpg` in `public/images/` and its `.webp` copy, keeping the size
   (the layout assumes the card's 1143 × 1600 proportions).
+- **Music:** replace `public/audio/air-on-the-g-string.mp3` (or change `src` on `#music` in
+  `index.html`). Keep it small (~2 MB, 96 kbps MP3). It starts when the guest taps the seal; the
+  round button bottom-right turns it off and on.
 - **Colours:** `public/css/base.css` (`:root`). The QR reads its colours from there too.
 - **New QR** (only if the link changes): open `/qr.html`, check the link, download, scan with two
   phones, then replace the files in `public/qr/`.
