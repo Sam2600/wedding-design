@@ -132,6 +132,29 @@ html.intro-on { overflow: hidden; }
 .intro.is-opening .intro-head { opacity: 0; transform: translateY(-12px); }
 .intro.is-opening .intro-hint { opacity: 0; transform: translateY(8px); }
 
+/* Arrival, while the sprigs grow (their animation lives in sprig.svg): the words rise in, the
+   envelope floats up, the seal is pressed on, then the hint appears and the seal starts pulsing.
+   Plays once; constant motion would compete with the one thing to tap. */
+@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } }
+@keyframes envelope-in { from { opacity: 0; transform: translateY(32px) scale(0.96); } }
+@keyframes seal-in {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); }
+  65% { opacity: 1; transform: translate(-50%, -50%) scale(0.93); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+.intro-head > * { animation: rise-in 800ms var(--ease-out) backwards; }
+.intro-head > .intro-kicker { animation-delay: 150ms; }
+.intro-head > .intro-names { animation-delay: 300ms; }
+.intro-head > .intro-date { animation-delay: 450ms; }
+.envelope { animation: envelope-in 1000ms var(--ease-out) 500ms backwards; }
+.seal { animation: seal-in 600ms cubic-bezier(0.4, 0, 0.2, 1) 1250ms backwards; }
+.intro-hint { animation: rise-in 700ms var(--ease-out) 1650ms backwards; }
+/* Tapped before the arrival finished: jump to the end so the card's path is measured from rest */
+.intro.is-opening .intro-head > *,
+.intro.is-opening .envelope,
+.intro.is-opening .seal,
+.intro.is-opening .intro-hint { animation: none; }
+
 
 /* =========================================================
    The envelope. Not a stacking context, so the card can sit
@@ -245,7 +268,8 @@ html.intro-on { overflow: hidden; }
   inset: -4%;
   border-radius: 50%;
   border: 2px solid rgba(91, 66, 96, 0.5);
-  animation: seal-pulse 2.4s var(--ease-out) infinite;
+  opacity: 0;
+  animation: seal-pulse 2.4s var(--ease-out) 2000ms infinite;   /* starts once the seal is on */
   pointer-events: none;
 }
 @keyframes seal-pulse {
@@ -281,7 +305,6 @@ html.intro-on { overflow: hidden; }
   position: relative;
   width: var(--card-w);
   height: var(--card-h);
-  perspective: 1800px;
   outline: none;
 }
 .card:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; border-radius: 8px; }
@@ -294,16 +317,18 @@ html.intro-on { overflow: hidden; }
 }
 .card.is-out { z-index: 6; }
 
+/* Turning is animated by invitation.js in two halves (to edge-on, swap faces, back to flat),
+   so only one face is ever shown and nothing depends on backface-visibility. */
 .card-flip {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 900ms cubic-bezier(0.65, 0, 0.35, 1);
   touch-action: manipulation;
 }
 .card.is-ready .card-flip { cursor: pointer; }
-.card.is-turned .card-flip { transform: rotateY(180deg); }
+.card-back,
+.card.is-turned .card-front { visibility: hidden; }
+.card.is-turned .card-back { visibility: visible; }
 
 .card-face {
   position: absolute;
@@ -316,8 +341,6 @@ html.intro-on { overflow: hidden; }
     0 34px 60px -32px rgba(var(--shadow-rgb) / 0.55),
     0 10px 22px -12px rgba(var(--shadow-rgb) / 0.3),
     0 0 0 1px rgba(var(--shadow-rgb) / 0.06);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 .card-face picture, .card-face img { width: 100%; height: 100%; }
 .card-front img { object-fit: cover; }
@@ -336,7 +359,6 @@ html.intro-on { overflow: hidden; }
 
 /* Back of the card: the couple photo, like a print with a caption */
 .card-back {
-  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   padding: 5.5% 5.5% 0;
@@ -615,16 +637,17 @@ html.intro-on { overflow: hidden; }
 
 
 @media (prefers-reduced-motion: reduce) {
+  .intro-head > *, .envelope, .seal, .intro-hint { animation: none; }
   .seal::after { animation: none; opacity: 0; }
   .intro.is-opening .seal-l,
   .intro.is-opening .seal-r { transform: none; }
   .reveal, .turn { transition-duration: 200ms !important; transition-delay: 0ms !important; }
   .intro-on .reveal { transform: none; }
-  .card-flip { transition: none; }
-  /* Faces swap with a cut instead of a 3D turn */
-  .card.is-turned .card-flip { transform: none; }
-  .card-back { transform: none; opacity: 0; }
-  .card.is-turned .card-back { opacity: 1; }
+  /* The card does not turn: its faces cross-fade */
+  .card .card-face,
+  .card.is-turned .card-face { visibility: visible; transition: opacity 350ms ease; }
+  .card-back,
   .card.is-turned .card-front { opacity: 0; }
+  .card.is-turned .card-back { opacity: 1; }
   .card.is-landed .card-front::after { animation: none; }
 }

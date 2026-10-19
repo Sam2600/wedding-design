@@ -1,4 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 225">
-  <!-- Line-art leaf sprig. Its stem starts at (18, 216); the page and the QR poster pin that point to a corner. -->
-  <path fill="none" stroke="#B8ADBE" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" d="M18 216C26 150 64 84 136 14M24.2 184.3Q49.0 184.5 63.4 164.3Q38.6 164.1 24.2 184.3ZM24.2 184.3L56.3 167.9M31.1 162.5Q31.0 139.7 12.3 126.7Q12.4 149.5 31.1 162.5ZM31.1 162.5L15.7 133.1M40.3 140.5Q60.7 144.4 75.6 129.9Q55.2 126.1 40.3 140.5ZM40.3 140.5L69.2 131.8M51.8 118.5Q54.9 100.0 41.5 87.0Q38.5 105.4 51.8 118.5ZM51.8 118.5L43.3 92.6M65.7 96.3Q81.4 101.9 95.0 92.2Q79.2 86.6 65.7 96.3ZM65.7 96.3L89.7 92.9M80.3 76.0Q84.5 62.0 75.5 50.5Q71.2 64.5 80.3 76.0ZM80.3 76.0L76.4 55.1M96.8 55.6Q108.2 61.1 119.2 55.0Q107.9 49.4 96.8 55.6ZM96.8 55.6L115.2 55.1M113.5 37.0Q117.5 27.2 111.8 18.2Q107.8 28.0 113.5 37.0ZM113.5 37.0L112.1 21.6M141.7 11.5A3.2 3.2 0 1 1 135.3 11.5A3.2 3.2 0 1 1 141.7 11.5Z"/>
+  <!-- Line-art sprig that grows when shown: the stem draws in, the leaves unfurl from the stem,
+       a flower opens at the tip. Its stem starts at (18, 216); the page and the QR poster pin
+       that point to a corner (qr.js draws every path here, without the animation). -->
+  <style>
+    path { fill: none; stroke: #B8ADBE; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+    .stem { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(0.45, 0, 0.3, 1) 0.2s forwards; }
+    .leaf, .petal, .centre { opacity: 0; animation: unfurl 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .leaf.l { transform: scale(0.15) rotate(-24deg); }
+    .leaf.r { transform: scale(0.15) rotate(24deg); }
+    .petal, .centre { transform-origin: 139.0px 11.5px; transform: scale(0.1) rotate(-40deg); }
+    .centre { animation-delay: 2.20s; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes unfurl { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .stem, .leaf, .petal, .centre { animation: none; stroke-dashoffset: 0; opacity: 1; transform: none; }
+    }
+  </style>
+  <path class="stem" pathLength="1" d="M18 216C26 150 64 84 136 14"/>
+  <path class="leaf l" style="transform-origin:24.2px 184.3px;animation-delay:0.44s" d="M24.2 184.3Q49.0 184.5 63.4 164.3Q38.6 164.1 24.2 184.3ZM24.2 184.3L56.3 167.9"/>
+  <path class="leaf r" style="transform-origin:31.1px 162.5px;animation-delay:0.60s" d="M31.1 162.5Q31.0 139.7 12.3 126.7Q12.4 149.5 31.1 162.5ZM31.1 162.5L15.7 133.1"/>
+  <path class="leaf l" style="transform-origin:40.3px 140.5px;animation-delay:0.76s" d="M40.3 140.5Q60.7 144.4 75.6 129.9Q55.2 126.1 40.3 140.5ZM40.3 140.5L69.2 131.8"/>
+  <path class="leaf r" style="transform-origin:51.8px 118.5px;animation-delay:0.92s" d="M51.8 118.5Q54.9 100.0 41.5 87.0Q38.5 105.4 51.8 118.5ZM51.8 118.5L43.3 92.6"/>
+  <path class="leaf l" style="transform-origin:65.7px 96.3px;animation-delay:1.08s" d="M65.7 96.3Q81.4 101.9 95.0 92.2Q79.2 86.6 65.7 96.3ZM65.7 96.3L89.7 92.9"/>
+  <path class="leaf r" style="transform-origin:80.3px 76.0px;animation-delay:1.23s" d="M80.3 76.0Q84.5 62.0 75.5 50.5Q71.2 64.5 80.3 76.0ZM80.3 76.0L76.4 55.1"/>
+  <path class="leaf l" style="transform-origin:96.8px 55.6px;animation-delay:1.38s" d="M96.8 55.6Q108.2 61.1 119.2 55.0Q107.9 49.4 96.8 55.6ZM96.8 55.6L115.2 55.1"/>
+  <path class="leaf r" style="transform-origin:113.5px 37.0px;animation-delay:1.51s" d="M113.5 37.0Q117.5 27.2 111.8 18.2Q107.8 28.0 113.5 37.0ZM113.5 37.0L112.1 21.6"/>
+  <path class="petal" style="animation-delay:1.85s" d="M139.0 11.5Q137.3 5.5 141.7 4.0Q144.1 8.0 139.0 11.5Z"/>
+  <path class="petal" style="animation-delay:1.92s" d="M139.0 11.5Q144.2 8.1 147.0 11.8Q143.9 15.3 139.0 11.5Z"/>
+  <path class="petal" style="animation-delay:1.99s" d="M139.0 11.5Q143.9 15.4 141.2 19.2Q136.9 17.3 139.0 11.5Z"/>
+  <path class="petal" style="animation-delay:2.06s" d="M139.0 11.5Q136.8 17.3 132.4 16.0Q132.8 11.3 139.0 11.5Z"/>
+  <path class="petal" style="animation-delay:2.13s" d="M139.0 11.5Q132.8 11.2 132.7 6.6Q137.2 5.6 139.0 11.5Z"/>
+  <path class="centre" d="M140.4 11.5A1.4 1.4 0 1 1 137.6 11.5A1.4 1.4 0 1 1 140.4 11.5Z"/>
 </svg>

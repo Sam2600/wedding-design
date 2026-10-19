@@ -328,12 +328,13 @@ async function render() {
   publishDownloads({ poster, png, svg: new Blob([qrSvg(qr)], { type: 'image/svg+xml' }) });
 }
 
-/* The poster sprig is read from the same SVG the invitation page shows */
+/* The poster sprig is read from the same SVG the invitation page shows (all of its paths,
+   drawn fully grown: the growing animation only exists on the page) */
 async function loadSprig() {
   try {
     const svg = await (await fetch('/public/images/sprig.svg')).text();
-    const path = new DOMParser().parseFromString(svg, 'image/svg+xml').querySelector('path');
-    return new Path2D(path.getAttribute('d'));
+    const paths = new DOMParser().parseFromString(svg, 'image/svg+xml').querySelectorAll('path');
+    return new Path2D([...paths].map((path) => path.getAttribute('d')).join(''));
   } catch {
     return null;                             // the poster just goes without corner sprigs
   }

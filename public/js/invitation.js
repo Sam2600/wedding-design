@@ -52,46 +52,87 @@ function useGoogleCalendarOnAndroid() {
 
 /* ---------- 3. The card ---------- */
 
+const TURN_PERSPECTIVE = 'perspective(1400px)';
+
 function setUpCard() {
   const el = $('#card');
+  const flip = $('#card-flip');
   const faces = el.querySelectorAll('.card-face');
+  const photo = faces[1].querySelector('img');
   const turnButton = $('#turn');
   const turnLabel = $('#turn-label');
   const status = $('#status');
   let turned = false;
+  let turning = false;
 
-  function setTurned(on, announce) {
-    turned = on;
-    el.classList.toggle('is-turned', on);
-    turnButton.classList.toggle('is-turned', on);
-    faces[0].setAttribute('aria-hidden', String(on));
-    faces[1].setAttribute('aria-hidden', String(!on));
-    turnLabel.textContent = on ? 'See the invitation' : 'See our photo';
-    if (announce) status.textContent = on ? 'Showing our photo.' : 'Showing the invitation card.';
+  function showSide(back, announce) {
+    turned = back;
+    el.classList.toggle('is-turned', back);
+    turnButton.classList.toggle('is-turned', back);
+    faces[0].setAttribute('aria-hidden', String(back));
+    faces[1].setAttribute('aria-hidden', String(!back));
+    turnLabel.textContent = back ? 'See the invitation' : 'See our photo';
+    if (announce) status.textContent = back ? 'Showing our photo.' : 'Showing the invitation card.';
   }
 
-  function turn() {
-    if (el.classList.contains('is-ready')) setTurned(!turned, true);
+  const stopTurning = () => {
+    if (flip.getAnimations) flip.getAnimations().forEach((animation) => animation.cancel());
+  };
+
+  const halfTurn = (fromDeg, toDeg, fromScale, toScale, easing, duration) => flip.animate([
+    { transform: `${TURN_PERSPECTIVE} rotateY(${fromDeg}deg) scale(${fromScale})` },
+    { transform: `${TURN_PERSPECTIVE} rotateY(${toDeg}deg) scale(${toScale})` },
+  ], { duration, easing, fill: 'forwards' }).finished;
+
+  /* Turn in two halves: lift and turn to edge-on, swap the faces, turn back down flat.
+     Swapping the faces ourselves (rather than a 180° turn with backface-visibility) looks
+     the same everywhere, including mobile browsers that get 3D backfaces wrong. */
+  async function turn() {
+    if (!el.classList.contains('is-ready') || turning) return;
+    const back = !turned;
+    if (reducedMotion.matches || !flip.animate) {
+      showSide(back, true);                // CSS cross-fades the faces
+      return;
+    }
+    turning = true;
+    try {
+      await Promise.all([
+        halfTurn(0, 90, 1, 1.05, 'cubic-bezier(0.55, 0, 1, 0.45)', 360),
+        back ? imageReady(photo, 1500) : null,
+      ]);
+      showSide(back, true);
+      await halfTurn(-90, 0, 1.05, 1, 'cubic-bezier(0.22, 1, 0.36, 1)', 560);
+    } catch {
+      // Cancelled by a reset
+    } finally {
+      stopTurning();
+      turning = false;
+    }
   }
 
-  $('#card-flip').addEventListener('click', turn);
+  flip.addEventListener('click', turn);
   turnButton.addEventListener('click', turn);
 
   return {
     el,
-    image: el.querySelector('.card-front img'),
-    reset: () => setTurned(false, false),
+    image: faces[0].querySelector('img'),
+    /* Decode the photo ahead of time, so the first turn never shows an empty back */
+    warmUp: () => imageReady(photo),
+    reset: () => {
+      stopTurning();
+      showSide(false, false);
+    },
   };
 }
 
 
 /* ---------- 4. Envelope → card ---------- */
 
-function imageReady(img) {
+function imageReady(img, timeoutMs = 3000) {
   const loaded = img.decode
     ? img.decode().catch(() => {})
     : new Promise((resolve) => (img.complete ? resolve() : img.addEventListener('load', resolve, { once: true })));
-  const timeout = new Promise((resolve) => setTimeout(resolve, 3000));
+  const timeout = new Promise((resolve) => setTimeout(resolve, timeoutMs));
   return Promise.race([loaded, timeout]);
 }
 
@@ -170,13 +211,16 @@ function setUpEnvelope(card) {
     animation = null;
   }
 
-  /* Put everything back: the card tucked inside a closed envelope */
-  function show() {
+  /* Put everything back: the card tucked inside a closed envelope. On a replay, transitions
+     are paused for the reset and the arrival animation plays again; on first load it is
+     already playing (CSS starts it at first paint) and must not restart. */
+  function show({ replay = false } = {}) {
     run += 1;
     clearTimers();
     cancelAnimation();
     state = 'closed';
-    root.classList.add('no-anim', 'intro-on');
+    if (replay) root.classList.add('no-anim');
+    root.classList.add('intro-on');
     intro.classList.remove('is-opening', 'is-leaving');
     envelope.classList.remove('is-open', 'is-dropping');
     card.el.classList.remove('is-ready', 'is-landed', 'is-out');
@@ -187,8 +231,10 @@ function setUpEnvelope(card) {
     window.history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
     intro.scrollTop = 0;
-    void root.offsetWidth;                   // commit the reset before transitions come back
-    root.classList.remove('no-anim');
+    if (replay) {
+      void root.offsetWidth;                 // commit the reset before transitions come back
+      root.classList.remove('no-anim');
+    }
   }
 
   /* The card has reached its slot: hand over to the page */
@@ -201,6 +247,7 @@ function setUpEnvelope(card) {
     cancelAnimation();                       // same task as the move, so no frame shows in between
     root.classList.remove('intro-on');
     card.el.classList.add('is-ready');
+    card.warmUp();
     if (!reducedMotion.matches) {
       card.el.classList.add('is-landed');
       scatterPetals();
@@ -247,7 +294,7 @@ function setUpEnvelope(card) {
   replay.hidden = false;
   replay.addEventListener('click', () => {
     rememberOpened(false);
-    show();
+    show({ replay: true });
     seal.focus({ preventScroll: true });
   });
 
@@ -261,8 +308,12 @@ function setUpEnvelope(card) {
     });
   });
 
-  if (root.classList.contains('intro-on')) show();
-  else card.el.classList.add('is-ready');
+  if (root.classList.contains('intro-on')) {
+    show();
+  } else {
+    card.el.classList.add('is-ready');
+    card.warmUp();
+  }
 }
 
 
