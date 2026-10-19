@@ -772,3 +772,6 @@ html.intro-on { overflow: hidden; }
   .card.is-landed .card-front::after { animation: none; }
   .music[aria-pressed="true"]::before { animation: none; }
 }
+/* Deliberately no prefers-reduced-motion rules: the page looks and moves the same on every phone.
+   Many phones switch that setting on to save battery, and opening the envelope is the whole point
+   of the page. The motion is short and gentle, and most of it starts from the guest's own tap. */

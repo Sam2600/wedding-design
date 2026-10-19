@@ -12,7 +12,6 @@
 
 const root = document.documentElement;
 const STORAGE_KEY = 'mz-envelope-opened';
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const $ = (selector) => document.querySelector(selector);
 
 const CARD_DELAY_MS = 750;   // the seal breaks and the flap opens before the card moves
@@ -94,8 +93,8 @@ function setUpCard() {
   async function turn() {
     if (!el.classList.contains('is-ready') || turning) return;
     const back = !turned;
-    if (reducedMotion.matches || !flip.animate) {
-      showSide(back, true);                // CSS cross-fades the faces
+    if (!flip.animate) {                   // no Web Animations API (very old browsers): just swap
+      showSide(back, true);
       return;
     }
     turning = true;
@@ -250,12 +249,9 @@ function setUpEnvelope(card, music) {
     slot.append(card.el);
     cancelAnimation();                       // same task as the move, so no frame shows in between
     root.classList.remove('intro-on');
-    card.el.classList.add('is-ready');
+    card.el.classList.add('is-ready', 'is-landed');
     card.warmUp();
-    if (!reducedMotion.matches) {
-      card.el.classList.add('is-landed');
-      scatterPetals();
-    }
+    scatterPetals();
     card.el.focus({ preventScroll: true });
   }
 
@@ -284,7 +280,7 @@ function setUpEnvelope(card, music) {
     music.startWithIntro();                  // inside the tap, or browsers refuse to play
     const token = run;
     intro.classList.add('is-opening');
-    if (reducedMotion.matches || !card.el.animate) {
+    if (!card.el.animate) {                  // no Web Animations API (very old browsers): fade over
       intro.classList.add('is-leaving');
       later(land, 260);
       return;
