@@ -1,0 +1,16 @@
+# Render Blueprint: the same static site as vercel.json. There is no build step; the
+# repo root is published as-is because asset paths start with /public/.
+services:
+  - type: web
+    name: mom-wedding-design
+    runtime: static
+    buildCommand: echo "No build step"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /public/mintzu-zwe-wedding.ics
+        name: Content-Type
+        value: "text/calendar; charset=utf-8"
