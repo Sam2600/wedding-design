@@ -25,13 +25,9 @@
   <link rel="stylesheet" href="/public/css/invitation.css">
 
   <!-- Inline on purpose: it has to run before first paint, or the page flashes before the envelope
-       covers it. Shows the envelope once per browser session (key shared with invitation.js). -->
-  <script>
-    (function () {
-      try { if (window.sessionStorage.getItem('mz-envelope-opened') === '1') return; } catch (e) {}
-      document.documentElement.classList.add('intro-on');
-    })();
-  </script>
+       covers it. The envelope shows on every visit, a refresh included; without JavaScript the
+       class is never added and the page simply shows. -->
+  <script>document.documentElement.classList.add('intro-on');</script>
   <!-- If the script cannot load (or the browser is too old for modules), show the page without the envelope -->
   <script type="module" src="/public/js/invitation.js" onerror="document.documentElement.classList.remove('intro-on')"></script>
   <script nomodule>document.documentElement.classList.remove('intro-on');</script>
@@ -98,8 +94,7 @@
           </div>
         </div>
         <button class="seal" id="seal" type="button" aria-label="Open the invitation">
-          <span class="seal-half seal-l"><img src="/public/images/seal.svg" alt=""></span>
-          <span class="seal-half seal-r"><img src="/public/images/seal.svg" alt=""></span>
+          <img src="/public/images/seal.svg" alt="">
         </button>
       </div>
 
@@ -194,8 +189,8 @@
   </main>
 
   <!-- Background music: starts when the seal is tapped (browsers only allow sound after a tap).
-       Bach, "Air on the G String", United States Air Force Band (public domain). -->
-  <audio id="music" src="/public/audio/air-on-the-g-string.mp3" preload="none" loop></audio>
+       "Wedding Music" by andriih, from Pixabay (Pixabay Content License, no credit required). -->
+  <audio id="music" src="/public/audio/wedding-piano.mp3" preload="none" loop></audio>
   <button class="music" id="music-toggle" type="button" aria-pressed="false" aria-label="Background music" title="Background music" hidden>
     <svg class="icon" aria-hidden="true" focusable="false"><use href="/public/images/icons.svg#i-music"/></svg>
     <span class="music-hint" aria-hidden="true">Tap to pause the music</span>

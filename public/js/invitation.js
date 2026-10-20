@@ -3,33 +3,23 @@
  *   1. Personal greeting from ?to=Name
  *   2. "Add to calendar": Google Calendar on Android, the .ics file everywhere else
  *   3. Turning the card over (invitation ⇄ couple photo)
- *   4. The envelope: the seal breaks, the flap opens, the card rises out and comes forward
+ *   4. The envelope: the seal lifts off, the flap opens, the card rises out and comes forward
  *   5. Background music: starts with the seal tap, a corner button turns it off and on
  *
- * The inline script in index.html's <head> decides before first paint whether the
- * envelope shows (html.intro-on), using the same STORAGE_KEY.
+ * The inline script in index.html's <head> adds html.intro-on before first paint, so the
+ * envelope shows on every visit, a refresh included.
  */
 
 const root = document.documentElement;
-const STORAGE_KEY = 'mz-envelope-opened';
 const $ = (selector) => document.querySelector(selector);
 
-const CARD_DELAY_MS = 750;   // the seal breaks and the flap opens before the card moves
+const CARD_DELAY_MS = 750;   // the seal lifts off and the flap opens before the card moves
 const CARD_MS = 1850;        // rise out of the envelope, then come forward to the slot
 const RISE_PART = 0.3;       // share of CARD_MS spent rising
-const PETAL_COUNT = 22;
-const MUSIC_KEY = 'mz-music-off';
+const PETAL_COUNT = 14;
 const MUSIC_VOLUME = 0.6;
+const MUSIC_OUT_MS = 1500;   // fade-out when the envelope comes back
 const MUSIC_HINT_MS = 4000;
-
-function rememberOpened(opened) {
-  try {
-    if (opened) window.sessionStorage.setItem(STORAGE_KEY, '1');
-    else window.sessionStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // Storage blocked (private mode): the envelope simply shows again next time
-  }
-}
 
 
 /* ---------- 1. Personal greeting ---------- */
@@ -222,7 +212,10 @@ function setUpEnvelope(card, music) {
     clearTimers();
     cancelAnimation();
     state = 'closed';
-    if (replay) root.classList.add('no-anim');
+    if (replay) {
+      root.classList.add('no-anim');
+      document.querySelectorAll('.petals').forEach((box) => box.remove());   // still falling from the last opening
+    }
     root.classList.add('intro-on');
     intro.classList.remove('is-opening', 'is-leaving');
     envelope.classList.remove('is-open', 'is-dropping');
@@ -276,7 +269,6 @@ function setUpEnvelope(card, music) {
   function open() {
     if (state !== 'closed') return;
     state = 'opening';
-    rememberOpened(true);
     music.startWithIntro();                  // inside the tap, or browsers refuse to play
     const token = run;
     intro.classList.add('is-opening');
@@ -294,7 +286,7 @@ function setUpEnvelope(card, music) {
 
   replay.hidden = false;
   replay.addEventListener('click', () => {
-    rememberOpened(false);
+    music.stopForIntro();
     show({ replay: true });
     seal.focus({ preventScroll: true });
   });
@@ -328,18 +320,7 @@ function setUpMusic() {
   let fade = 0;
   let hintTimer = 0;
   let hiddenPause = false;
-
-  const turnedOff = () => {
-    try { return window.sessionStorage.getItem(MUSIC_KEY) === '1'; } catch { return false; }
-  };
-  const rememberOff = (off) => {
-    try {
-      if (off) window.sessionStorage.setItem(MUSIC_KEY, '1');
-      else window.sessionStorage.removeItem(MUSIC_KEY);
-    } catch {
-      // Storage blocked: the music simply starts again next time
-    }
-  };
+  let turnedOff = false;     // by the guest; "Open the envelope again" keeps it, a refresh forgets it
 
   const showState = (playing) => button.setAttribute('aria-pressed', String(playing));
 
@@ -358,8 +339,12 @@ function setUpMusic() {
     const from = audio.volume;
     const start = performance.now();
     const step = (now) => {
-      const t = Math.min(1, (now - start) / ms);
-      audio.volume = from + (target - from) * t;
+      // The first frame's timestamp can be a hair before `start`; a volume below 0 throws and
+      // would leave the music playing silently
+      const t = Math.min(1, Math.max(0, (now - start) / ms));
+      // Ears hear loudness on a log scale: squared steps sound even, a straight line drops off at the end
+      const eased = target < from ? 1 - (1 - t) ** 2 : t * t;
+      audio.volume = from + (target - from) * eased;
       if (t < 1) fade = requestAnimationFrame(step);
       else if (then) then();
     };
@@ -381,7 +366,7 @@ function setUpMusic() {
 
   function setWanted(on) {
     wanted = on;
-    rememberOff(!on);
+    turnedOff = !on;
     status.textContent = on ? 'Music on.' : 'Music off.';
   }
 
@@ -399,8 +384,8 @@ function setUpMusic() {
   // Title and controls on the lock screen and in Control Center
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new window.MediaMetadata({
-      title: 'Air on the G String',
-      artist: 'J. S. Bach',
+      title: 'Wedding Music',
+      artist: 'andriih',
       album: 'Mintzu & Zwe · Wedding',
       artwork: [{ src: '/public/images/og-image.jpg', sizes: '1200x630', type: 'image/jpeg' }],
     });
@@ -414,10 +399,12 @@ function setUpMusic() {
     hintTimer = setTimeout(() => button.classList.remove('show-hint'), MUSIC_HINT_MS);
   }
 
+  // Do what the icon shows, even if a phone paused or resumed the audio behind our back
   button.addEventListener('click', () => {
-    setWanted(!wanted);
+    const on = button.getAttribute('aria-pressed') !== 'true';
+    setWanted(on);
     button.classList.remove('show-hint');
-    if (wanted) play(); else pause();
+    if (on) play(); else pause();
   });
 
   // Quiet while the guest is in another tab or app, or the phone is locked; carry on when they come back
@@ -441,10 +428,22 @@ function setUpMusic() {
   return {
     /* Called from the seal tap: the one moment a browser lets sound start by itself */
     startWithIntro() {
-      if (wanted || turnedOff()) return;
+      if (wanted || turnedOff) return;
       wanted = true;
       play();
       setTimeout(() => { if (wanted) hint(); }, CARD_DELAY_MS + CARD_MS);
+    },
+    /* "Open the envelope again": quiet while the envelope is back, and the seal tap starts the
+       song from the top. Only the page's state changes, so a guest who turned it off stays off
+       (by the time the pause event arrives the button already shows off, so it is not counted
+       as the guest's choice). */
+    stopForIntro() {
+      clearTimeout(hintTimer);
+      button.classList.remove('show-hint');
+      if (!wanted) return;
+      wanted = false;
+      showState(false);
+      rampTo(0, MUSIC_OUT_MS, () => { audio.pause(); audio.currentTime = 0; });
     },
   };
 }

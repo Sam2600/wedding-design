@@ -285,7 +285,7 @@ html.intro-on { overflow: hidden; }
 
 
 /* =========================================================
-   Wax seal: two halves of one image, split along a crack
+   Wax seal: one piece; when tapped it swells a little and lifts off the flap
    ========================================================= */
 .seal {
   position: absolute;
@@ -321,22 +321,18 @@ html.intro-on { overflow: hidden; }
   .envelope:hover .seal { transform: translate(-50%, -50%) scale(1.05); }
 }
 .seal:active { transform: translate(-50%, -50%) scale(0.95); }
-.seal-half {
-  position: absolute;
-  inset: 0;
-  transition: transform 700ms var(--ease-in), opacity 700ms var(--ease-in);
-}
-.seal-half img {
+.seal img {
   width: 100%;
   height: 100%;
   filter: drop-shadow(0 3px 4px rgba(40, 24, 44, 0.38));
 }
-.seal-l { clip-path: polygon(0 0, 53% 0, 46% 17%, 56% 33%, 45% 51%, 55% 68%, 47% 85%, 52% 100%, 0 100%); }
-.seal-r { clip-path: polygon(53% 0, 100% 0, 100% 100%, 52% 100%, 47% 85%, 55% 68%, 45% 51%, 56% 33%, 46% 17%); }
 .intro.is-opening .seal { pointer-events: none; }
 .intro.is-opening .seal::after { animation: none; opacity: 0; }
-.intro.is-opening .seal-l { transform: translate(-30%, 70%) rotate(-32deg); opacity: 0; }
-.intro.is-opening .seal-r { transform: translate(30%, 70%) rotate(32deg); opacity: 0; }
+.intro.is-opening .seal img { animation: seal-lift 600ms var(--ease-out) forwards; }
+@keyframes seal-lift {
+  35% { transform: scale(1.1); opacity: 1; }
+  100% { transform: translateY(-12%) scale(1.16); opacity: 0; }
+}
 
 
 /* =========================================================
@@ -637,20 +633,23 @@ html.intro-on { overflow: hidden; }
   overflow: hidden;
   pointer-events: none;
 }
+/* Dusty rose, lilac and blush: soft like the card, but deep enough to show on it and the page */
 .petal {
-  --tint: #E7D6EC;
+  --light: #F3E1E8;
+  --deep: #C99AAE;
   position: absolute;
   top: -30px;
   left: var(--x);
   width: var(--size);
   height: calc(var(--size) * 0.8);
   border-radius: 100% 0 100% 0 / 100% 0 100% 0;
-  background: linear-gradient(135deg, #FFFFFF, var(--tint));
+  background: linear-gradient(135deg, var(--light), var(--deep));
+  box-shadow: 0 1px 3px rgb(var(--shadow-rgb) / 0.18);
   opacity: 0;
   animation: petal-fall var(--fall) cubic-bezier(0.35, 0.1, 0.6, 1) var(--delay) 1 both;
 }
-.petal:nth-child(3n + 2) { --tint: #F1D9E4; }
-.petal:nth-child(3n + 3) { --tint: #DCCFE3; }
+.petal:nth-child(3n + 2) { --light: #E8DEEE; --deep: #A894B6; }
+.petal:nth-child(3n + 3) { --light: #F7E8EC; --deep: #D8AFBD; }
 @keyframes petal-fall {
   0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
   10% { opacity: 0.95; }
@@ -756,22 +755,6 @@ html.intro-on { overflow: hidden; }
 }
 
 
-@media (prefers-reduced-motion: reduce) {
-  .intro-head > *, .envelope, .env-floral, .seal, .intro-hint { animation: none; }
-  .seal::after { animation: none; opacity: 0; }
-  .intro.is-opening .seal-l,
-  .intro.is-opening .seal-r { transform: none; }
-  .reveal, .turn { transition-duration: 200ms !important; transition-delay: 0ms !important; }
-  .intro-on .reveal { transform: none; }
-  /* The card does not turn: its faces cross-fade */
-  .card .card-face,
-  .card.is-turned .card-face { visibility: visible; transition: opacity 350ms ease; }
-  .card-back,
-  .card.is-turned .card-front { opacity: 0; }
-  .card.is-turned .card-back { opacity: 1; }
-  .card.is-landed .card-front::after { animation: none; }
-  .music[aria-pressed="true"]::before { animation: none; }
-}
 /* Deliberately no prefers-reduced-motion rules: the page looks and moves the same on every phone.
    Many phones switch that setting on to save battery, and opening the envelope is the whole point
    of the page. The motion is short and gentle, and most of it starts from the guest's own tap. */
