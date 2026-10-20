@@ -1,6 +1,8 @@
 # Mintzu & Zwe · Wedding invitation
 
-Static site on Vercel: <https://mom-wedding-design.vercel.app/>. Guests scan the QR, land on a sealed
+Live at <https://mzforever.wedding/> (Vercel; domain from Z.com, DNS records there; a spare copy runs
+on Render from `render.yaml`). The old <https://mom-wedding-design.vercel.app/> redirects to it, so
+QR codes made before the domain still work. Guests scan the QR, land on a sealed
 envelope, tap the seal and the printed card comes out. No build step and no outside requests: fonts,
 scripts and images are all in this repo.
 
@@ -46,7 +48,8 @@ answers range requests, and Python's server does not (Vercel does).
   96 kbps MP3). It starts when the guest taps the seal; the round button bottom-right turns it
   off and on.
 - **Colours:** `public/css/base.css` (`:root`). The QR reads its colours from there too.
-- **New QR** (only if the link changes): open `/qr.html`, check the link, download, scan with two
-  phones, then replace the files in `public/qr/`.
+- **New QR** (only if the link changes): open `/qr`, check the link (it defaults to
+  `https://mzforever.wedding/`, `LIVE_URL` in `public/js/qr.js`), download, scan with two phones,
+  then replace the files in `public/qr/`.
 
 Personal links: add `?to=Ko%20Aung` to the URL and the envelope says "Dear Ko Aung,".

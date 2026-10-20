@@ -6,7 +6,7 @@
  * The QR matrix comes from qrcode-generator (public/vendor), loaded before this module.
  */
 
-const LIVE_URL = 'https://mom-wedding-design.vercel.app/';
+const LIVE_URL = 'https://mzforever.wedding/';
 const QUIET = 4;               // modules of clear space around the code (the QR minimum)
 const QR_PNG_SIZE = 1600;
 const POSTER_W = 1080;
@@ -348,9 +348,9 @@ function loadFonts() {
 }
 
 
-// Default to this site's own address; on a local preview, use the live one instead
-const here = parseUrl(`${window.location.origin}/`);
-input.value = new URLSearchParams(window.location.search).get('url') || (here && !isLocal(here) ? here.href : LIVE_URL);
+// Always the wedding's own domain, even when this page is opened on mzforever.vercel.app,
+// the Render copy or a local preview; ?url= or the field can still change it
+input.value = new URLSearchParams(window.location.search).get('url') || LIVE_URL;
 
 let debounce = 0;
 input.addEventListener('input', () => {
