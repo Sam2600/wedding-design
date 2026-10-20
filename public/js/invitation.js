@@ -2,7 +2,7 @@
  * Invitation page (index.html)
  *   1. Personal greeting from ?to=Name
  *   2. "Add to calendar": Google Calendar on Android, the .ics file everywhere else
- *   3. Turning the card over (invitation ⇄ couple photo)
+ *   3. Turning the card over (invitation ⇄ couple photo); on arrival the photo shows first
  *   4. The envelope: the seal lifts off, the flap opens, the card rises out and comes forward
  *   5. Background music: starts with the seal tap, a corner button turns it off and on
  *
@@ -16,6 +16,7 @@ const $ = (selector) => document.querySelector(selector);
 const CARD_DELAY_MS = 750;   // the seal lifts off and the flap opens before the card moves
 const CARD_MS = 1850;        // rise out of the envelope, then come forward to the slot
 const RISE_PART = 0.3;       // share of CARD_MS spent rising
+const PHOTO_FIRST_MS = 1800; // the photo shows this long on arrival, then the card turns to the invitation
 const PETAL_COUNT = 14;
 const MUSIC_VOLUME = 0.6;
 const MUSIC_OUT_MS = 1500;   // fade-out when the envelope comes back
@@ -103,15 +104,39 @@ function setUpCard() {
     }
   }
 
-  flip.addEventListener('click', turn);
-  turnButton.addEventListener('click', turn);
+  /* On arrival the photo shows first, then the card turns over by itself, once.
+     A tap before then cancels it: the guest has taken over. */
+  let autoTurn = 0;
+  const cancelAutoTurn = () => clearTimeout(autoTurn);
+  const turnByHand = () => {
+    cancelAutoTurn();
+    turn();
+  };
+
+  flip.addEventListener('click', turnByHand);
+  turnButton.addEventListener('click', turnByHand);
 
   return {
     el,
     image: faces[0].querySelector('img'),
-    /* Decode the photo ahead of time, so the first turn never shows an empty back */
+    /* Decode the photo ahead of time, so the card never shows an empty back */
     warmUp: () => imageReady(photo),
+    showPhoto: () => showSide(true, false),
+    turnToInvitationSoon: (delayMs) => {
+      cancelAutoTurn();
+      autoTurn = setTimeout(async () => {
+        if (!turned) return;
+        await turn();
+        // The sheen plays now that the printed card is the side facing up
+        if (!turned) {
+          el.classList.remove('is-landed');
+          void el.offsetWidth;
+          el.classList.add('is-landed');
+        }
+      }, delayMs);
+    },
     reset: () => {
+      cancelAutoTurn();
       stopTurning();
       showSide(false, false);
     },
@@ -221,6 +246,7 @@ function setUpEnvelope(card, music) {
     envelope.classList.remove('is-open', 'is-dropping');
     card.el.classList.remove('is-ready', 'is-landed', 'is-out');
     card.reset();
+    card.showPhoto();                        // comes out of the envelope photo side up
     card.el.classList.add('is-traveling');
     envelope.insertBefore(card.el, pocket);
     placeAtRest();
@@ -242,8 +268,8 @@ function setUpEnvelope(card, music) {
     slot.append(card.el);
     cancelAnimation();                       // same task as the move, so no frame shows in between
     root.classList.remove('intro-on');
-    card.el.classList.add('is-ready', 'is-landed');
-    card.warmUp();
+    card.el.classList.add('is-ready');
+    card.turnToInvitationSoon(PHOTO_FIRST_MS);
     scatterPetals();
     card.el.focus({ preventScroll: true });
   }
@@ -278,7 +304,7 @@ function setUpEnvelope(card, music) {
       return;
     }
     envelope.classList.add('is-open');
-    Promise.all([imageReady(card.image), wait(CARD_DELAY_MS)]).then(() => travel(token));
+    Promise.all([card.warmUp(), imageReady(card.image), wait(CARD_DELAY_MS)]).then(() => travel(token));
   }
 
   // The seal button is inside the envelope, so keyboard Enter/Space on it lands here too
