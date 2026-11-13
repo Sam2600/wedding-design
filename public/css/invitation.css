@@ -597,6 +597,24 @@ html.intro-on { overflow: hidden; }
   text-align: center;
 }
 .sign { margin: 0; font: 400 2rem/1.2 var(--font-script); color: var(--ink); }
+.memories-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  font: 500 0.9375rem/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: border-color 200ms var(--ease-out), background-color 200ms var(--ease-out);
+}
+.memories-link .icon { width: 20px; height: 20px; color: var(--plum); }
+@media (hover: hover) { .memories-link:hover { border-color: var(--lilac); background: var(--paper); } }
 .replay {
   display: inline-flex;
   align-items: center;

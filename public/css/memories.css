@@ -1,0 +1,1489 @@
+/* Memories page (memories.html): the keepsake after the wedding.
+   The invitation's paper, sprigs and fairy lights, with the palette and Pinyon Script of the
+   "Our Story" keepsake design. Sections sit close together so the page never feels empty. */
+
+@font-face {
+  font-family: "Pinyon Script";
+  src: url("../fonts/pinyon-script.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --bg: #F4EEF3;
+  --ink: #3F2A3B;
+  --ink-muted: #6E566A;
+  --plum: #5A3A55;
+  --line: #E2D6E0;
+  --font-display: "Pinyon Script", var(--font-script);
+  --gold-1: #FBEDB8;
+  --gold-2: #D9AE45;
+  --gold-3: #9E7621;
+  --radius: 10px;
+  --section-gap: clamp(64px, 10vw, 96px);
+  --shadow-card: 0 20px 50px rgba(90, 58, 85, 0.12);
+}
+
+
+/* =========================================================
+   Page frame
+   ========================================================= */
+html { scroll-behavior: smooth; }
+
+/* Section by section: memories.js glides to the next section after a short scroll */
+.thanks, .journey, .evening, .favourites, .all { scroll-margin-top: 16px; }
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    url("../images/paper-grain.svg"),
+    radial-gradient(120% 65% at 50% -8%, #FFFFFF 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(70% 45% at 100% 100%, rgba(241, 220, 229, 0.75), transparent 70%),
+    radial-gradient(65% 40% at 0% 80%, rgba(220, 211, 225, 0.8), transparent 70%),
+    var(--bg);
+}
+.sprig {
+  position: absolute;
+  width: min(28vw, 230px);
+  height: auto;
+  opacity: 0.6;
+}
+.sprig-tl { left: -6%; top: -4%; transform: rotate(90deg); }
+.sprig-tr { right: -6%; top: -4%; transform: scaleX(-1) rotate(90deg); }
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 40;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--plum);
+  color: var(--paper);
+  font: 500 0.875rem/1.2 var(--font-sans);
+  text-decoration: none;
+}
+.skip:focus { top: max(12px, env(safe-area-inset-top)); }
+
+.topbar {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  left: max(12px, env(safe-area-inset-left));
+  z-index: 5;
+}
+.back, .pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  font: 500 0.9375rem/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: border-color 200ms var(--ease-out), background-color 200ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.back { font-size: 0.875rem; }
+.back .icon, .pill-link .icon { width: 18px; height: 18px; color: var(--plum); }
+@media (hover: hover) {
+  .back:hover, .pill-link:hover { border-color: var(--lilac); background: var(--paper); }
+}
+.pill-link:active { transform: scale(0.97); }
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: max(64px, calc(env(safe-area-inset-top) + 52px)) 16px max(112px, calc(env(safe-area-inset-bottom) + 96px));
+  font-family: var(--font-serif);
+}
+.page > section + section { margin-top: var(--section-gap); }
+@media (min-width: 760px) { .page { padding-left: 24px; padding-right: 24px; } }
+
+.label {
+  display: block;
+  margin: 0;
+  font: 500 0.75rem/1.6 var(--font-sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.script {
+  margin: 2px 0 0;
+  font: 400 clamp(2.5rem, 9vw, 3.5rem)/1.2 var(--font-display);
+  color: var(--plum);
+}
+.section-head {
+  margin-bottom: 28px;
+  text-align: center;
+}
+@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } }
+
+
+/* =========================================================
+   Hero: names under the fairy lights
+   ========================================================= */
+.hero {
+  position: relative;
+  padding-top: max(64px, calc(min(100vw, 760px) * 0.125));
+  text-align: center;
+}
+.hero > :not(.lights) { position: relative; }
+.lights {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: min(100vw, 760px);
+  height: auto;
+  transform: translateX(-50%);
+  overflow: visible;
+  pointer-events: none;
+}
+.wire {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-opacity: 0.55;
+  stroke-width: 1.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1800ms var(--ease-out) 200ms forwards;
+}
+.wire-b { stroke-opacity: 0.35; animation-delay: 500ms; }
+.bulb line { stroke: var(--ink-muted); stroke-opacity: 0.55; stroke-width: 1; }
+/* Each bulb: a glass bead and a soft halo. They light one by one, then every bulb twinkles at
+   its own pace (dimming to amber, flaring warm white), and every few seconds a wave of light
+   runs along the string. */
+.bulb .glass {
+  fill: #FFD58A;
+  stroke: #D9963D;
+  stroke-width: 0.8;
+  animation: glass var(--tw) ease-in-out var(--td) infinite;
+}
+.bulb .halo {
+  fill: url(#bulb-halo);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo var(--tw) ease-in-out var(--td) infinite;
+}
+.bulb {
+  opacity: 0;
+  animation:
+    bulb-on 500ms var(--ease-out) calc(900ms + var(--n) * 70ms) forwards,
+    wave 7s ease-in-out calc(3200ms + var(--wave)) infinite;
+}
+@keyframes glass {
+  0%, 100% { fill: #FFF3CF; }
+  45% { fill: #E4A148; }
+  55% { fill: #E4A148; }
+}
+@keyframes halo {
+  0%, 100% { opacity: 1; transform: scale(1.15); }
+  50% { opacity: 0.2; transform: scale(0.7); }
+}
+/* The travelling wave: a brief extra brightness, bulb after bulb */
+@keyframes wave {
+  0%, 12%, 100% { filter: none; }
+  6% { filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 214, 130, 0.9)); }
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes bulb-on {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: none; }
+}
+
+.names {
+  margin: 6px 0 0;
+  font: 400 clamp(3.5rem, 15vw, 6rem)/1.1 var(--font-display);
+  color: var(--plum);
+}
+.names .amp { font-size: 0.7em; }
+.date {
+  margin: 4px 0 0;
+  font-size: clamp(1.125rem, 4.4vw, 1.375rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.hero .label { animation: rise-in 900ms var(--ease-out) 300ms both; }
+.hero .date { animation: rise-in 900ms var(--ease-out) 1700ms both; }
+
+/* The names (and the closing signature) are written in, left to right, like ink */
+.names, .sign.is-in { animation: write 1700ms cubic-bezier(0.55, 0.1, 0.35, 1) both; }
+.names { animation-delay: 500ms; }
+.js-reveal .sign:not(.is-in) { clip-path: inset(0 100% 0 0); }
+@keyframes write {
+  from { clip-path: inset(-20% 100% -30% 0); }
+  to { clip-path: inset(-20% -5% -30% 0); }
+}
+
+
+/* =========================================================
+   Photos you can tap (thank-you card, timeline, favourites)
+   ========================================================= */
+.photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-deep);
+  cursor: zoom-in;
+  touch-action: manipulation;
+  transform: translateZ(0);          /* keeps the rounded clip while the photo zooms (Safari) */
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+  transition: transform 900ms var(--ease-out);
+}
+@media (hover: hover) { .photo:hover img { transform: scale(1.04); } }
+.photo:focus-visible { outline-offset: 3px; }
+
+/* Scroll reveal: rise into place, and photos develop like instant prints */
+.js-reveal .reveal { opacity: 0; transform: translateY(26px); }
+.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 800ms var(--ease-out) var(--d, 0ms), transform 1000ms var(--ease-out) var(--d, 0ms);
+}
+.js-reveal .reveal .photo img,
+.js-reveal .photo.reveal img { filter: sepia(0.65) brightness(1.3) contrast(0.75) blur(3px); }
+.js-reveal .reveal.is-in .photo img,
+.js-reveal .photo.reveal.is-in img {
+  filter: none;
+  transition: filter 1600ms var(--ease-out) calc(var(--d, 0ms) + 250ms), transform 900ms var(--ease-out);
+}
+
+
+/* =========================================================
+   Thank-you card: the couple and a note
+   ========================================================= */
+.thanks {
+  display: grid;
+  margin-top: 36px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: 24px;
+}
+.thanks-photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 0;
+  --pos: 50% 40%;
+}
+/* The portrait drifts slowly closer once it has developed */
+.thanks.is-in .thanks-photo img { animation: ken-burns 24s ease-in-out 2s infinite alternate; }
+@keyframes ken-burns {
+  from { transform: scale(1); }
+  to { transform: scale(1.1) translate(-1.5%, -2%); }
+}
+.thanks-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 30px 24px 34px;
+}
+.thanks-text p:not(.label) {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+.thanks-text .signed {
+  font-style: italic;
+  color: var(--ink-muted);
+}
+.thanks .script { font-size: clamp(2.5rem, 8vw, 3.25rem); }
+@media (min-width: 760px) {
+  .thanks { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .thanks-photo { aspect-ratio: auto; min-height: 480px; height: 100%; }
+  .thanks-text { padding: 52px 48px; }
+}
+
+
+/* =========================================================
+   Journey memo: a journal page from signing day.
+   The day's photos in a book made like our certificate folder, then a ruled note card
+   with the date stamped beside our signatures.
+   ========================================================= */
+.memo {
+  max-width: 560px;
+  margin: 56px auto 0;
+}
+
+/* The note: lined paper with a red margin, a gold heart stamp in the corner */
+.memo-note {
+  position: relative;
+  margin: 0;
+  padding: 30px 24px 28px 40px;
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, transparent 27px, rgba(222, 147, 168, 0.55) 27px, rgba(222, 147, 168, 0.55) 28.5px, transparent 28.5px),
+    repeating-linear-gradient(transparent 0 33px, rgba(184, 173, 190, 0.35) 33px 34px),
+    #FFFDF9;
+  background-position: 0 0, 0 22px, 0 0;
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+}
+.memo-note p {
+  margin: 0;
+  font-size: 1.1875rem;
+  line-height: 34px;                  /* sits on the ruled lines */
+}
+.memo-note p:not([class]) { text-indent: 1.5em; }
+.memo-note .memo-date {
+  font: 500 0.75rem/34px var(--font-sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.memo-note .memo-title, .memo-note .memo-sign {
+  font: 400 2rem/34px var(--font-display);
+  color: var(--plum);
+}
+.memo-note .memo-sign { margin-top: 8px; text-align: right; }
+.memo-stamp {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1.5px dashed var(--gold-2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-1), #F6E2A0);
+  box-shadow: 0 4px 12px rgb(var(--shadow-rgb) / 0.15);
+  transform: rotate(-12deg);
+}
+.memo-stamp svg { width: 22px; height: 22px; fill: var(--gold-3); }
+
+/* The signing date as a rubber postmark, set down beside the signatures */
+.memo-note { padding-bottom: 44px; }
+.memo-postmark {
+  position: absolute;
+  left: 34px;
+  bottom: -26px;
+  width: 104px;
+  height: 104px;
+  overflow: visible;
+  color: #7A3E6E;                     /* stamp-pad ink: the plum, a shade brighter */
+  opacity: 0.88;
+  transform: rotate(-14deg);
+  pointer-events: none;
+}
+.memo-postmark circle { stroke: currentColor; }
+.memo-postmark text { fill: currentColor; font-family: var(--font-sans); }
+.memo-postmark .pm-ring { font-size: 9.5px; font-weight: 600; }
+.memo-postmark .pm-day { font: 400 30px/1 var(--font-serif); font-weight: 600; }
+.memo-postmark .pm-small { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; }
+/* Pressed down once the note is in view: a quick, firm landing */
+.js-reveal .memo-note:not(.is-in) .memo-postmark { opacity: 0; }
+.js-reveal .memo-note.is-in .memo-postmark { animation: stamp-down 420ms cubic-bezier(0.3, 1.5, 0.5, 1) 900ms both; }
+@keyframes stamp-down {
+  from { opacity: 0; transform: rotate(-4deg) scale(1.6); }
+  60% { opacity: 0.95; }
+  to { opacity: 0.88; transform: rotate(-14deg) scale(1); }
+}
+
+/* ---------- The certificate book ----------
+   Made like the white Z+M folder we signed in. Phones: the folder opens upwards, one page above
+   the other (pages turn on rotateX around the top edge). Wider screens: a book opening sideways
+   (rotateY around the spine). Each .sheet has a front and a back face; memories.js (setUpBook)
+   sets --turned on the sheets and their stacking order while they turn. */
+.book {
+  --page-w: min(calc(100vw - 32px), 440px);
+  --page-h: calc(var(--page-w) * 0.94);
+  --turn-ms: 1200ms;
+  --cover-ms: 1600ms;                 /* the cover opens slower than a page turns */
+  --turn-ease: cubic-bezier(0.42, 0.06, 0.58, 0.94);   /* symmetric: edge-on exactly halfway */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book-stage {
+  position: relative;
+  width: var(--page-w);
+  height: calc(var(--page-h) * 2);
+  touch-action: pan-y;                /* the page still scrolls; sideways swipes turn pages */
+  user-select: none;
+  -webkit-user-select: none;
+}
+.book-body {
+  position: absolute;
+  inset: 0;
+  perspective: 1500px;
+  transform: translateY(-25%);        /* closed: the cover sits in the middle */
+  transition: transform var(--cover-ms) var(--turn-ease);   /* moves to the middle as the cover turns */
+}
+.book.is-open .book-body { transform: none; }
+
+.sheet, .page-base {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 50%;
+}
+.sheet {
+  transform-origin: 50% 0;
+  transform: rotateX(calc(var(--turned, 0) * 180deg));
+  transform-style: preserve-3d;
+  transition: transform var(--turn-ms) var(--turn-ease);
+}
+.sheet-cover { --turn-ms: var(--cover-ms); }
+.face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Which side shows is switched here, not left to backface-visibility: Chrome hid the front of
+     a page for the whole first half of its turn (the cover seemed to vanish rather than turn).
+     The swap waits half a turn, when the page stands edge-on; the turn's curve is symmetric. */
+  transition: visibility 0s linear calc(var(--turn-ms) / 2);
+}
+.face-back { transform: rotateX(180deg); visibility: hidden; }
+.sheet.is-turned .face-front { visibility: hidden; }
+.sheet.is-turned .face-back { visibility: visible; }
+.face-front, .page-base { --spine: 180deg; }   /* the spine's shadow falls from the top edge */
+.face-back { --spine: 0deg; }
+
+/* Paper pages */
+.leaf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 16px 24px;
+  background: url("../images/paper-grain.svg"), #FFFDF8;
+  color: var(--ink);
+  text-align: center;
+}
+:where(.leaf) p { margin: 0; }
+.leaf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(var(--spine), rgb(var(--shadow-rgb) / 0.16), rgb(var(--shadow-rgb) / 0.04) 6%, transparent 14%);
+  pointer-events: none;
+}
+/* The last page lies under them all; its edge shows the thickness of the pages above */
+.page-base {
+  border-radius: 0 0 4px 4px;
+  box-shadow:
+    0 2px 0 #F3EDE6, 0 4px 0 #E9E1D8, 0 6px 0 #DFD5CA,
+    0 18px 34px rgb(var(--shadow-rgb) / 0.2);
+}
+/* While a sheet turns, it darkens a little at the middle of its swing */
+.sheet.is-turning .face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(var(--spine), rgba(43, 29, 44, 0.55), rgba(43, 29, 44, 0.12));
+  opacity: 0;
+  pointer-events: none;
+  animation: turn-shade var(--turn-ms) ease-in-out;
+}
+@keyframes turn-shade { 50% { opacity: 0.4; } }
+
+/* A photo on a page, held by gold photo corners, its caption written underneath */
+.page-photo {
+  flex: none;
+  width: min(calc(var(--page-w) * 0.9), calc(var(--page-h) * 0.64 * var(--ar)));
+  aspect-ratio: var(--ar);
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgb(var(--shadow-rgb) / 0.22), 0 8px 16px rgb(var(--shadow-rgb) / 0.14);
+  cursor: zoom-in;
+}
+.page-photo::before, .page-photo::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, rgba(217, 174, 69, 0.9) 50%, transparent 50%);
+  pointer-events: none;
+}
+.page-photo::before { top: 0; left: 0; }
+.page-photo::after { right: 0; bottom: 0; transform: rotate(180deg); }
+@media (hover: hover) { .page-photo:hover img { transform: scale(1.03); } }
+.page-caption {
+  margin-top: 6px;
+  font: 400 clamp(1.5rem, 6.4vw, 2rem)/1.1 var(--font-display);
+  color: var(--plum);
+}
+.page-num {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  font: 500 0.6875rem/1 var(--font-sans);
+  letter-spacing: 0.2em;
+  color: var(--ink-muted);
+  transform: translateX(-50%);
+}
+.page-num::before, .page-num::after { content: " — "; }
+
+/* The cover: white board, a double gold rule, our monogram in a gold wreath */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 0 0 5px 5px;
+  background:
+    radial-gradient(130% 90% at 25% 8%, #FFFFFF, transparent 60%),
+    linear-gradient(160deg, #FCFAF6, #EFE7DD);
+  box-shadow: inset 0 0 0 1px rgba(158, 118, 33, 0.14);
+  text-align: center;
+}
+:where(.cover) p { margin: 0; }
+.cover-border {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201, 160, 70, 0.6);
+  outline: 1px solid rgba(201, 160, 70, 0.35);
+  outline-offset: -6px;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Now and then a soft light runs across the board */
+.cover-border::after {
+  content: "";
+  position: absolute;
+  inset: -20% -60%;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.75) 50%, transparent 58%);
+  transform: translateX(-60%);
+  animation: sheen 6s ease-in-out 2s infinite;
+}
+@keyframes sheen {
+  0%, 60% { transform: translateX(-60%); }
+  85%, 100% { transform: translateX(60%); }
+}
+.cover-kicker {
+  font: 600 0.6875rem/1 var(--font-sans);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-3);
+}
+.cover-seal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(92px, 28vw, 140px);
+  aspect-ratio: 1;
+}
+.cover-wreath {
+  position: absolute;
+  inset: 0;
+  fill: var(--gold-2);
+  color: var(--gold-2);
+  opacity: 0.9;
+}
+.cover-mono {
+  font: 400 clamp(2.5rem, 10vw, 3.75rem)/1 var(--font-display);
+  background: linear-gradient(110deg, var(--gold-3) 0%, var(--gold-2) 22%, var(--gold-1) 40%, var(--gold-2) 58%, var(--gold-3) 80%, var(--gold-2) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+.cover-mono i { font-style: normal; font-size: 0.55em; }
+.cover-names {
+  max-width: 80%;
+  font: 500 0.625rem/1.5 var(--font-sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-3);
+}
+.cover-names span { letter-spacing: 0; }
+.cover-date {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+.cover-open {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.cover-open:focus-visible { outline-offset: -8px; }
+
+/* Closed, the cover lifts a little now and then: it opens */
+.book.is-in:not(.is-open) .sheet-cover .face-front {
+  /* On the cover's face, not the sheet: an animation on the sheet's own transform would stop
+     the opening turn from animating (the cover would snap open) */
+  transform-origin: 50% 0;
+  animation: peek-up 5s ease-in-out 1.6s infinite;
+}
+/* Open, the cover's light stops (it sits on the hidden side now) */
+.book.is-open .cover-border::after { animation: none; }
+@keyframes peek-up {
+  0%, 68%, 100% { transform: rotateX(0deg); }
+  80% { transform: rotateX(26deg); }
+  90% { transform: rotateX(-2deg); }
+}
+
+/* Inside the cover: the certificate's words */
+.page-intro { gap: 2px; }
+.intro-kicker, .sign-kicker {
+  margin-bottom: 4px;
+  font: 500 0.6875rem/1.4 var(--font-sans);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.intro-name {
+  font: 400 clamp(1.875rem, 8vw, 2.5rem)/1.15 var(--font-display);
+  color: var(--plum);
+}
+.intro-and { font-size: 1rem; font-style: italic; color: var(--ink-muted); }
+.intro-text {
+  max-width: 26ch;
+  margin-top: 8px;
+  font-size: 1.0625rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+.intro-date, .sign-date {
+  margin-top: 8px;
+  font: 600 0.6875rem/1.4 var(--font-sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-3);
+}
+
+/* The last page: our signatures, written in once the book is turned to it */
+.page-sign { gap: 10px; }
+.sig-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 72%;
+}
+.sig {
+  padding: 0 8px;
+  font: 400 clamp(2rem, 9vw, 2.75rem)/1.15 var(--font-display);
+  color: #34385E;                     /* blue-black pen ink */
+}
+.sig-label {
+  width: 100%;
+  padding-top: 4px;
+  border-top: 1px solid var(--lilac);
+  font: 500 0.625rem/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.js-reveal .book:not(.at-end) .sig { clip-path: inset(0 100% 0 0); }
+.book.at-end .sig { animation: write 1400ms cubic-bezier(0.55, 0.1, 0.35, 1) calc(var(--turn-ms) * 0.7) both; }
+.book.at-end .sig-row + .sig-row .sig { animation-delay: calc(var(--turn-ms) * 0.7 + 1100ms); }
+
+.book-hint {
+  margin: 18px 0 0;
+  font: 500 0.75rem/1.4 var(--font-sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-muted);
+}
+.book-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.book-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--plum);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 200ms var(--ease-out), border-color 200ms var(--ease-out), opacity 200ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.book-btn .icon { width: 20px; height: 20px; }
+@media (hover: hover) { .book-btn:not(:disabled):hover { border-color: var(--lilac); background: var(--paper); } }
+.book-btn:not(:disabled):active { transform: scale(0.94); }
+.book-btn:disabled { opacity: 0.4; cursor: default; }
+.book-play .icon { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+/* While the pages turn by themselves, a thin line fills until the next turn */
+.book-timer {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -10px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--plum);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.book.is-playing .book-timer { animation: book-timer var(--wait, 4500ms) linear both; }
+@keyframes book-timer { to { transform: scaleX(1); } }
+.book-count {
+  position: relative;
+  min-width: 96px;
+  margin: 0;
+  font: 500 0.8125rem/1 var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+/* A quiet hand-off to chapter two */
+.memo-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 48px 0 0;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+.memo-next-line {
+  width: 48px;
+  height: 1px;
+  background: var(--lilac);
+}
+
+/* Wider screens: a book lying open, pages turning around the spine */
+@media (min-width: 760px) {
+  .book {
+    --page-w: min(480px, calc((100vw - 64px) / 2));
+    --page-h: calc(var(--page-w) * 1.12);
+  }
+  .book-stage { width: calc(var(--page-w) * 2); height: var(--page-h); }
+  .book-body { transform: translateX(-25%); }
+  .sheet, .page-base { left: 50%; top: 0; width: 50%; height: 100%; }
+  .sheet {
+    transform-origin: 0 50%;
+    transform: rotateY(calc(var(--turned, 0) * -180deg));
+  }
+  .face-back { transform: rotateY(180deg); }
+  .face-front, .page-base { --spine: 90deg; }
+  .face-back { --spine: 270deg; }
+  .leaf { padding: 28px 24px 36px; gap: 6px; }
+  .page-photo { width: min(calc(var(--page-w) * 0.86), calc(var(--page-h) * 0.64 * var(--ar))); }
+  .page-base {
+    border-radius: 0 4px 4px 0;
+    box-shadow:
+      2px 0 0 #F3EDE6, 4px 0 0 #E9E1D8, 6px 0 0 #DFD5CA,
+      0 18px 40px rgb(var(--shadow-rgb) / 0.22);
+  }
+  .cover { border-radius: 0 6px 6px 0; gap: 14px; }
+  .book.is-in:not(.is-open) .sheet-cover .face-front { transform-origin: 0 50%; animation-name: peek-side; }
+  @keyframes peek-side {
+    0%, 68%, 100% { transform: rotateY(0deg); }
+    80% { transform: rotateY(-26deg); }
+    90% { transform: rotateY(2deg); }
+  }
+  .page-sign { gap: 18px; }
+  .memo-note { padding: 34px 28px 44px 44px; }
+  .memo-postmark { left: 16px; }
+}
+
+/* Reduced motion: pages change without the turning, and nothing moves by itself */
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .book-body, .face { transition: none; }
+  .book.is-in:not(.is-open) .sheet-cover .face-front { animation: none; }
+  .sheet.is-turning .face::after, .cover-border::after { animation: none; }
+  .js-reveal .book:not(.at-end) .sig, .book.at-end .sig { clip-path: none; animation: none; }
+  .js-reveal .journey .reveal { opacity: 1; transform: none; transition: none; }
+  .js-reveal .journey .reveal .photo img { filter: none; transition: none; }
+  .js-reveal .memo-note .memo-postmark { opacity: 0.88; animation: none; }
+}
+
+
+/* =========================================================
+   The evening: a timeline with a photo for each moment
+   ========================================================= */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 0 0 30px;
+  list-style: none;
+}
+/* The line draws down as the timeline comes into view */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: 1.5px;
+  background: linear-gradient(var(--lilac), var(--plum) 50%, var(--lilac));
+  transform-origin: top;
+}
+.js-reveal .timeline::before { transform: scaleY(0); }
+.js-reveal .timeline.is-in::before { transform: none; transition: transform 2000ms var(--ease-out); }
+
+.moment {
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+.moment::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -30px;
+  width: 13px;
+  height: 13px;
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  background: var(--plum);
+  box-shadow: 0 0 0 1px var(--lilac);
+}
+.js-reveal .moment.is-in::before { animation: dot-pop 600ms cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--d, 0ms) + 200ms) both; }
+@keyframes dot-pop { from { transform: scale(0); } }
+.time {
+  font: 500 0.8125rem/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  color: var(--plum);
+}
+.moment h3 {
+  margin: 2px 0 4px;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.moment p {
+  margin: 0;
+  font-size: 1.1875rem;
+  line-height: 1.55;
+}
+.moment-photo {
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 10px 28px rgb(var(--shadow-rgb) / 0.14);
+}
+
+/* Wider screens: the line runs down the middle, text and photo swap sides each moment */
+@media (min-width: 760px) {
+  .timeline { padding: 0; gap: 44px; }
+  .timeline::before { left: 50%; transform-origin: top; margin-left: -0.75px; }
+  .moment {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 64px;
+    align-items: center;
+  }
+  .moment h3 { font-size: 2.125rem; }
+  .moment p { font-size: 1.3125rem; }
+  .moment::before { top: 50%; left: 50%; margin: -6.5px 0 0 -6.5px; }
+  .moment-text { text-align: right; }
+  .moment:nth-child(even) .moment-text { order: 2; text-align: left; }
+  .moment-photo { aspect-ratio: 16 / 10; }
+}
+
+
+/* =========================================================
+   Favourites: one large photo, four around it
+   ========================================================= */
+.favourites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 168px;
+  gap: 10px;
+  width: 100%;
+}
+.bento .photo { height: 100%; box-shadow: 0 10px 28px rgb(var(--shadow-rgb) / 0.12); }
+.bento-hero { grid-column: span 2; grid-row: span 2; --pos: 50% 62%; }
+.bento .photo:nth-child(2) { --d: 90ms; }
+.bento .photo:nth-child(3) { --d: 180ms; }
+.bento .photo:nth-child(4) { --d: 270ms; }
+.bento .photo:nth-child(5) { --d: 360ms; }
+.favourites .pill-link { margin-top: 26px; }
+@media (min-width: 760px) {
+  .bento {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 230px;
+    gap: 14px;
+  }
+}
+
+
+/* =========================================================
+   The full album
+   ========================================================= */
+.all .section-head { margin-bottom: 18px; }
+
+
+/* =========================================================
+   Album chips: stay at the top while scrolling
+   ========================================================= */
+.album-nav {
+  position: sticky;
+  top: max(8px, env(safe-area-inset-top));
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.album-nav::-webkit-scrollbar { display: none; }
+.chip {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: var(--ink);
+  font: 500 0.875rem/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: background-color 250ms var(--ease-out), color 250ms var(--ease-out);
+}
+.chip .count {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  transition: color 250ms var(--ease-out);
+}
+@media (hover: hover) { .chip:hover { background: var(--bg); } }
+.chip[aria-current="true"] { background: var(--plum); color: var(--paper); }
+.chip[aria-current="true"] .count { color: rgba(255, 255, 255, 0.75); }
+
+
+/* =========================================================
+   Albums
+   ========================================================= */
+.albums:focus { outline: none; }
+.loading {
+  margin: 48px 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--ink-muted);
+}
+.album {
+  margin-top: 40px;
+  scroll-margin-top: 88px;          /* clear of the sticky chips */
+}
+.album-head {
+  margin-bottom: 18px;
+  text-align: center;
+}
+.album-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--lilac);
+}
+.album-rule::before, .album-rule::after {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+}
+.album-rule svg { width: 10px; height: 10px; fill: currentColor; }
+.album-rule::before { transform-origin: right; }
+.album-rule::after { transform-origin: left; }
+.album.is-in .album-rule::before,
+.album.is-in .album-rule::after { animation: rule-out 900ms var(--ease-out) 300ms both; }
+@keyframes rule-out { from { transform: scaleX(0); } }
+.js-reveal .album-head > * { opacity: 0; }
+.js-reveal .album.is-in .album-head > * { opacity: 1; animation: rise-in 800ms var(--ease-out) both; }
+.js-reveal .album.is-in .album-head > :nth-child(2) { animation-delay: 90ms; }
+.js-reveal .album.is-in .album-head > :nth-child(3) { animation-delay: 180ms; }
+.js-reveal .album.is-in .album-head > :nth-child(4) { animation-delay: 260ms; }
+.album-head h2 {
+  margin: 4px 0 0;
+  font: 500 clamp(1.625rem, 6vw, 2rem)/1.2 var(--font-serif);
+  color: var(--ink);
+}
+.album-note {
+  margin: 6px 0 0;
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+/* Masonry: each photo keeps its own shape */
+.grid {
+  columns: 2;
+  column-gap: 10px;
+}
+.tile {
+  --i: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  break-inside: avoid;
+  background: var(--bg-deep);
+  box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 0.12);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: box-shadow 300ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.tile img {
+  width: 100%;
+  height: auto;
+  transition: transform 700ms var(--ease-out);
+}
+@media (hover: hover) {
+  .tile:hover { box-shadow: 0 12px 28px rgb(var(--shadow-rgb) / 0.18); }
+  .tile:hover img { transform: scale(1.035); }
+}
+.tile:active { transform: scale(0.98); }
+.tile:focus-visible { outline-offset: 3px; }
+
+/* Tiles are laid down like prints on a table (a little tilt, settling flat), then the
+   photo develops: warm and washed out, coming into focus. A few at a time. */
+.js-reveal .tile {
+  opacity: 0;
+  transform: translateY(28px) rotate(var(--tilt, 0deg)) scale(0.96);
+}
+.js-reveal .tile img { filter: sepia(0.65) brightness(1.3) contrast(0.75) blur(3px); }
+.js-reveal .tile.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 700ms var(--ease-out) calc(var(--i) * 90ms),
+    transform 900ms cubic-bezier(0.2, 0.9, 0.3, 1.08) calc(var(--i) * 90ms),
+    box-shadow 300ms var(--ease-out);
+}
+.js-reveal .tile.is-in img {
+  filter: none;
+  transition: filter 1600ms var(--ease-out) calc(300ms + var(--i) * 90ms), transform 700ms var(--ease-out);
+}
+/* After the entrance: back to the quick press and hover feel */
+.js-reveal .tile.is-settled { transition: box-shadow 300ms var(--ease-out), transform 150ms var(--ease-out); }
+.js-reveal .tile.is-settled img { transition: transform 700ms var(--ease-out); }
+
+/* Video tiles: poster with a play button */
+.tile-video img { aspect-ratio: 16 / 9; object-fit: cover; }
+.tile-video .play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--plum);
+  box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 0.25);
+  transform: translate(-50%, -50%);
+}
+.tile-video .play .icon { width: 22px; height: 22px; fill: currentColor; stroke: none; margin-left: 3px; }
+.tile-title {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 28px 14px 12px;
+  background: linear-gradient(transparent, rgba(40, 28, 44, 0.7));
+  color: var(--paper);
+  font: 500 0.875rem/1.3 var(--font-sans);
+  text-align: left;
+}
+
+/* An album with nothing in it yet */
+.empty {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  border: 1px dashed var(--lilac);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  text-align: center;
+}
+.empty .icon { width: 30px; height: 30px; color: var(--plum); margin: 0 auto 10px; display: block; }
+.empty p { margin: 0; font-size: 1.125rem; font-style: italic; color: var(--ink-muted); }
+
+/* Up to four photos: an even row of same-shaped tiles (masonry would leave gaps) */
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  columns: auto;
+}
+.grid-row .tile { margin: 0; aspect-ratio: 4 / 5; }
+.grid-row .tile img { height: 100%; object-fit: cover; }
+.grid-row .tile-video img { aspect-ratio: auto; }
+
+@media (min-width: 640px) {
+  .grid { columns: 3; column-gap: 14px; }
+  .tile { margin-bottom: 14px; }
+  .grid-row { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 14px; }
+  .grid-row[style*="--n: 2"] { max-width: 640px; margin: 0 auto; }
+  .grid-row .tile { margin: 0; }
+}
+@media (min-width: 1024px) {
+  .grid { columns: 4; column-gap: 16px; }
+  .tile { margin-bottom: 16px; }
+  .grid-row { gap: 16px; }
+  .grid-row .tile { margin: 0; }
+}
+
+/* Petals drifting down all the time (made by memories.js), in the stage flowers' colours.
+   Each one sways as it falls (the outer span) and turns over in the air (the inner one).
+   Most fall behind the page; a few larger, softer ones fall in front for depth. */
+.petals {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.petals-front { z-index: 20; }
+.petal {
+  --tint: #F3C3CF;
+  --edge: #DE93A8;
+  position: absolute;
+  top: -48px;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 0.82);
+  opacity: 0;
+  animation: drift var(--fall) linear var(--delay) infinite;
+}
+.petal i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background:
+    linear-gradient(135deg, transparent 46%, rgba(255, 255, 255, 0.55) 50%, transparent 54%),
+    radial-gradient(120% 100% at 28% 22%, #FFFFFF 0%, var(--tint) 48%, var(--edge) 100%);
+  box-shadow: 0 3px 6px rgb(var(--shadow-rgb) / 0.18);
+  animation: flutter var(--flutter) ease-in-out var(--delay) infinite alternate;
+}
+.petal:nth-child(4n + 2) { --tint: #F8D5BE; --edge: #E6A57C; }   /* peach */
+.petal:nth-child(4n + 3) { --tint: #FFF4E2; --edge: #E8C98F; }   /* ivory */
+.petal:nth-child(4n + 4) { --tint: #E6D6EE; --edge: #B99BCB; }   /* lilac */
+.petals-front .petal { filter: blur(1.2px); }
+@keyframes drift {
+  0% { opacity: 0; transform: translate3d(0, 0, 0); }
+  6% { opacity: var(--alpha); }
+  25% { transform: translate3d(var(--sway), 27vh, 0); }
+  50% { transform: translate3d(calc(var(--sway) * -0.6 + var(--drift) * 0.5), 54vh, 0); }
+  75% { transform: translate3d(calc(var(--sway) * 0.8 + var(--drift) * 0.75), 81vh, 0); }
+  92% { opacity: var(--alpha); }
+  100% { opacity: 0; transform: translate3d(var(--drift), 112vh, 0); }
+}
+@keyframes flutter {
+  from { transform: rotate(var(--turn)) rotate3d(1, 0.35, 0, 0deg); }
+  to { transform: rotate(calc(var(--turn) + 120deg)) rotate3d(1, 0.35, 0, 75deg); }
+}
+
+/* =========================================================
+   Footer: the gold monogram from the stage
+   ========================================================= */
+.foot {
+  margin-top: var(--section-gap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.monogram {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 12px;
+  font: 400 clamp(4rem, 16vw, 5.5rem)/1.1 var(--font-display);
+  background: linear-gradient(110deg, var(--gold-3) 0%, var(--gold-2) 22%, var(--gold-1) 40%, var(--gold-2) 58%, var(--gold-3) 80%, var(--gold-2) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+.monogram .heart {
+  width: 0.28em;
+  height: 0.28em;
+  margin: 0.25em 0.06em 0;
+  fill: var(--gold-2);
+  animation: beat 2.4s ease-in-out infinite;
+}
+@keyframes shimmer { to { background-position: -250% 0; } }
+@keyframes beat {
+  0%, 60%, 100% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+}
+.foot-date {
+  margin: -6px 0 0;
+  font: 500 0.8125rem/1.4 var(--font-sans);
+  letter-spacing: 0.2em;
+  color: var(--ink-muted);
+}
+.sign {
+  margin: 8px 0 4px;
+  font: 400 2.25rem/1.25 var(--font-display);
+  color: var(--plum);
+}
+.credit {
+  max-width: 34ch;
+  margin: 10px 0 0;
+  font: 400 0.8125rem/1.5 var(--font-sans);
+  color: var(--ink-muted);
+}
+.credit a { color: var(--plum); }
+
+
+/* =========================================================
+   Our song: a floating play button
+   ========================================================= */
+.song {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 5px 18px 5px 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 28px rgb(var(--shadow-rgb) / 0.18);
+  color: var(--ink);
+  font: 500 0.875rem/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  touch-action: manipulation;
+  animation: rise-in 700ms var(--ease-out) 2600ms both;
+  transition: padding 300ms var(--ease-out), transform 150ms var(--ease-out);
+}
+.song:active { transform: scale(0.96); }
+.song-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--plum);
+  color: var(--paper);
+}
+.song-icon .icon { width: 18px; height: 18px; }
+/* A soft ring invites the first tap */
+.song[aria-pressed="false"] .song-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--plum);
+  border-radius: 50%;
+  animation: ring 2.6s var(--ease-out) 3.2s infinite;
+  opacity: 0;
+}
+@keyframes ring {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+.eq {
+  display: none;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+}
+.eq i {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: eq 900ms ease-in-out infinite alternate;
+}
+.eq i:nth-child(2) { animation-duration: 650ms; animation-delay: -200ms; }
+.eq i:nth-child(3) { animation-duration: 1100ms; animation-delay: -450ms; }
+@keyframes eq {
+  from { transform: scaleY(0.25); }
+  to { transform: scaleY(1); }
+}
+.song[aria-pressed="true"] .song-icon .icon { display: none; }
+.song[aria-pressed="true"] .eq { display: flex; }
+/* Once playing, the label tucks away and only the round button stays */
+.song.is-compact { padding-right: 5px; gap: 0; }
+.song.is-compact .song-label { display: none; }
+
+
+/* =========================================================
+   Viewer: one photo or video, full screen
+   ========================================================= */
+html.viewer-open { overflow: hidden; }
+.viewer {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #201623;               /* the plum ink, near black */
+  color: var(--paper);
+}
+.viewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  animation: viewer-in 260ms var(--ease-out);
+}
+.viewer::backdrop { background: transparent; }
+@keyframes viewer-in { from { opacity: 0; transform: scale(0.97); } }
+
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+}
+.viewer-count {
+  flex: 1;
+  margin: 0;
+  font: 500 0.8125rem/1.3 var(--font-sans);
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.viewer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--paper);
+  font: 500 0.875rem/1 var(--font-sans);
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 200ms var(--ease-out);
+}
+.viewer-btn .icon { width: 20px; height: 20px; }
+@media (hover: hover) { .viewer-btn:hover { background: rgba(255, 255, 255, 0.2); } }
+.viewer-btn[hidden] { display: none; }
+.viewer :focus-visible { outline-color: var(--paper); }
+
+.viewer-stage {
+  --pad: 12px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: 0 var(--pad);
+  overflow: hidden;
+  touch-action: pinch-zoom;          /* our swipes, the phone's pinch-to-zoom */
+}
+/* Fills the stage and letterboxes, so swapping the thumbnail for the sharp copy never resizes it */
+.viewer-stage img {
+  position: absolute;
+  inset: 0 var(--pad);
+  width: calc(100% - 2 * var(--pad));
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 220ms var(--ease-out);
+}
+.viewer-stage iframe,
+.viewer-stage video {
+  width: min(100%, 960px);
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 8px;
+  background: #000;
+}
+.viewer-caption {
+  max-width: 60ch;
+  min-height: 1.4em;
+  margin: 0 auto;
+  padding: 12px 20px max(16px, env(safe-area-inset-bottom));
+  font-size: 1.0625rem;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.viewer-nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--paper);
+  cursor: pointer;
+  transform: translateY(-50%);
+  touch-action: manipulation;
+  transition: background-color 200ms var(--ease-out), opacity 200ms var(--ease-out);
+}
+.viewer-nav .icon { width: 24px; height: 24px; }
+.viewer-prev { left: max(8px, env(safe-area-inset-left)); }
+.viewer-next { right: max(8px, env(safe-area-inset-right)); }
+@media (hover: hover) { .viewer-nav:hover { background: rgba(255, 255, 255, 0.26); } }
+.viewer-nav[hidden] { display: none; }
+@media (min-width: 900px) {
+  .viewer-stage { --pad: 80px; }
+  .viewer-prev { left: 20px; }
+  .viewer-next { right: 20px; }
+}
