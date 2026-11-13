@@ -21,6 +21,7 @@ const PETAL_COUNT = 14;
 const MUSIC_VOLUME = 0.6;
 const MUSIC_OUT_MS = 1500;   // fade-out when the envelope comes back
 const MUSIC_HINT_MS = 4000;
+const MUSIC_KEY = 'mz-music';  // "on" / "off" for this visit; the memories page follows it
 
 
 /* ---------- 1. Personal greeting ---------- */
@@ -390,9 +391,15 @@ function setUpMusic() {
     rampTo(0, 300, () => audio.pause());
   }
 
+  // Shared with memories.js: a guest who had the music on hears that page's song when they get there
+  const rememberMusic = (on) => {
+    try { window.sessionStorage.setItem(MUSIC_KEY, on ? 'on' : 'off'); } catch { /* storage blocked */ }
+  };
+
   function setWanted(on) {
     wanted = on;
     turnedOff = !on;
+    rememberMusic(on);
     status.textContent = on ? 'Music on.' : 'Music off.';
   }
 
@@ -451,11 +458,26 @@ function setUpMusic() {
 
   button.hidden = false;
 
+  // Leaving for the memories page: let the song fade instead of stopping dead
+  document.querySelectorAll('a[href="/memories"]').forEach((link) => link.addEventListener('click', (event) => {
+    if (audio.paused || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    let gone = false;
+    const go = () => {
+      if (gone) return;
+      gone = true;
+      window.location.href = link.href;
+    };
+    rampTo(0, 450, go);
+    setTimeout(go, 600);                    // iOS: volume is fixed, so no ramp to wait for
+  }));
+
   return {
     /* Called from the seal tap: the one moment a browser lets sound start by itself */
     startWithIntro() {
       if (wanted || turnedOff) return;
       wanted = true;
+      rememberMusic(true);
       play();
       setTimeout(() => { if (wanted) hint(); }, CARD_DELAY_MS + CARD_MS);
     },

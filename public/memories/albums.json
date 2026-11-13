@@ -1,0 +1,188 @@
+{
+  "albums": [
+    {
+      "id": "signing",
+      "title": "Signing day",
+      "note": "The day we signed our names",
+      "items": [
+        {
+          "type": "photo",
+          "source": "01-image-11.jpg",
+          "thumb": "/public/memories/signing/signing-01-720.webp",
+          "full": "/public/memories/signing/signing-01-1600.webp",
+          "width": 1600,
+          "height": 1067,
+          "alt": "Mintzu and Zwe signing their marriage certificate at a wooden table, with their families looking on.",
+          "caption": "Pen to paper"
+        },
+        {
+          "type": "photo",
+          "source": "02-image-12.jpg",
+          "thumb": "/public/memories/signing/signing-02-720.webp",
+          "full": "/public/memories/signing/signing-02-1600.webp",
+          "width": 1600,
+          "height": 1067,
+          "alt": "Zwe smiling across the table at Mintzu as they both sign, papers spread in front of them.",
+          "caption": "Signing, and smiling"
+        },
+        {
+          "type": "photo",
+          "source": "03-image-13.jpg",
+          "thumb": "/public/memories/signing/signing-03-720.webp",
+          "full": "/public/memories/signing/signing-03-1600.webp",
+          "width": 1600,
+          "height": 1067,
+          "alt": "Mintzu and Zwe receiving their signed marriage certificate together.",
+          "caption": "Official, and ours"
+        },
+        {
+          "type": "photo",
+          "source": "04-image-14.jpg",
+          "thumb": "/public/memories/signing/signing-04-720.webp",
+          "full": "/public/memories/signing/signing-04-1600.webp",
+          "width": 1600,
+          "height": 1067,
+          "alt": "Mintzu and Zwe outside among the trees, smiling at each other, each holding a white Z+M certificate folder.",
+          "caption": "Certificates in hand"
+        },
+        {
+          "type": "photo",
+          "source": "05-image-15.jpg",
+          "thumb": "/public/memories/signing/signing-05-720.webp",
+          "full": "/public/memories/signing/signing-05-1600.webp",
+          "width": 1067,
+          "height": 1600,
+          "alt": "Mintzu and Zwe standing side by side under the trees, reading their certificates.",
+          "caption": "Reading every word"
+        },
+        {
+          "type": "photo",
+          "source": "06-image-16.jpg",
+          "thumb": "/public/memories/signing/signing-06-720.webp",
+          "full": "/public/memories/signing/signing-06-1600.webp",
+          "width": 1067,
+          "height": 1600,
+          "alt": "Zwe with his arm around Mintzu, both laughing and holding up their marriage certificates.",
+          "caption": "Husband & wife, on paper"
+        }
+      ]
+    },
+    {
+      "id": "couple",
+      "title": "Mr & Mrs",
+      "note": "Rings on, in front of our monogram",
+      "items": [
+        {
+          "type": "photo",
+          "source": "01-ring-exchange.png",
+          "thumb": "/public/memories/couple/couple-01-720.webp",
+          "full": "/public/memories/couple/couple-01-1600.webp",
+          "width": 1080,
+          "height": 1441,
+          "alt": "Zwe slipping the ring onto Mintzu's finger on the stage, under the gold MZ monogram and flowers."
+        },
+        {
+          "type": "photo",
+          "source": "02-showing-rings.png",
+          "thumb": "/public/memories/couple/couple-02-720.webp",
+          "full": "/public/memories/couple/couple-02-1600.webp",
+          "width": 1080,
+          "height": 1440,
+          "alt": "Mintzu and Zwe smiling on the stage, both holding up their hands to show their new rings."
+        }
+      ]
+    },
+    {
+      "id": "bride",
+      "title": "The bride",
+      "note": "In the garden, just before the dinner",
+      "items": [
+        {
+          "type": "photo",
+          "source": "1793501086189.jpg",
+          "thumb": "/public/memories/bride/bride-01-720.webp",
+          "full": "/public/memories/bride/bride-01-1600.webp",
+          "width": 1200,
+          "height": 1600,
+          "alt": "Mintzu in her white ball gown, holding a bouquet among the white chairs in the lantern-lit garden."
+        },
+        {
+          "type": "photo",
+          "source": "1793501086316.jpg",
+          "thumb": "/public/memories/bride/bride-02-720.webp",
+          "full": "/public/memories/bride/bride-02-1600.webp",
+          "width": 1200,
+          "height": 1600,
+          "alt": "Mintzu in her wedding gown and veil, smiling in the garden under strings of lights."
+        },
+        {
+          "type": "photo",
+          "source": "1793501086397.jpg",
+          "thumb": "/public/memories/bride/bride-03-720.webp",
+          "full": "/public/memories/bride/bride-03-1600.webp",
+          "width": 1200,
+          "height": 1600,
+          "alt": "Mintzu standing among the guests' chairs, flowers and fairy lights around her."
+        },
+        {
+          "type": "photo",
+          "source": "1793501086586.jpg",
+          "thumb": "/public/memories/bride/bride-04-720.webp",
+          "full": "/public/memories/bride/bride-04-1600.webp",
+          "width": 1200,
+          "height": 1600,
+          "alt": "Mintzu looking out over the garden at dusk, bouquet in hand."
+        }
+      ]
+    },
+    {
+      "id": "venue",
+      "title": "The Memorial Venue",
+      "note": "Flowers, lights and the stage",
+      "items": [
+        {
+          "type": "photo",
+          "source": "1793501086797.jpg",
+          "thumb": "/public/memories/venue/venue-01-720.webp",
+          "full": "/public/memories/venue/venue-01-1600.webp",
+          "width": 1600,
+          "height": 1200,
+          "alt": "The stage: draped white arches, peach and cream flowers and the couple's initials."
+        },
+        {
+          "type": "photo",
+          "source": "1793501086971.jpg",
+          "thumb": "/public/memories/venue/venue-02-720.webp",
+          "full": "/public/memories/venue/venue-02-1600.webp",
+          "width": 1202,
+          "height": 1600,
+          "alt": "The entrance to The Memorial, lined with flowers and framed photos of the couple."
+        },
+        {
+          "type": "photo",
+          "source": "1793501087030.jpg",
+          "thumb": "/public/memories/venue/venue-03-720.webp",
+          "full": "/public/memories/venue/venue-03-1600.webp",
+          "width": 1200,
+          "height": 1600,
+          "alt": "The flower-lined path to The Memorial's arch, with the welcome sign beside it."
+        },
+        {
+          "type": "photo",
+          "source": "1793501087177.jpg",
+          "thumb": "/public/memories/venue/venue-04-720.webp",
+          "full": "/public/memories/venue/venue-04-1600.webp",
+          "width": 1600,
+          "height": 1200,
+          "alt": "The welcome board: \"Welcome to our wedding\" with a collage of the couple's photos and flowers."
+        }
+      ]
+    },
+    {
+      "id": "videos",
+      "title": "Videos",
+      "note": "Films from the evening",
+      "items": []
+    }
+  ]
+}
