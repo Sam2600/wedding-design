@@ -613,6 +613,7 @@ html.intro-on { overflow: hidden; }
   touch-action: manipulation;
   transition: border-color 200ms var(--ease-out), background-color 200ms var(--ease-out);
 }
+.memories-link[hidden] { display: none; }
 .memories-link .icon { width: 20px; height: 20px; color: var(--plum); }
 @media (hover: hover) { .memories-link:hover { border-color: var(--lilac); background: var(--paper); } }
 .replay {
