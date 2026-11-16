@@ -1,23 +1,30 @@
 # Mintzu & Zwe · Wedding invitation
 
-Live at <https://mzforever.wedding/> (the invitation) and <https://memories.mzforever.wedding/> (the
-memories page) — Vercel; domain from Z.com, DNS records there; a spare copy runs on Render from
-`render.yaml`. The old <https://mom-wedding-design.vercel.app/> redirects to it, so QR codes made
-before the domain still work. Guests scan the QR, land on a sealed envelope, tap the seal and the
-printed card comes out. No build step and no outside requests: fonts, scripts and images are all in
-this repo.
+Live at <https://mzforever.wedding/> (the wedding reception invitation) and
+<https://memories.mzforever.wedding/> (the memories page) — Vercel; domain from Z.com, DNS records
+there; a spare copy runs on Render from `render.yaml`. The old <https://mom-wedding-design.vercel.app/>
+redirects to it, so QR codes made before the domain still work. Guests scan the QR, land on a sealed
+envelope, tap the seal and the printed card comes out. No build step and no outside requests: fonts,
+scripts and images are all in this repo.
+
+The first invitation, for the wedding dinner on 31 October 2026, is kept as it was: live at
+<https://mzforever.wedding/invitation>, and in git as the tag `dinner-invitation` (the repo as it
+stood while it was the home page).
 
 ## Layout
 
 ```
-invitation.html            the invitation (envelope → card → details)
+reception.html             the reception invitation, the home page (envelope → card → countdown, programme, gallery)
+invitation.html            the dinner invitation, kept at /invitation (envelope → card → details)
 qr.html                    makes the QR and the poster for sharing / printing
 memories.html              keepsake after the wedding: thank-you, the evening, favourites, full album
 public/
   css/base.css             fonts, palette, base styles (shared)
+  css/reception.css        styles for reception.html
   css/invitation.css       styles for invitation.html
   css/qr.css               styles for qr.html
   css/memories.css         styles for memories.html
+  js/reception.js          greeting and language, calendar link, card, envelope, music, countdown, gallery
   js/invitation.js         greeting, calendar link, card turning, envelope animation
   js/qr.js                 QR drawing and downloads
   js/memories.js           albums, album chips, full-screen photo/video viewer
@@ -25,29 +32,35 @@ public/
   fonts/                   Cormorant Garamond, Great Vibes, Jost, Pinyon Script (woff2, SIL OFL licences alongside)
   audio/                   background music: "Wedding Music" by andriih, Pixabay (Pixabay Content License)
   images/                  card + couple photos (jpg + webp), seal, sprig, icons, favicon, link preview
+  images/reception/        the reception's card, photos, gallery and link preview
   vendor/                  qrcode-generator 1.4.4 (MIT)
-  mintzu-zwe-wedding.ics   calendar event
+  mintzu-zwe-reception.ics calendar event: the reception
+  mintzu-zwe-wedding.ics   calendar event: the dinner
 tools/add-memories.py      resizes new photos and adds them to an album
 memories-inbox/            full-size originals (not in git: back this folder up yourself)
-vercel.json                which page each address shows (see "Two addresses")
-serve.json                 the same for `npx serve`: / is the invitation
+vercel.json                which page each address shows (see "Addresses")
+serve.json                 the same for `npx serve`: / is the reception
 ```
 
-## Two addresses
+## Addresses
 
-One Vercel project serves both sites; `vercel.json` picks the page by the address asked for:
+One Vercel project serves everything; `vercel.json` picks the page by the address asked for:
 
 | Address                                | Shows                                          |
 | -------------------------------------- | ---------------------------------------------- |
-| `mzforever.wedding/`                   | the invitation (`invitation.html`)             |
+| `mzforever.wedding/`                   | the reception invitation (`reception.html`)    |
+| `mzforever.wedding/invitation`         | the dinner invitation (`invitation.html`)      |
 | `mzforever.wedding/qr`                 | the QR page                                    |
 | `mzforever.wedding/memories`           | redirects to `memories.mzforever.wedding/`     |
 | `memories.mzforever.wedding/`          | the memories page (`memories.html`)            |
 
-The invitation is `invitation.html`, not `index.html`, on purpose: Vercel serves an `index.html`
-for `/` before it looks at the rewrites, and the memories address would then show the invitation.
-The rewrites name the pages without `.html` (`/invitation`, `/memories`): with `cleanUrls` that is
-the only path Vercel serves them at, and a `.html` destination answers 404.
+Any other path on `mzforever.wedding` shows the reception too. To make another page the home page,
+change the last rewrite's `destination` in `vercel.json` (and `serve.json`, `render.yaml`).
+
+There is no `index.html`, on purpose: Vercel serves an `index.html` for `/` before it looks at the
+rewrites, and the memories address would then show it. The rewrites name the pages without `.html`
+(`/reception`, `/memories`): with `cleanUrls` that is the only path Vercel serves them at, and a
+`.html` destination answers 404.
 
 The links between the two pages carry the full live addresses. On any other address (a local
 preview, a Vercel preview link, the Render copy) the scripts point them at `/memories` and `/`
@@ -66,8 +79,9 @@ Asset paths start with `/`, so serve the folder instead of opening the file dire
 npx serve . -l 5173             # or: python -m http.server 5173
 ```
 
-Then the invitation is <http://localhost:5173/> and the memories page <http://localhost:5173/memories>.
-Python's server knows neither `serve.json` nor clean URLs: open `/invitation.html` and
+Then the reception is <http://localhost:5173/>, the dinner invitation
+<http://localhost:5173/invitation> and the memories page <http://localhost:5173/memories>. Python's
+server knows neither `serve.json` nor clean URLs: open `/reception.html`, `/invitation.html` and
 `/memories.html` there.
 
 Use `npx serve` when testing on an iPhone: iOS Safari only plays the music from a server that
@@ -75,8 +89,9 @@ answers range requests, and Python's server does not (Vercel does).
 
 ## Changing things
 
-- **Wording, names, venue:** `invitation.html`. Date or venue changes also need the `.ics` file, the
-  Google Calendar link (`data-google` on `#add-calendar`) and the poster text in `public/js/qr.js`.
+- **Wording, names, venue:** `reception.html` for the reception (`invitation.html` for the dinner).
+  Date or venue changes also need that page's `.ics` file, its Google Calendar link (`data-google` on
+  `#add-calendar`) and the poster text in `public/js/qr.js` (which still describes the dinner).
 - **Card or photo:** replace the `.jpg` in `public/images/` and its `.webp` copy, keeping the size
   (the layout assumes the card's 1143 × 1600 proportions).
 - **Music:** replace `public/audio/wedding-piano.mp3` (or change `src` on `#music` in
