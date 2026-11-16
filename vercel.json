@@ -14,11 +14,11 @@
       {
          "source": "/(.*)",
          "has": [{ "type": "host", "value": "memories.mzforever.wedding" }],
-         "destination": "/memories.html"
+         "destination": "/memories"
       },
       {
          "source": "/(.*)",
-         "destination": "/invitation.html"
+         "destination": "/invitation"
       }
    ],
    "headers": [
