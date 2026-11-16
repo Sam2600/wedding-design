@@ -91,7 +91,7 @@ answers range requests, and Python's server does not (Vercel does).
 
 - **Wording, names, venue:** `reception.html` for the reception (`invitation.html` for the dinner).
   Date or venue changes also need that page's `.ics` file, its Google Calendar link (`data-google` on
-  `#add-calendar`) and the poster text in `public/js/qr.js` (which still describes the dinner).
+  `#add-calendar`) and the poster text in `public/js/qr.js` (`drawPoster()`, worded for the reception).
 - **Card or photo:** replace the `.jpg` in `public/images/` and its `.webp` copy, keeping the size
   (the layout assumes the card's 1143 × 1600 proportions).
 - **Music:** replace `public/audio/wedding-piano.mp3` (or change `src` on `#music` in

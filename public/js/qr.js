@@ -1,6 +1,7 @@
 /*
  * QR page (qr.html): draws a styled QR for the invitation link and offers it as
- *   - a 1080 × 1350 poster (PNG) for social posts,
+ *   - a 1080 × 1350 poster (PNG) for social posts, worded for the wedding reception
+ *     (the dinner's poster is in the git tag dinner-invitation),
  *   - the code alone (PNG, 1600 px),
  *   - the code alone (SVG) for print.
  * The QR matrix comes from qrcode-generator (public/vendor), loaded before this module.
@@ -229,14 +230,14 @@ function drawPoster(qr) {
   ctx.textAlign = 'center';
   ctx.fillStyle = COLORS.muted;
   ctx.font = '500 25px Jost, sans-serif';
-  spacedText(ctx, 'YOU ARE INVITED TO THE WEDDING OF', W / 2, 196, 5.5);
+  spacedText(ctx, 'YOU ARE INVITED TO THE WEDDING RECEPTION OF', W / 2, 196, 5.5);
 
   ctx.font = '400 132px "Great Vibes", cursive';
   colouredLine(ctx, [['Mintzu ', COLORS.ink], ['&', COLORS.lilac], [' Zwe', COLORS.ink]], W / 2, 336);
 
   ctx.fillStyle = COLORS.muted;
   ctx.font = '500 25px Jost, sans-serif';
-  spacedText(ctx, 'SATURDAY  ·  31 OCTOBER 2026', W / 2, 410, 5.5);
+  spacedText(ctx, 'SUNDAY  ·  22 NOVEMBER 2026', W / 2, 410, 5.5);
 
   // The code on a white tile
   const tile = 560;
@@ -259,7 +260,7 @@ function drawPoster(qr) {
   // Jost, not Cormorant: canvas cannot switch Cormorant's old-style figures to lining ones
   ctx.fillStyle = COLORS.muted;
   ctx.font = '400 25px Jost, sans-serif';
-  ctx.fillText('6 PM – 9 PM  ·  The Memorial Venue, Hlaing Township, Yangon', W / 2, 1160);
+  ctx.fillText('9:00 – 11:00 AM  ·  Myo Lal Hall', W / 2, 1160);
 
   return canvas;
 }
