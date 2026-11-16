@@ -9,6 +9,7 @@
  *      wants a tap first, with the guest's first tap) unless the guest turned music off
  *   6. Section by section: a short scroll glides on to the next section
  *   7. Signing day: a book made like our certificate folder, its pages to turn
+ *   8. Links back to the invitation (another address on the live site)
  */
 
 const root = document.documentElement;
@@ -18,8 +19,9 @@ const MANIFEST = '/public/memories/albums.json';
 const TILE_SIZES = '(min-width: 1120px) 262px, (min-width: 1024px) 24vw, (min-width: 640px) 32vw, 48vw';
 const SWIPE_PX = 50;         // sideways distance that counts as "next" / "previous"
 const CLOSE_PX = 90;         // downward distance that closes the viewer
-const MUSIC_KEY = 'mz-music'; // "on" / "off" for this visit, shared with invitation.js
+const MUSIC_KEY = 'mz-music'; // "on" / "off" for this visit; the invitation hands it over as ?music=
 const SONG_VOLUME = 0.7;
+const LIVE_HOST = /(^|\.)mzforever\.wedding$/;
 
 function make(tag, props = {}, children = []) {
   const node = Object.assign(document.createElement(tag), props);
@@ -446,6 +448,17 @@ function setUpSong() {
     try { window.sessionStorage.setItem(MUSIC_KEY, on ? 'on' : 'off'); } catch { /* storage blocked */ }
   };
 
+  /* The invitation is another address on the live site, so it cannot reach this page's storage:
+     its link carries the guest's music choice (?music=on|off). Keep it for this visit and take it
+     out of the address bar, so a shared link does not carry it on. */
+  const address = new URL(window.location.href);
+  const handed = address.searchParams.get('music');
+  if (handed !== null) {
+    if (handed === 'on' || handed === 'off') remember(handed === 'on');
+    address.searchParams.delete('music');
+    window.history.replaceState(window.history.state, '', address.href);
+  }
+
   // A gentle fade in (iPhones keep the volume fixed; there the track simply starts)
   function fadeIn() {
     cancelAnimationFrame(fade);
@@ -851,6 +864,18 @@ function setUpBook() {
 }
 
 
+/* ---------- 8. Back to the invitation ---------- */
+
+/* On the live site the invitation is mzforever.wedding, the address written in the links. A local
+   preview, a Vercel preview link or the Render copy serves both pages from one address: there the
+   invitation is simply /. */
+function linkInvitation() {
+  if (LIVE_HOST.test(window.location.hostname)) return;
+  document.querySelectorAll('a[data-invitation]').forEach((link) => { link.href = '/'; });
+}
+
+
+linkInvitation();
 driftPetals();
 setUpSong();
 settleOnSections();

@@ -1,4 +1,4 @@
-/* Shared by index.html and qr.html: fonts, palette and base element styles.
+/* Shared by every page (invitation, memories, qr): fonts, palette and base element styles.
    Fonts are self-hosted (latin subset from Google Fonts, SIL OFL; licences in ../fonts). */
 
 @font-face {

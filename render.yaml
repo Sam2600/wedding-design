@@ -1,5 +1,6 @@
-# Render Blueprint: the same static site as vercel.json. There is no build step; the
-# repo root is published as-is because asset paths start with /public/.
+# Render Blueprint: the same static site as vercel.json, but on one address: here the memories page
+# is /memories, not a subdomain. There is no build step; the repo root is published as-is because
+# asset paths start with /public/.
 services:
   - type: web
     name: mom-wedding-design
@@ -15,7 +16,7 @@ services:
         destination: /memories.html
       - type: rewrite
         source: /*
-        destination: /index.html
+        destination: /invitation.html
     headers:
       - path: /public/mintzu-zwe-wedding.ics
         name: Content-Type

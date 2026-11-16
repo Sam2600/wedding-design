@@ -1,12 +1,13 @@
 /*
- * Invitation page (index.html)
+ * Invitation page (invitation.html)
  *   1. Personal greeting from ?to=Name
  *   2. "Add to calendar": Google Calendar on Android, the .ics file everywhere else
  *   3. Turning the card over (invitation ⇄ couple photo); on arrival the photo shows first
  *   4. The envelope: the seal lifts off, the flap opens, the card rises out and comes forward
  *   5. Background music: starts with the seal tap, a corner button turns it off and on
+ *   6. The link to the memories page (its own address on the live site)
  *
- * The inline script in index.html's <head> adds html.intro-on before first paint, so the
+ * The inline script in invitation.html's <head> adds html.intro-on before first paint, so the
  * envelope shows on every visit, a refresh included.
  */
 
@@ -21,7 +22,7 @@ const PETAL_COUNT = 14;
 const MUSIC_VOLUME = 0.6;
 const MUSIC_OUT_MS = 1500;   // fade-out when the envelope comes back
 const MUSIC_HINT_MS = 4000;
-const MUSIC_KEY = 'mz-music';  // "on" / "off" for this visit; the memories page follows it
+const LIVE_HOST = /(^|\.)mzforever\.wedding$/;
 
 
 /* ---------- 1. Personal greeting ---------- */
@@ -391,10 +392,9 @@ function setUpMusic() {
     rampTo(0, 300, () => audio.pause());
   }
 
-  // Shared with memories.js: a guest who had the music on hears that page's song when they get there
-  const rememberMusic = (on) => {
-    try { window.sessionStorage.setItem(MUSIC_KEY, on ? 'on' : 'off'); } catch { /* storage blocked */ }
-  };
+  // Handed to the memories page: a guest who had the music on hears that page's song when they get there
+  let musicChoice = null;    // "on" / "off" once the music has started or the guest has chosen
+  const rememberMusic = (on) => { musicChoice = on ? 'on' : 'off'; };
 
   function setWanted(on) {
     wanted = on;
@@ -458,8 +458,15 @@ function setUpMusic() {
 
   button.hidden = false;
 
-  // Leaving for the memories page: let the song fade instead of stopping dead
-  document.querySelectorAll('a[href="/memories"]').forEach((link) => link.addEventListener('click', (event) => {
+  /* Leaving for the memories page. On the live site it has its own address, so it cannot read this
+     page's storage: the guest's music choice goes along in the link (?music=on|off). While the
+     song plays, let it fade instead of stopping dead. */
+  document.querySelectorAll('a[data-memories]').forEach((link) => link.addEventListener('click', (event) => {
+    if (musicChoice) {
+      const url = new URL(link.href);
+      url.searchParams.set('music', musicChoice);
+      link.href = url.href;                 // the browser follows the link after this handler, a new tab included
+    }
     if (audio.paused || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
     event.preventDefault();
     let gone = false;
@@ -497,6 +504,17 @@ function setUpMusic() {
 }
 
 
+/* ---------- 6. The memories link ---------- */
+
+/* On the live site the memories page is memories.mzforever.wedding, the address written in the
+   link. A local preview, a Vercel preview link or the Render copy serves it here, at /memories. */
+function linkMemories() {
+  if (LIVE_HOST.test(window.location.hostname)) return;
+  document.querySelectorAll('a[data-memories]').forEach((link) => { link.href = '/memories'; });
+}
+
+
 greetGuest();
 useGoogleCalendarOnAndroid();
+linkMemories();
 setUpEnvelope(setUpCard(), setUpMusic());
