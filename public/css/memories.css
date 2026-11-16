@@ -91,6 +91,7 @@ html { scroll-behavior: smooth; }
   touch-action: manipulation;
   transition: border-color 200ms var(--ease-out), background-color 200ms var(--ease-out), transform 150ms var(--ease-out);
 }
+.back[hidden], .pill-link[hidden] { display: none; }
 .back { font-size: 0.875rem; }
 .back .icon, .pill-link .icon { width: 18px; height: 18px; color: var(--plum); }
 @media (hover: hover) {
