@@ -1,20 +1,21 @@
 # Mintzu & Zwe · Wedding invitation
 
-Live at <https://mzforever.wedding/> (Vercel; domain from Z.com, DNS records there; a spare copy runs
-on Render from `render.yaml`). The old <https://mom-wedding-design.vercel.app/> redirects to it, so
-QR codes made before the domain still work. Guests scan the QR, land on a sealed
-envelope, tap the seal and the printed card comes out. No build step and no outside requests: fonts,
-scripts and images are all in this repo.
+Live at <https://mzforever.wedding/> (the invitation) and <https://memories.mzforever.wedding/> (the
+memories page) — Vercel; domain from Z.com, DNS records there; a spare copy runs on Render from
+`render.yaml`. The old <https://mom-wedding-design.vercel.app/> redirects to it, so QR codes made
+before the domain still work. Guests scan the QR, land on a sealed envelope, tap the seal and the
+printed card comes out. No build step and no outside requests: fonts, scripts and images are all in
+this repo.
 
 ## Layout
 
 ```
-index.html                 the invitation (envelope → card → details)
+invitation.html            the invitation (envelope → card → details)
 qr.html                    makes the QR and the poster for sharing / printing
-memories.html              keepsake after the wedding: thank-you, the evening, favourites, full album (/memories)
+memories.html              keepsake after the wedding: thank-you, the evening, favourites, full album
 public/
   css/base.css             fonts, palette, base styles (shared)
-  css/invitation.css       styles for index.html
+  css/invitation.css       styles for invitation.html
   css/qr.css               styles for qr.html
   css/memories.css         styles for memories.html
   js/invitation.js         greeting, calendar link, card turning, envelope animation
@@ -28,7 +29,32 @@ public/
   mintzu-zwe-wedding.ics   calendar event
 tools/add-memories.py      resizes new photos and adds them to an album
 memories-inbox/            full-size originals (not in git: back this folder up yourself)
+vercel.json                which page each address shows (see "Two addresses")
+serve.json                 the same for `npx serve`: / is the invitation
 ```
+
+## Two addresses
+
+One Vercel project serves both sites; `vercel.json` picks the page by the address asked for:
+
+| Address                                | Shows                                          |
+| -------------------------------------- | ---------------------------------------------- |
+| `mzforever.wedding/`                   | the invitation (`invitation.html`)             |
+| `mzforever.wedding/qr`                 | the QR page                                    |
+| `mzforever.wedding/memories`           | redirects to `memories.mzforever.wedding/`     |
+| `memories.mzforever.wedding/`          | the memories page (`memories.html`)            |
+
+The invitation is `invitation.html`, not `index.html`, on purpose: Vercel serves an `index.html`
+for `/` before it looks at the rewrites, and the memories address would then show the invitation.
+
+The links between the two pages carry the full live addresses. On any other address (a local
+preview, a Vercel preview link, the Render copy) the scripts point them at `/memories` and `/`
+instead, so everything stays on that one address. The guest's music choice cannot cross from one
+address to the other in storage, so the invitation's link carries it as `?music=on` or `off`.
+
+Setting up the subdomain (once): in the Vercel project, Settings → Domains, add
+`memories.mzforever.wedding`; then at Z.com add the DNS record Vercel shows for it (a `CNAME` named
+`memories`). Do this before deploying the redirect, or `mzforever.wedding/memories` leads nowhere.
 
 ## Preview locally
 
@@ -38,17 +64,21 @@ Asset paths start with `/`, so serve the folder instead of opening the file dire
 npx serve . -l 5173             # or: python -m http.server 5173
 ```
 
+Then the invitation is <http://localhost:5173/> and the memories page <http://localhost:5173/memories>.
+Python's server knows neither `serve.json` nor clean URLs: open `/invitation.html` and
+`/memories.html` there.
+
 Use `npx serve` when testing on an iPhone: iOS Safari only plays the music from a server that
 answers range requests, and Python's server does not (Vercel does).
 
 ## Changing things
 
-- **Wording, names, venue:** `index.html`. Date or venue changes also need the `.ics` file, the
+- **Wording, names, venue:** `invitation.html`. Date or venue changes also need the `.ics` file, the
   Google Calendar link (`data-google` on `#add-calendar`) and the poster text in `public/js/qr.js`.
 - **Card or photo:** replace the `.jpg` in `public/images/` and its `.webp` copy, keeping the size
   (the layout assumes the card's 1143 × 1600 proportions).
 - **Music:** replace `public/audio/wedding-piano.mp3` (or change `src` on `#music` in
-  `index.html`, and the lock-screen title in `public/js/invitation.js`). Keep it small (~2 MB,
+  `invitation.html`, and the lock-screen title in `public/js/invitation.js`). Keep it small (~2 MB,
   96 kbps MP3). It starts when the guest taps the seal; the round button bottom-right turns it
   off and on.
 - **Colours:** `public/css/base.css` (`:root`). The QR reads its colours from there too.

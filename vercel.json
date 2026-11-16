@@ -2,10 +2,23 @@
    "$schema": "https://openapi.vercel.sh/vercel.json",
    "outputDirectory": ".",
    "cleanUrls": true,
+   "redirects": [
+      {
+         "source": "/memories",
+         "has": [{ "type": "host", "value": "mzforever.wedding" }],
+         "destination": "https://memories.mzforever.wedding/",
+         "permanent": false
+      }
+   ],
    "rewrites": [
       {
          "source": "/(.*)",
-         "destination": "/index.html"
+         "has": [{ "type": "host", "value": "memories.mzforever.wedding" }],
+         "destination": "/memories.html"
+      },
+      {
+         "source": "/(.*)",
+         "destination": "/invitation.html"
       }
    ],
    "headers": [
