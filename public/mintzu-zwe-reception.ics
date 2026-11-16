@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mintzu & Zwe//Wedding Reception//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:mintzu-zwe-wedding-reception-20261122@invitation
+DTSTAMP:20261116T000000Z
+DTSTART:20261122T023000Z
+DTEND:20261122T043000Z
+SUMMARY:Wedding Reception of Mintzu & Zwe
+DESCRIPTION:Mintzu Hnin Khat and Zwe Marn Htet invite you to their wedding
+ reception\, 9:00 to 11:00 AM.
+LOCATION:Myo Lal Hall (မြို့လယ်ခန်းမ)
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Wedding Reception of Mintzu & Zwe
+TRIGGER:-PT2H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
