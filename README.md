@@ -46,6 +46,8 @@ One Vercel project serves both sites; `vercel.json` picks the page by the addres
 
 The invitation is `invitation.html`, not `index.html`, on purpose: Vercel serves an `index.html`
 for `/` before it looks at the rewrites, and the memories address would then show the invitation.
+The rewrites name the pages without `.html` (`/invitation`, `/memories`): with `cleanUrls` that is
+the only path Vercel serves them at, and a `.html` destination answers 404.
 
 The links between the two pages carry the full live addresses. On any other address (a local
 preview, a Vercel preview link, the Render copy) the scripts point them at `/memories` and `/`
