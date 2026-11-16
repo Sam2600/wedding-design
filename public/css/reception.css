@@ -1,7 +1,7 @@
 /* Wedding reception invitation (reception.html).
    The invitation's theme, envelope and turning card (built from invitation.css), with the printed
    reception card's words set as the card, our photo washed into the background, and the
-   reception's own sections: countdown, the couple, the morning's programme and a small 3D
+   reception's own sections: countdown, the couple and a small 3D
    gallery. Shared tokens and fonts live in base.css. */
 
 :root {
@@ -846,6 +846,10 @@ html[data-lang="en"] .t-my { display: none !important; }
 .lang button:first-child { font-family: var(--font-my); line-height: 1.8; letter-spacing: 0; }
 .lang button[aria-pressed="true"] { background: var(--plum); color: var(--paper); }
 .music-hint .t-my { line-height: 1.6; }
+/* Four ways on from the card: directions, calendar, save the card, our photos */
+.actions { grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(100%, 520px); gap: 8px; }
+.action { padding: 10px 4px; }
+.gallery { scroll-margin-top: 24px; }
 .turn .t-my { font-style: normal; font-size: 1rem; line-height: 1.5; }
 .turn.is-turned .turn-a, .turn:not(.is-turned) .turn-b { display: none; }
 .action .t-my { font-size: 0.8125rem; line-height: 1.6; }
@@ -945,19 +949,7 @@ html[data-lang="en"] .t-my { display: none !important; }
 .section-title { margin: 0; font: 400 clamp(2.5rem, 11vw, 3.25rem)/1.2 var(--font-script); color: var(--ink); text-align: center; }
 .section-title .t-my { font: 700 1.5rem/1.8 var(--font-my); }
 .lede .t-my { font-style: normal; font-size: 1.0625rem; }
-.fact .t-my strong { font: 700 1.125rem/1.8 var(--font-my); }
-.families .t-my { font-size: 1rem; }
-.family p { margin: 0; }
-/* On the photo background the families get a card like the facts, so the small names stay readable */
-.family {
-  padding: 18px 18px 16px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.78);
-}
 .lede, .details .names { text-shadow: 0 0 18px rgba(255, 255, 255, 0.9); }
-.family .kin { margin-top: 6px; font-size: 0.9375rem; color: var(--ink-muted); }
-.family .kin .t-my { font-size: 0.8125rem; line-height: 1.85; }
 
 /* ---- Countdown: four rings ---- */
 .countdown { text-align: center; }
@@ -996,37 +988,6 @@ html[data-lang="en"] .t-my { display: none !important; }
 .person-name { font: 600 1.125rem/1.35 var(--font-serif); color: var(--ink); }
 .person-name .t-my { font: 700 0.9375rem/1.8 var(--font-my); }
 .couple-amp { margin-top: -44px; font: 400 2.5rem/1 var(--font-script); color: var(--lilac); }
-
-/* ---- Programme ---- */
-.timeline {
-  position: relative;
-  margin: 18px auto 0;
-  padding: 26px 24px 26px 54px;
-  max-width: 420px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.72);
-  list-style: none;
-}
-.timeline::before { content: ""; position: absolute; left: 31px; top: 40px; bottom: 40px; width: 1px; background: var(--lilac); }
-.timeline li { position: relative; display: flex; flex-direction: column; padding: 0 0 22px; }
-.timeline li:last-child { padding-bottom: 0; }
-.timeline li::before {
-  content: "";
-  position: absolute;
-  left: -28px;
-  top: 12px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--plum);
-  box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--lilac);
-}
-.timeline time { font: 600 1.5rem/1.35 var(--font-serif); color: var(--ink); }
-.timeline time .t-my { font: 700 1.0625rem/1.8 var(--font-my); }
-.timeline li > span { color: var(--ink-muted); }
-.timeline li > span .t-my { font-size: 0.9375rem; }
-
 
 /* =========================================================
    Gallery: a small 3D coverflow. The photo in front faces you; the
@@ -1088,7 +1049,7 @@ html[data-lang="en"] .t-my { display: none !important; }
   transition: box-shadow 500ms var(--ease-out);
   -webkit-user-drag: none;
 }
-.flow-card img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.flow-card img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); pointer-events: none; -webkit-user-drag: none; }
 /* Photos further back sink into the paper colour */
 .flow-card::after {
   content: "";
