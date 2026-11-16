@@ -84,6 +84,8 @@ answers range requests, and Python's server does not (Vercel does).
   96 kbps MP3). It starts when the guest taps the seal; the round button bottom-right turns it
   off and on.
 - **Colours:** `public/css/base.css` (`:root`). The QR reads its colours from there too.
+- **"Photos from the wedding" button:** hidden for now, so the memories page is shared on its own.
+  To show it again, remove `hidden` from `.memories-link` in `invitation.html`.
 - **QR code and poster:** open `/qr`, check the link (it defaults to `https://mzforever.wedding/`,
   `LIVE_URL` in `public/js/qr.js`), download, and scan with two phones before printing.
 
