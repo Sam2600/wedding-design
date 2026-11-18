@@ -15,9 +15,15 @@ services:
         source: /memories
         destination: /memories.html
       - type: rewrite
-        source: /*
+        source: /invitation
         destination: /invitation.html
+      - type: rewrite
+        source: /*
+        destination: /reception.html
     headers:
       - path: /public/mintzu-zwe-wedding.ics
+        name: Content-Type
+        value: "text/calendar; charset=utf-8"
+      - path: /public/mintzu-zwe-reception.ics
         name: Content-Type
         value: "text/calendar; charset=utf-8"
