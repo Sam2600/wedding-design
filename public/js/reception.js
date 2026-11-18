@@ -462,7 +462,7 @@ function setUpMusic() {
 
 /* ---------- 6. Countdown ---------- */
 
-/* Counts down to 9 AM Myanmar time; during the reception and after it, a line in its place */
+/* Counts down to 6 AM Myanmar time; during the reception and after it, a line in its place */
 function setUpCountdown() {
   const box = $('.countdown');
   if (!box) return;
