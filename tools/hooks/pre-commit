@@ -1,0 +1,28 @@
+#!/bin/sh
+# Keep the reception card's download image in step with the page.
+#
+# When a commit includes the card's page or anything that shapes it, redraw
+# public/images/reception/invitation-card.jpg (and the link preview) from the page with
+# tools/render-card.py, and add the new images to the same commit.
+#
+# Install (once per clone):  cp tools/hooks/pre-commit .git/hooks/pre-commit
+# Skip it for one commit:    git commit --no-verify
+
+changed=$(git diff --cached --name-only -- \
+  reception.html \
+  public/css/reception.css \
+  public/css/base.css \
+  public/images/reception/corner.svg \
+  public/images/reception/card-photo-900.jpg)
+[ -z "$changed" ] && exit 0
+
+PY=python
+command -v python >/dev/null 2>&1 || PY=python3
+
+echo "pre-commit: the reception card changed, redrawing its download image..."
+if ! "$PY" tools/render-card.py; then
+  echo "pre-commit: could not redraw the card image (see the message above)."
+  echo "            Fix it and commit again, or skip this check with: git commit --no-verify"
+  exit 1
+fi
+git add public/images/reception/invitation-card.jpg public/images/reception/og-reception.jpg

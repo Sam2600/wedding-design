@@ -260,7 +260,7 @@ function drawPoster(qr) {
   // Jost, not Cormorant: canvas cannot switch Cormorant's old-style figures to lining ones
   ctx.fillStyle = COLORS.muted;
   ctx.font = '400 25px Jost, sans-serif';
-  ctx.fillText('9:00 – 11:00 AM  ·  Myo Lal Hall', W / 2, 1160);
+  ctx.fillText('6:00 – 10:00 AM  ·  Myo Lal Hall', W / 2, 1160);
 
   return canvas;
 }
